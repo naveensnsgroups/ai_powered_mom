@@ -1,13 +1,10 @@
 
-
 import os
 import whisper
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from typing import Dict, Any
-from pydub import AudioSegment
-import tempfile
 from dotenv import load_dotenv
 import json
 import re
@@ -20,23 +17,6 @@ if not GEMINI_API_KEY:
 
 # ------------------ LOAD WHISPER ------------------ #
 whisper_model = whisper.load_model("base")  # tiny, base, small, medium, large
-
-# ------------------ HELPER FUNCTIONS ------------------ #
-def save_temp_file(file_bytes: bytes, suffix: str = ".wav") -> str:
-    with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
-        tmp.write(file_bytes)
-        return tmp.name
-
-def validate_audio(file_bytes: bytes, min_size: int = 2000) -> bool:
-    return len(file_bytes) >= min_size
-
-def convert_to_wav(file_path: str) -> str:
-    if file_path.endswith(".wav"):
-        return file_path
-    audio = AudioSegment.from_file(file_path)
-    wav_path = file_path.rsplit(".", 1)[0] + ".wav"
-    audio.export(wav_path, format="wav")
-    return wav_path
 
 # ------------------ LLM ------------------ #
 llm = ChatGoogleGenerativeAI(
@@ -109,7 +89,7 @@ def generate_mom(transcript: str) -> Dict[str, Any]:
     except Exception:
         pass
 
-    # fallback if parsing fails
+    # Fallback if parsing fails
     return {
         "summary": {"overview": response_text, "detailed": ""},
         "action_items": [],

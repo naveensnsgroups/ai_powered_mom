@@ -1,7 +1,8 @@
 
+
 from fastapi import APIRouter, UploadFile, File, HTTPException
-from agents.speech_to_txt_agent.core.agent import save_temp_file, validate_audio, convert_to_wav, run_agent
-from agents.speech_to_txt_agent.core.tools import export_mom_pdf, export_mom_docx
+from agents.speech_to_txt_agent.core.agent import run_agent
+from agents.speech_to_txt_agent.core.tools import save_temp_file, validate_audio, convert_to_wav, export_mom_pdf, export_mom_docx
 import os
 import logging
 import tempfile
@@ -90,6 +91,11 @@ async def cleanup_exported_file(file_path: str):
     """
     Cleanup exported file after download.
     """
+    # Validate file path to prevent path traversal
+    if not file_path.startswith(tempfile.gettempdir()):
+        logger.error(f"Invalid file path: {file_path}")
+        raise HTTPException(status_code=400, detail="Invalid file path.")
+
     if file_path in EXPORTED_FILES:
         try:
             if os.path.exists(file_path):
