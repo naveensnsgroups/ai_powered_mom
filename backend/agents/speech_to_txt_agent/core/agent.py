@@ -1,4 +1,5 @@
 
+
 import os
 import whisper
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -52,15 +53,30 @@ mom_prompt = PromptTemplate(
 You are an AI assistant that converts meeting transcripts into structured JSON Minutes of Meeting.
 
 Requirements:
-1. Summary: brief key points
-2. Action items: list of tasks with person and deadline
-3. Decisions: list of decisions made
-
-Return only valid JSON in this format:
+1. Generate multi-level summaries:
+   - High-level overview (brief)
+   - Detailed notes (comprehensive)
+2. Identify action items with participant tagging and deadlines.
+3. Identify decisions with participant context.
+4. Return JSON ONLY in this format:
 {{
-  "summary": "text",
-  "action_items": ["task1", "task2"],
-  "decisions": ["decision1", "decision2"]
+  "summary": {{
+    "overview": "brief summary",
+    "detailed": "detailed notes"
+  }},
+  "action_items": [
+    {{
+      "task": "task description",
+      "assigned_to": "participant name",
+      "deadline": "YYYY-MM-DD or N/A"
+    }}
+  ],
+  "decisions": [
+    {{
+      "decision": "decision description",
+      "participant": "person who decided or responsible"
+    }}
+  ]
 }}
 
 Transcript:
@@ -77,10 +93,12 @@ mom_chain = LLMChain(
 
 # ------------------ TOOLS ------------------ #
 def transcribe_audio(file_path: str) -> Dict[str, str]:
+    """Transcribe audio file using Whisper."""
     result = whisper_model.transcribe(file_path)
     return {"transcript": result.get("text", "")}
 
 def generate_mom(transcript: str) -> Dict[str, Any]:
+    """Generate structured MoM from transcript."""
     response_text = mom_chain.run(transcript=transcript)
 
     # Extract JSON from LLM response
@@ -92,10 +110,15 @@ def generate_mom(transcript: str) -> Dict[str, Any]:
         pass
 
     # fallback if parsing fails
-    return {"summary": response_text, "action_items": [], "decisions": []}
+    return {
+        "summary": {"overview": response_text, "detailed": ""},
+        "action_items": [],
+        "decisions": []
+    }
 
 # ------------------ RUN AGENT ------------------ #
 def run_agent(file_path: str) -> Dict[str, Any]:
+    """Full pipeline: Transcribe audio and generate MoM."""
     transcription = transcribe_audio(file_path)["transcript"]
     mom = generate_mom(transcription)
     return {"transcript": transcription, "mom": mom}
