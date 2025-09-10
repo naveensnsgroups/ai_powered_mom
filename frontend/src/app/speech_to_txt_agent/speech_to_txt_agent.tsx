@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, FormEvent } from "react";
@@ -314,17 +313,16 @@ export default function SpeechToTxtAgent() {
               </svg>
             </div>
             <div>
-              <h3 className="font-semibold text-slate-800">Upload Audio/Video File</h3>
+              <h3 className="font-semibold text-slate-800">Upload Audio File</h3>
               <p className="text-sm text-slate-600">Drag and drop or click to browse</p>
             </div>
           </div>
 
           <div
-            className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-200 ${
-              dragActive
-                ? "border-blue-400 bg-blue-50"
-                : "border-slate-300 hover:border-slate-400 bg-slate-50/50"
-            }`}
+            className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-200 ${dragActive
+              ? "border-blue-400 bg-blue-50"
+              : "border-slate-300 hover:border-slate-400 bg-slate-50/50"
+              }`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
             onDragOver={handleDrag}
@@ -359,7 +357,7 @@ export default function SpeechToTxtAgent() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-slate-700 font-medium">Drop your audio/video file here</p>
+                  <p className="text-slate-700 font-medium">Drop your audio file here</p>
                   <p className="text-sm text-slate-500">Supports MP3, WAV, MP4 (max 50MB)</p>
                 </div>
               </div>
