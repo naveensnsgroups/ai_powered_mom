@@ -61,15 +61,14 @@ export default function SpeechToTxtAgent() {
 
       const response = await res.json();
 
-      // Safely extract nested data
-      const data = response.data || {};
-      setTranscript(data.transcript || "⚠️ No transcript received.");
-      setMom(data.mom || {});
+      // Updated: directly use response keys
+      setTranscript(response.transcript || "⚠️ No transcript received.");
+      setMom(response.mom || { summary: "", action_items: [], decisions: [] });
 
     } catch (err) {
       console.error(err);
       setTranscript("❌ Error processing audio.");
-      setMom({});
+      setMom({ summary: "", action_items: [], decisions: [] });
     } finally {
       setLoading(false);
     }
@@ -128,12 +127,6 @@ export default function SpeechToTxtAgent() {
                 <p className="text-slate-700 font-medium">Drop your audio/video file here</p>
                 <p className="text-sm text-slate-500">Supports MP3, WAV, MP4, and more formats</p>
               </div>
-              <button
-                type="button"
-                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                Browse Files
-              </button>
             </div>
           ) : (
             <div className="space-y-3">
@@ -181,89 +174,62 @@ export default function SpeechToTxtAgent() {
         </button>
       </div>
 
-      {/* Results Section */}
+      {/* Transcript Section */}
       {transcript && (
         <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-          <div className="bg-slate-50 px-6 py-3 border-b border-slate-200">
-            <div className="flex items-center space-x-2">
-              <svg className="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              <h3 className="font-semibold text-slate-800">Transcript</h3>
-            </div>
+          <div className="bg-slate-50 px-6 py-3 border-b border-slate-200 flex items-center space-x-2">
+            <h3 className="font-semibold text-slate-800">Transcript</h3>
           </div>
-          <div className="p-6">
-            <div className="prose max-w-none">
-              <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">{transcript}</p>
-            </div>
+          <div className="p-6 prose max-w-none">
+            <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">{transcript}</p>
           </div>
         </div>
       )}
 
-      {/* Minutes of Meeting Section */}
+      {/* MoM Section */}
       {(mom.summary || (mom.action_items && mom.action_items.length > 0) || (mom.decisions && mom.decisions.length > 0)) && (
         <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-          <div className="bg-gradient-to-r from-green-50 to-emerald-50 px-6 py-3 border-b border-green-200">
-            <div className="flex items-center space-x-2">
-              <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-              </svg>
-              <h3 className="font-semibold text-green-800">Minutes of Meeting (MoM)</h3>
-            </div>
+          <div className="bg-gradient-to-r from-green-50 to-emerald-50 px-6 py-3 border-b border-green-200 flex items-center space-x-2">
+            <h3 className="font-semibold text-green-800">Minutes of Meeting (MoM)</h3>
           </div>
           
           <div className="p-6 space-y-6">
             {mom.summary && (
-              <div className="space-y-2">
-                <h4 className="font-semibold text-slate-800 flex items-center space-x-2">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                  <span>Summary</span>
-                </h4>
+              <div>
+                <h4 className="font-semibold text-slate-800">Summary</h4>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">{mom.summary}</p>
+                  <p className="text-slate-700 whitespace-pre-wrap">{mom.summary}</p>
                 </div>
               </div>
             )}
 
             {mom.action_items && mom.action_items.length > 0 && (
-              <div className="space-y-2">
-                <h4 className="font-semibold text-slate-800 flex items-center space-x-2">
-                  <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
-                  <span>Action Items</span>
-                </h4>
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                  <ul className="space-y-2">
-                    {mom.action_items.map((item, idx) => (
-                      <li key={idx} className="flex items-start space-x-3">
-                        <span className="flex-shrink-0 w-6 h-6 bg-orange-500 text-white text-xs font-bold rounded-full flex items-center justify-center mt-0.5">
-                          {idx + 1}
-                        </span>
-                        <span className="text-slate-700">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div>
+                <h4 className="font-semibold text-slate-800">Action Items</h4>
+                <ul className="bg-orange-50 border border-orange-200 rounded-lg p-4 space-y-2">
+                  {mom.action_items.map((item, idx) => (
+                    <li key={idx} className="flex items-start space-x-3">
+                      <span className="flex-shrink-0 w-6 h-6 bg-orange-500 text-white text-xs font-bold rounded-full flex items-center justify-center mt-0.5">{idx + 1}</span>
+                      <span className="text-slate-700">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
 
             {mom.decisions && mom.decisions.length > 0 && (
-              <div className="space-y-2">
-                <h4 className="font-semibold text-slate-800 flex items-center space-x-2">
-                  <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                  <span>Decisions</span>
-                </h4>
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                  <ul className="space-y-2">
-                    {mom.decisions.map((item, idx) => (
-                      <li key={idx} className="flex items-start space-x-3">
-                        <svg className="flex-shrink-0 w-5 h-5 text-purple-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="text-slate-700">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div>
+                <h4 className="font-semibold text-slate-800">Decisions</h4>
+                <ul className="bg-purple-50 border border-purple-200 rounded-lg p-4 space-y-2">
+                  {mom.decisions.map((item, idx) => (
+                    <li key={idx} className="flex items-start space-x-3">
+                      <svg className="flex-shrink-0 w-5 h-5 text-purple-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="text-slate-700">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
           </div>

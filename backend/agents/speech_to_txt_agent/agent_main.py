@@ -13,19 +13,26 @@ async def transcribe_audio_api(file: UploadFile = File(...)):
     wav_path = None
 
     try:
+        # Read uploaded file
         file_bytes = await file.read()
 
+        # Validate audio length
         if not validate_audio(file_bytes):
             raise HTTPException(status_code=400, detail="Audio too short to transcribe.")
 
+        # Save uploaded file temporarily
         temp_path = save_temp_file(file_bytes, suffix=".mp3")
+
+        # Convert to WAV if necessary
         wav_path = convert_to_wav(temp_path)
 
+        # Run the agent pipeline
         result = run_agent(wav_path)
 
+        # Return in a format compatible with frontend
         return {
-            "status": "success",
-            "data": result
+            "transcript": result.get("transcript", ""),
+            "mom": result.get("mom", {"summary": "", "action_items": [], "decisions": []})
         }
 
     except HTTPException as http_exc:
@@ -36,6 +43,7 @@ async def transcribe_audio_api(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
     finally:
+        # Cleanup temporary files
         for path in [temp_path, wav_path]:
             if path and os.path.exists(path):
                 try:

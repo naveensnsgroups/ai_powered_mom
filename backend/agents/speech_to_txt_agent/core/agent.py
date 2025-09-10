@@ -2,6 +2,8 @@
 import os
 import whisper
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.chains import LLMChain
+from langchain.prompts import PromptTemplate
 from typing import Dict, Any
 from pydub import AudioSegment
 import tempfile
@@ -43,13 +45,10 @@ llm = ChatGoogleGenerativeAI(
     api_key=GEMINI_API_KEY
 )
 
-# ------------------ TOOLS ------------------ #
-def transcribe_audio(file_path: str) -> Dict[str, str]:
-    result = whisper_model.transcribe(file_path)
-    return {"transcript": result.get("text", "")}
-
-def generate_mom(transcript: str) -> Dict[str, Any]:
-    prompt = f"""
+# ------------------ PROMPT TEMPLATE ------------------ #
+mom_prompt = PromptTemplate(
+    input_variables=["transcript"],
+    template="""
 You are an AI assistant that converts meeting transcripts into structured JSON Minutes of Meeting.
 
 Requirements:
@@ -67,19 +66,33 @@ Return only valid JSON in this format:
 Transcript:
 {transcript}
 """
-    response = llm.invoke([{"role": "user", "content": prompt}])
-    text = response.content
+)
+
+# ------------------ LLM CHAIN ------------------ #
+mom_chain = LLMChain(
+    llm=llm,
+    prompt=mom_prompt,
+    verbose=True
+)
+
+# ------------------ TOOLS ------------------ #
+def transcribe_audio(file_path: str) -> Dict[str, str]:
+    result = whisper_model.transcribe(file_path)
+    return {"transcript": result.get("text", "")}
+
+def generate_mom(transcript: str) -> Dict[str, Any]:
+    response_text = mom_chain.run(transcript=transcript)
 
     # Extract JSON from LLM response
     try:
-        match = re.search(r"\{.*\}", text, re.DOTALL)
+        match = re.search(r"\{.*\}", response_text, re.DOTALL)
         if match:
             return json.loads(match.group())
     except Exception:
         pass
 
     # fallback if parsing fails
-    return {"summary": text, "action_items": [], "decisions": []}
+    return {"summary": response_text, "action_items": [], "decisions": []}
 
 # ------------------ RUN AGENT ------------------ #
 def run_agent(file_path: str) -> Dict[str, Any]:
