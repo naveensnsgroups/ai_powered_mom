@@ -1,86 +1,84 @@
-import SpeechToTxtAgent from "../../src/app/speech_to_txt_agent/speech_to_txt_agent";
+"use client";
 
-export default function SpeechToTxtPage() {
+import { useRouter } from "next/navigation";
+import { Mic, Radio, Zap, Clock, Globe, ArrowRight } from "lucide-react";
+
+export default function HomePage() {
+  const router = useRouter();
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Header Section */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-slate-200/60 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-              </svg>
+    <main className="flex flex-col items-center justify-center min-h-screen bg-slate-900 text-white px-6">
+      {/* Header */}
+      <div className="text-center mb-16">
+        <h1 className="text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 bg-clip-text text-transparent">
+          AI Speech Tools
+        </h1>
+        <p className="text-slate-400 text-xl max-w-2xl">
+          Convert speech to text with advanced AI technology
+        </p>
+      </div>
+
+      {/* Buttons Container */}
+      <div className="flex flex-col md:flex-row gap-8 w-full max-w-4xl">
+        
+        {/* Speech to Text Button */}
+        <button
+          onClick={() => router.push("/speech_to_txt_agent")}
+          className="group flex-1 bg-gradient-to-br from-blue-600 to-blue-800 hover:from-blue-500 hover:to-blue-700 rounded-2xl p-8 text-left transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 border border-blue-500/20"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center">
+              <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mr-4">
+                <Mic className="w-6 h-6 text-blue-300" />
+              </div>
+              <h3 className="text-2xl font-bold">Speech to Text</h3>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-slate-800">Speech-to-Text Agent</h1>
-              <p className="text-sm text-slate-600">Convert your voice into text with AI precision</p>
+            <ArrowRight className="w-5 h-5 text-blue-300 group-hover:translate-x-1 transition-transform" />
+          </div>
+          <p className="text-blue-100 leading-relaxed">
+            Upload and convert your audio files to accurate text transcriptions
+          </p>
+        </button>
+
+        {/* Live Speech to Text Button */}
+        <button
+          onClick={() => router.push("/live-speech-to-text")}
+          className="group flex-1 bg-gradient-to-br from-emerald-600 to-emerald-800 hover:from-emerald-500 hover:to-emerald-700 rounded-2xl p-8 text-left transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/25 border border-emerald-500/20"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center">
+              <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mr-4 relative">
+                <Radio className="w-6 h-6 text-emerald-300" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+              </div>
+              <h3 className="text-2xl font-bold">Live Speech to Text</h3>
             </div>
+            <ArrowRight className="w-5 h-5 text-emerald-300 group-hover:translate-x-1 transition-transform" />
+          </div>
+          <p className="text-emerald-100 leading-relaxed">
+            Real-time speech recognition with instant text conversion
+          </p>
+        </button>
+
+      </div>
+
+      {/* Footer */}
+      <div className="mt-16 text-center">
+        <div className="flex items-center justify-center gap-8 text-sm text-slate-400">
+          <div className="flex items-center gap-2">
+            <Zap className="w-4 h-4 text-yellow-400" />
+            <span>High Accuracy</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Clock className="w-4 h-4 text-blue-400" />
+            <span>Fast Processing</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Globe className="w-4 h-4 text-green-400" />
+            <span>Multi-language</span>
           </div>
         </div>
       </div>
-
-      {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-6 py-8">
-        <div className="bg-white/70 backdrop-blur-sm rounded-2xl border border-white/50 shadow-xl shadow-slate-200/50 p-8">
-          {/* Feature Highlights */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200/50">
-              <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <div>
-                <p className="font-semibold text-slate-800">Real-time</p>
-                <p className="text-sm text-slate-600">Instant transcription</p>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-200/50">
-              <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <div>
-                <p className="font-semibold text-slate-800">Accurate</p>
-                <p className="text-sm text-slate-600">AI-powered precision</p>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border border-purple-200/50">
-              <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-              </div>
-              <div>
-                <p className="font-semibold text-slate-800">Secure</p>
-                <p className="text-sm text-slate-600">Privacy protected</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Speech-to-Text Component Container */}
-          <div className="bg-white rounded-xl border border-slate-200/60 shadow-sm p-6">
-            <SpeechToTxtAgent />
-          </div>
-
-          {/* Footer Info */}
-          <div className="mt-8 pt-6 border-t border-slate-200/60">
-            <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-slate-600">
-              <p>Powered by advanced AI speech recognition technology</p>
-              <div className="flex items-center space-x-4 mt-2 sm:mt-0">
-                <span className="flex items-center space-x-1">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span>Ready to use</span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
+    </main>
   );
 }

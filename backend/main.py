@@ -11,6 +11,7 @@ from agents.speech_to_txt_agent.core.tools import export_mom_pdf, export_mom_doc
 
 # Import routers
 from agents.speech_to_txt_agent.agent_main import router as speech_router
+from agents.live_speech_to_txt_agent.agent_main import router as live_speech_router
 
 # Load environment variables
 load_dotenv()
@@ -38,6 +39,13 @@ app.include_router(
     prefix="/speech-to-text",
     tags=["Speech-to-Text Agent"]
 )
+
+app.include_router(
+    live_speech_router,
+    prefix="/live-speech-to-text",
+    tags=["Live Speech-to-Text Agent"]
+)
+
 
 # ---------------- Health Check ---------------- #
 @app.get("/health")
