@@ -251,3 +251,186 @@
 2025-09-11 11:06:33,770 - agents.live_speech_to_txt_agent.agent_main - INFO - Live transcription completed in 2.84s
 2025-09-11 11:06:33,770 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 3.15s
 2025-09-11 11:06:33,772 - main - INFO - Response: 200 in 3.151s
+2025-09-11 11:07:48,849 - main - INFO - Request: POST /speech-to-text/transcribe
+2025-09-11 11:07:48,903 - agents.speech_to_txt_agent.agent_main - INFO - Saved temporary audio file: C:\Users\HP\AppData\Local\Temp\tmpd7sti6xn.mp3
+2025-09-11 11:07:49,149 - agents.speech_to_txt_agent.agent_main - INFO - Converted to WAV: C:\Users\HP\AppData\Local\Temp\tmpwhomqpa5.wav
+2025-09-11 11:08:20,140 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpd7sti6xn.mp3
+2025-09-11 11:08:20,144 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpwhomqpa5.wav
+2025-09-11 11:08:20,145 - main - INFO - Response: 200 in 31.296s
+2025-09-11 11:45:01,454 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 11:45:01,457 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks
+2025-09-11 11:45:01,581 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpve3r3ps3.wav
+2025-09-11 11:45:02,196 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.74s
+2025-09-11 11:45:02,197 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 11:45:02,197 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 11:45:02,199 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 11:45:03,622 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 11:45:03,625 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Navin opened the meeting by noting that three high priority tickets were still pending and must be closed before the upcoming customer review. Arvind responded that in addition to ticket resolution, he would set up monitoring allowed to address recurring performance issues, committing to complete them by Wednesday, 15th September. Navin then asked Jayasuma about escalation and she confirmed she would finalize the SAR in update escalation matrix by Friday. Navin closed the discussion by summarizing the action items, stressing that all tasks must be completed before customer review on Monday, 20 September.' (duration: 42.90s, max_amp: 0.8213)
+2025-09-11 11:45:03,627 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 11:45:05,077 - agents.live_speech_to_txt_agent.core.agent - WARNING - MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "summary"\'}.  Expected: [\'\\n  "summary"\', \'transcript\'] Received: [\'transcript\']\nNote: if you intended {\n  "summary"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "summary"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 11:45:05,079 - agents.live_speech_to_txt_agent.core.agent - WARNING - MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "summary"\'}.  Expected: [\'\\n  "summary"\', \'transcript\'] Received: [\'transcript\']\nNote: if you intended {\n  "summary"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "summary"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 11:45:05,079 - agents.live_speech_to_txt_agent.core.agent - WARNING - All MoM generation attempts failed, using fallback
+2025-09-11 11:45:05,080 - agents.live_speech_to_txt_agent.agent_main - INFO - Live transcription completed in 2.88s
+2025-09-11 11:45:05,081 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 3.62s
+2025-09-11 11:45:05,084 - main - INFO - Response: 200 in 3.631s
+2025-09-11 11:47:00,054 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 11:47:00,059 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks
+2025-09-11 11:47:00,214 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp503oktnw.wav
+2025-09-11 11:47:00,818 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.76s
+2025-09-11 11:47:00,819 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 11:47:00,819 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 11:47:00,820 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 11:47:02,228 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 11:47:02,229 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning team. Navin opened the meeting by reminding the team about three pending high-priority talk tickets that must be closed before the customer review. Arvind committed to setting up monitoring alerts to address recurring performance issues Wednesday. While Jaisama agreed to finalize and share the updated escalation metrics by Friday, 17th September. Navin took responsibility for reasoning and tracking ticket closers. Now in Reassign and track ticket closures. Now in Implement monitoring alerts. Jaisuma finalize escalation matrix deadline 17 September.' (duration: 42.90s, max_amp: 0.8442)
+2025-09-11 11:47:02,231 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 11:47:03,338 - agents.live_speech_to_txt_agent.core.agent - WARNING - MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "summary"\'}.  Expected: [\'\\n  "summary"\', \'transcript\'] Received: [\'transcript\']\nNote: if you intended {\n  "summary"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "summary"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 11:47:03,338 - agents.live_speech_to_txt_agent.core.agent - WARNING - MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "summary"\'}.  Expected: [\'\\n  "summary"\', \'transcript\'] Received: [\'transcript\']\nNote: if you intended {\n  "summary"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "summary"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 11:47:03,338 - agents.live_speech_to_txt_agent.core.agent - WARNING - All MoM generation attempts failed, using fallback
+2025-09-11 11:47:03,339 - agents.live_speech_to_txt_agent.agent_main - INFO - Live transcription completed in 2.52s
+2025-09-11 11:47:03,339 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 3.28s
+2025-09-11 11:47:03,339 - main - INFO - Response: 200 in 3.285s
+2025-09-11 11:53:59,314 - main - INFO - Shutting down application...
+2025-09-11 11:54:48,072 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 11:54:48,072 - main - INFO - Testing API connections...
+2025-09-11 11:54:48,825 - main - INFO - Gemini API connection successful
+2025-09-11 11:54:48,825 - main - INFO - Application startup complete
+2025-09-11 11:55:22,079 - main - INFO - Shutting down application...
+2025-09-11 11:55:28,477 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 11:55:28,478 - main - INFO - Testing API connections...
+2025-09-11 11:55:31,315 - main - INFO - Gemini API connection successful
+2025-09-11 11:55:31,315 - main - INFO - Application startup complete
+2025-09-11 11:56:11,663 - main - INFO - Shutting down application...
+2025-09-11 11:56:17,892 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 11:56:17,893 - main - INFO - Testing API connections...
+2025-09-11 11:56:18,812 - main - INFO - Gemini API connection successful
+2025-09-11 11:56:18,813 - main - INFO - Application startup complete
+2025-09-11 11:56:34,880 - main - INFO - Shutting down application...
+2025-09-11 11:56:41,174 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 11:56:41,174 - main - INFO - Testing API connections...
+2025-09-11 11:56:42,072 - main - INFO - Gemini API connection successful
+2025-09-11 11:56:42,073 - main - INFO - Application startup complete
+2025-09-11 11:57:46,634 - main - INFO - Shutting down application...
+2025-09-11 11:57:52,879 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 11:57:52,880 - main - INFO - Testing API connections...
+2025-09-11 11:57:53,593 - main - INFO - Gemini API connection successful
+2025-09-11 11:57:53,594 - main - INFO - Application startup complete
+2025-09-11 11:57:59,605 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 11:57:59,605 - main - INFO - Testing API connections...
+2025-09-11 11:58:01,479 - main - INFO - Gemini API connection successful
+2025-09-11 11:58:01,479 - main - INFO - Application startup complete
+2025-09-11 11:58:07,493 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 11:58:07,493 - main - INFO - Testing API connections...
+2025-09-11 11:58:08,243 - main - INFO - Gemini API connection successful
+2025-09-11 11:58:08,243 - main - INFO - Application startup complete
+2025-09-11 11:58:18,516 - main - INFO - Shutting down application...
+2025-09-11 11:58:24,615 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 11:58:24,615 - main - INFO - Testing API connections...
+2025-09-11 11:58:26,547 - main - INFO - Gemini API connection successful
+2025-09-11 11:58:26,547 - main - INFO - Application startup complete
+2025-09-11 11:58:49,231 - main - INFO - Shutting down application...
+2025-09-11 11:58:55,331 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 11:58:55,331 - main - INFO - Testing API connections...
+2025-09-11 11:58:56,125 - main - INFO - Gemini API connection successful
+2025-09-11 11:58:56,126 - main - INFO - Application startup complete
+2025-09-11 12:08:21,104 - main - INFO - Shutting down application...
+2025-09-11 12:08:30,939 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:08:30,939 - main - INFO - Testing API connections...
+2025-09-11 12:08:31,925 - main - INFO - Gemini API connection successful
+2025-09-11 12:08:31,925 - main - INFO - Application startup complete
+2025-09-11 12:08:38,368 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:08:38,368 - main - INFO - Testing API connections...
+2025-09-11 12:08:40,259 - main - INFO - Gemini API connection successful
+2025-09-11 12:08:40,259 - main - INFO - Application startup complete
+2025-09-11 12:09:32,634 - main - INFO - Shutting down application...
+2025-09-11 12:10:28,834 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:10:28,834 - main - INFO - Testing API connections...
+2025-09-11 12:10:30,763 - main - INFO - Gemini API connection successful
+2025-09-11 12:10:30,764 - main - INFO - Application startup complete
+2025-09-11 12:15:06,996 - main - INFO - Shutting down application...
+2025-09-11 12:15:13,703 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:15:13,703 - main - INFO - Testing API connections...
+2025-09-11 12:15:14,544 - main - INFO - Gemini API connection successful
+2025-09-11 12:15:14,553 - main - INFO - Application startup complete
+2025-09-11 12:15:21,057 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:15:21,057 - main - INFO - Testing API connections...
+2025-09-11 12:15:22,445 - main - INFO - Gemini API connection successful
+2025-09-11 12:15:22,445 - main - INFO - Application startup complete
+2025-09-11 12:15:29,059 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:15:29,059 - main - INFO - Testing API connections...
+2025-09-11 12:15:30,910 - main - INFO - Gemini API connection successful
+2025-09-11 12:15:30,911 - main - INFO - Application startup complete
+2025-09-11 12:16:09,948 - main - INFO - Shutting down application...
+2025-09-11 12:16:16,529 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:16:16,529 - main - INFO - Testing API connections...
+2025-09-11 12:16:17,230 - main - INFO - Gemini API connection successful
+2025-09-11 12:16:17,230 - main - INFO - Application startup complete
+2025-09-11 12:16:23,584 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:16:23,584 - main - INFO - Testing API connections...
+2025-09-11 12:16:25,490 - main - INFO - Gemini API connection successful
+2025-09-11 12:16:25,490 - main - INFO - Application startup complete
+2025-09-11 12:16:31,944 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:16:31,945 - main - INFO - Testing API connections...
+2025-09-11 12:16:32,690 - main - INFO - Gemini API connection successful
+2025-09-11 12:16:32,690 - main - INFO - Application startup complete
+2025-09-11 12:42:53,814 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 12:42:53,818 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 12:42:53,918 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpeagnga7s.wav
+2025-09-11 12:42:54,059 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.24s
+2025-09-11 12:42:54,059 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 12:42:54,059 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 12:42:54,060 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 12:42:54,556 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 12:42:54,563 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Hello everyone, very good afternoon for all. I'm Navin Kumar speaking.' (duration: 5.22s, max_amp: 0.8090)
+2025-09-11 12:42:54,564 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 12:42:56,718 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:42:56,719 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:42:56,720 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 3 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:42:56,720 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using fallback
+2025-09-11 12:42:56,721 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 2.66s
+2025-09-11 12:42:56,721 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 2.90s
+2025-09-11 12:42:56,722 - main - INFO - Response: 200 in 2.909s
+2025-09-11 12:47:00,367 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 12:47:00,372 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 12:47:00,492 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmptwr_rt4b.wav
+2025-09-11 12:47:00,887 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.51s
+2025-09-11 12:47:00,887 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 12:47:00,887 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 12:47:00,888 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 12:47:02,230 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 12:47:02,234 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning team. Meeting conversation today. Today we will start have three high priority tasks pending from last week. I will design them today but I need to call up them closely for the customer review. Arvind can you update us? Morning Navin, Yes I agree. Apart from these tickets, we have recurring performance issues. To fix, I will set up monitoring alerts to discuss earlier. I will complete by this Wednesday, 15th September. Jaisama, Morning. As I lost week escalation took longer than expected, I finally then update escalation matrix and share it with everyone Friday. Decent taken. Monitoring alerts will be implemented. Escalation metrics will be updated. All pending tickets must be resolved before the customer review.' (duration: 54.00s, max_amp: 0.8059)
+2025-09-11 12:47:02,236 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 12:47:04,484 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:47:04,485 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:47:04,487 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 3 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:47:04,487 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using fallback
+2025-09-11 12:47:04,488 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 3.60s
+2025-09-11 12:47:04,488 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 4.12s
+2025-09-11 12:47:04,490 - main - INFO - Response: 200 in 4.123s
+2025-09-11 12:51:41,020 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 12:51:41,029 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 12:51:41,197 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpkhd07wuu.wav
+2025-09-11 12:51:41,801 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.77s
+2025-09-11 12:51:41,801 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 12:51:41,802 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 12:51:41,803 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 12:51:44,661 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 12:51:44,662 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning team. On 11th September 2025, from 10am to 10.45am, the support team meeting was attended by Naveen, Aravind, Jaisuma, Priya, and Rahul. The agenda included reviewing pending high-priority tickets, discussing system performance issues, updating the escalation process, and assigning tasks with deadlines. Navin highlighted for pending tickets and asked Aravind to update on monitoring alerts which he committed to completing by 15 September. Jaisamoh agreed to finalize escalation metrics by 17 September. Priya to follow up with clients by 16 September. Rahul to review performance reports by 16 September. Decision taken included implementing monitoring alerts, improving the escalation process, and ensuring all pending tickets. Result before the customer review. 20th September. Action items. Ticket racing. Navin. 20th September. In progress. Monitoring alerts. Arvind. 15th September. Is pending. Escalation metrics. Jaisama. 17th September. Pending. Client follow-up. Priya. 16th September. Pending. Performance review. Rahul. 16th September. Pending. Thank you.' (duration: 79.44s, max_amp: 0.8090)
+2025-09-11 12:51:44,665 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 12:51:46,806 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:51:46,807 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:51:46,808 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 3 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:51:46,809 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using fallback
+2025-09-11 12:51:46,810 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 5.01s
+2025-09-11 12:51:46,810 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 5.78s
+2025-09-11 12:51:46,814 - main - INFO - Response: 200 in 5.794s
+2025-09-11 12:55:31,622 - main - INFO - Shutting down application...
+2025-09-11 12:55:38,856 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:55:38,856 - main - INFO - Testing API connections...
+2025-09-11 12:55:39,708 - main - INFO - Gemini API connection successful
+2025-09-11 12:55:39,708 - main - INFO - Application startup complete
+2025-09-11 12:55:40,336 - main - INFO - Shutting down application...
+2025-09-11 12:55:46,572 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:55:46,572 - main - INFO - Testing API connections...
+2025-09-11 12:55:47,237 - main - INFO - Gemini API connection successful
+2025-09-11 12:55:47,237 - main - INFO - Application startup complete
+2025-09-11 12:55:49,151 - main - INFO - Shutting down application...
