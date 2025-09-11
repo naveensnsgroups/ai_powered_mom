@@ -54,141 +54,124 @@ export default function LiveTranscription() {
   
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
-  const chunkIndexRef = useRef(0);
+  const recordedChunksRef = useRef<Blob[]>([]);
 
   const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
 
-  // Update the initializeRecorder function in your TSX component
-
-const initializeRecorder = useCallback(async () => {
-  try {
-    // Request higher quality audio settings
-    const stream = await navigator.mediaDevices.getUserMedia({
-      audio: {
-        channelCount: 1,
-        sampleRate: 44100, // Higher sample rate initially
-        sampleSize: 16,
-        echoCancellation: true,
-        noiseSuppression: true,
-        autoGainControl: true,
-        volume: 1.0 // Maximum volume
-      }
-    });
-
-    streamRef.current = stream;
-
-    // Prefer WAV or higher quality formats
-    const mimeTypes = [
-      'audio/wav',
-      'audio/webm;codecs=pcm',
-      'audio/webm;codecs=opus',
-      'audio/webm',
-      'audio/ogg;codecs=opus'
-    ];
-
-    let selectedMimeType = null;
-    for (const mimeType of mimeTypes) {
-      if (MediaRecorder.isTypeSupported(mimeType)) {
-        selectedMimeType = mimeType;
-        console.log(`Using MIME type: ${mimeType}`);
-        break;
-      }
-    }
-
-    if (!selectedMimeType) {
-      throw new Error('No supported audio MIME type found');
-    }
-
-    const mediaRecorder = new MediaRecorder(stream, {
-      mimeType: selectedMimeType,
-      audioBitsPerSecond: 128000 // Higher bitrate for better quality
-    });
-
-    mediaRecorder.ondataavailable = (event) => {
-      if (event.data && event.data.size > 1000) { // Increased minimum size
-        const chunk: AudioChunk = {
-          data: event.data,
-          timestamp: Date.now(),
-          index: chunkIndexRef.current++,
-          size: event.data.size
-        };
-        
-        setAudioChunks(prev => [...prev, chunk]);
-        console.log(`Audio chunk ${chunk.index}: ${chunk.size} bytes (${selectedMimeType})`);
-        
-        // Log audio analysis
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          if (e.target?.result instanceof ArrayBuffer) {
-            const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-            audioContext.decodeAudioData(e.target.result.slice(0))
-              .then(audioBuffer => {
-                const channelData = audioBuffer.getChannelData(0);
-                const maxAmplitude = Math.max(...channelData.map(Math.abs));
-                const rms = Math.sqrt(channelData.reduce((sum, val) => sum + val * val, 0) / channelData.length);
-                console.log(`Chunk ${chunk.index} - Duration: ${audioBuffer.duration.toFixed(2)}s, Max: ${maxAmplitude.toFixed(4)}, RMS: ${rms.toFixed(4)}`);
-                
-                if (maxAmplitude < 0.01) {
-                  console.warn(`Chunk ${chunk.index} is very quiet - check microphone levels`);
-                }
-              })
-              .catch(err => console.log('Could not analyze audio:', err));
-          }
-        };
-        reader.readAsArrayBuffer(event.data);
-      } else {
-        console.warn(`Skipping tiny chunk: ${event.data?.size || 0} bytes`);
-      }
-    };
-
-    // Rest of the recorder setup remains the same...
-    mediaRecorder.onstart = () => {
-      console.log('Recording started with settings:', {
-        mimeType: selectedMimeType,
-        audioBitsPerSecond: 128000,
-        chunkDuration: '5000ms'
+  const initializeRecorder = useCallback(async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          channelCount: 1,
+          sampleRate: 44100,
+          sampleSize: 16,
+          echoCancellation: true,
+          noiseSuppression: false,
+          autoGainControl: true,
+          volume: 1.0
+        }
       });
-      setIsRecording(true);
-      setAudioChunks([]);
-      chunkIndexRef.current = 0;
-      setError(null);
-    };
 
-    mediaRecorder.onstop = () => {
-      console.log('Recording stopped');
-      setIsRecording(false);
-    };
+      streamRef.current = stream;
 
-    mediaRecorder.onerror = (error) => {
-      console.error('MediaRecorder error:', error);
-      setError('Recording error occurred');
-    };
+      const mimeTypes = [
+        'audio/wav',
+        'audio/webm;codecs=opus',
+        'audio/webm',
+        'audio/ogg;codecs=opus'
+      ];
 
-    mediaRecorderRef.current = mediaRecorder;
-    return true;
+      let selectedMimeType = null;
+      for (const mimeType of mimeTypes) {
+        if (MediaRecorder.isTypeSupported(mimeType)) {
+          selectedMimeType = mimeType;
+          console.log(`Using MIME type: ${mimeType}`);
+          break;
+        }
+      }
 
-  } catch (error) {
-    console.error('Failed to initialize recorder:', error);
-    setError(`Failed to initialize recorder: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    return false;
-  }
-}, []);
+      if (!selectedMimeType) {
+        throw new Error('No supported audio MIME type found');
+      }
 
-  // Update the startRecording function
-const startRecording = useCallback(async () => {
-  if (!mediaRecorderRef.current) {
-    const initialized = await initializeRecorder();
-    if (!initialized) return;
-  }
+      const mediaRecorder = new MediaRecorder(stream, {
+        mimeType: selectedMimeType,
+        audioBitsPerSecond: 128000
+      });
 
-  try {
-    // Use 5-second chunks for better audio quality
-    mediaRecorderRef.current?.start(5000);
-  } catch (error) {
-    console.error('Failed to start recording:', error);
-    setError('Failed to start recording');
-  }
-}, [initializeRecorder]);
+      // Single ondataavailable handler that stores chunks
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data && event.data.size > 0) {
+          recordedChunksRef.current.push(event.data);
+          console.log(`Recorded chunk: ${event.data.size} bytes`);
+        }
+      };
+
+      mediaRecorder.onstart = () => {
+        console.log('Recording started with settings:', {
+          mimeType: selectedMimeType,
+          audioBitsPerSecond: 128000
+        });
+        setIsRecording(true);
+        setAudioChunks([]);
+        recordedChunksRef.current = []; // Clear previous recordings
+        setError(null);
+      };
+
+      mediaRecorder.onstop = () => {
+        console.log('Recording stopped, processing complete audio...');
+        setIsRecording(false);
+
+        // Combine all recorded chunks into one complete audio file
+        if (recordedChunksRef.current.length > 0) {
+          const completeBlob = new Blob(recordedChunksRef.current, { type: selectedMimeType });
+          
+          console.log(`Complete recording: ${completeBlob.size} bytes`);
+          
+          // Create single large chunk for processing
+          const chunk: AudioChunk = {
+            data: completeBlob,
+            timestamp: Date.now(),
+            index: 0,
+            size: completeBlob.size
+          };
+          
+          setAudioChunks([chunk]);
+        } else {
+          console.warn('No audio data recorded');
+          setError('No audio data was recorded. Please check microphone permissions.');
+        }
+      };
+
+      mediaRecorder.onerror = (error) => {
+        console.error('MediaRecorder error:', error);
+        setError('Recording error occurred');
+      };
+
+      mediaRecorderRef.current = mediaRecorder;
+      return true;
+
+    } catch (error) {
+      console.error('Failed to initialize recorder:', error);
+      setError(`Failed to initialize recorder: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      return false;
+    }
+  }, []);
+
+  const startRecording = useCallback(async () => {
+    if (!mediaRecorderRef.current) {
+      const initialized = await initializeRecorder();
+      if (!initialized) return;
+    }
+
+    try {
+      // Start recording - will collect data until stop is called
+      mediaRecorderRef.current?.start(1000); // Collect data every 1 second but don't process yet
+    } catch (error) {
+      console.error('Failed to start recording:', error);
+      setError('Failed to start recording');
+    }
+  }, [initializeRecorder]);
 
   const stopRecording = useCallback(() => {
     if (mediaRecorderRef.current && isRecording) {
@@ -206,14 +189,18 @@ const startRecording = useCallback(async () => {
     setError(null);
 
     try {
-      const formData = new FormData();
+      const chunk = audioChunks[0];
       
-      audioChunks.forEach((chunk) => {
-        const filename = `chunk_${chunk.index}.webm`;
-        formData.append('files', chunk.data, filename);
-      });
+      if (chunk.size < 1000) {
+        throw new Error('Audio file too small. Please record for longer duration.');
+      }
 
-      console.log(`Sending ${audioChunks.length} chunks to backend...`);
+      console.log(`Processing audio chunk: ${chunk.size} bytes`);
+
+      const formData = new FormData();
+      formData.append('files', chunk.data, 'complete_recording.webm');
+
+      console.log('Sending complete recording to backend...');
 
       const response = await fetch(`${BACKEND_URL}/live-speech-to-text/live-chunks`, {
         method: 'POST',
@@ -221,15 +208,28 @@ const startRecording = useCallback(async () => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ detail: 'Unknown error' }));
+        const errorText = await response.text();
+        console.error('Backend error response:', errorText);
+        
+        let errorData;
+        try {
+          errorData = JSON.parse(errorText);
+        } catch {
+          errorData = { detail: errorText || 'Unknown error' };
+        }
+        
         throw new Error(`HTTP ${response.status}: ${errorData.detail || 'Request failed'}`);
       }
 
       const result: TranscriptionResult = await response.json();
       console.log('Backend response:', result);
 
-      setTranscription(result);
-      setAudioChunks([]); // Clear chunks after successful processing
+      if (!result.transcript || result.transcript.trim() === '') {
+        console.warn('Empty transcript received from backend');
+        setError('No speech was detected in the recording. Please try recording again and speak clearly.');
+      } else {
+        setTranscription(result);
+      }
 
     } catch (error) {
       console.error('Failed to process audio chunks:', error);
@@ -260,7 +260,6 @@ const startRecording = useCallback(async () => {
       const result: SingleTranscriptionResult = await response.json();
       console.log(`Single chunk ${chunkIndex} result:`, result);
       
-      // Show result in alert for testing
       alert(`Chunk ${chunkIndex} transcript: "${result.transcript}"\nDuration: ${result.audio_info.duration.toFixed(2)}s`);
 
     } catch (error) {
@@ -277,10 +276,23 @@ const startRecording = useCallback(async () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current = null;
     }
+    recordedChunksRef.current = [];
     setIsRecording(false);
     setAudioChunks([]);
     setTranscription(null);
     setError(null);
+  }, []);
+
+  // Test microphone access
+  const testMicrophone = useCallback(async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream.getTracks().forEach(track => track.stop());
+      alert('Microphone access granted! You can now start recording.');
+    } catch (error) {
+      console.error('Microphone test failed:', error);
+      setError(`Microphone access failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   }, []);
 
   return (
@@ -292,6 +304,14 @@ const startRecording = useCallback(async () => {
         <h2 className="text-xl font-semibold text-gray-800 mb-4">Recording Controls</h2>
         
         <div className="flex gap-4 mb-4">
+          <button
+            onClick={testMicrophone}
+            disabled={isRecording || isProcessing}
+            className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+          >
+            Test Microphone
+          </button>
+          
           <button
             onClick={startRecording}
             disabled={isRecording || isProcessing}
@@ -325,30 +345,38 @@ const startRecording = useCallback(async () => {
           </button>
         </div>
 
+        {/* Recording Status */}
+        {isRecording && (
+          <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse mr-2"></div>
+              <span className="text-green-700 font-medium">Recording in progress... Speak clearly into your microphone</span>
+            </div>
+          </div>
+        )}
+
         {/* Audio Chunks Info */}
         {audioChunks.length > 0 && (
           <div className="mt-4 p-4 bg-gray-50 rounded-lg">
             <h3 className="font-medium text-gray-700 mb-2">
-              Audio Chunks: {audioChunks.length} 
+              Recorded Audio: {audioChunks.length} file
               (Total: {(audioChunks.reduce((sum, chunk) => sum + chunk.size, 0) / 1024).toFixed(1)} KB)
             </h3>
             <div className="flex flex-wrap gap-2">
-              {audioChunks.slice(0, 10).map((chunk, index) => (
+              {audioChunks.map((chunk, index) => (
                 <button
                   key={chunk.index}
                   onClick={() => testSingleChunk(index)}
                   className="px-3 py-1 text-sm bg-blue-100 text-blue-800 rounded hover:bg-blue-200"
-                  title={`Test chunk ${chunk.index} (${(chunk.size / 1024).toFixed(1)} KB)`}
+                  title={`Test recording (${(chunk.size / 1024).toFixed(1)} KB)`}
                 >
-                  Chunk {chunk.index}
+                  Test Audio
                 </button>
               ))}
-              {audioChunks.length > 10 && (
-                <span className="px-3 py-1 text-sm text-gray-500">
-                  +{audioChunks.length - 10} more
-                </span>
-              )}
             </div>
+            <p className="text-sm text-gray-600 mt-2">
+              Click "Process Audio" to transcribe and generate meeting minutes
+            </p>
           </div>
         )}
       </div>
@@ -371,10 +399,22 @@ const startRecording = useCallback(async () => {
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
           <div className="flex items-center">
             <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-            <p className="ml-3 text-blue-700">Processing audio chunks...</p>
+            <p className="ml-3 text-blue-700">Processing audio and generating transcript...</p>
           </div>
         </div>
       )}
+
+      {/* Instructions */}
+      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+        <h3 className="text-lg font-medium text-yellow-800 mb-2">How to Use</h3>
+        <ol className="list-decimal list-inside text-yellow-700 space-y-1">
+          <li>Click "Test Microphone" to ensure audio access</li>
+          <li>Click "Start Recording" and speak your meeting content</li>
+          <li>Speak clearly and loudly for at least 10-15 seconds</li>
+          <li>Click "Stop Recording" when finished</li>
+          <li>Click "Process Audio" to generate transcript and meeting minutes</li>
+        </ol>
+      </div>
 
       {/* Transcription Results */}
       {transcription && (
@@ -407,7 +447,7 @@ const startRecording = useCallback(async () => {
           <div className="bg-white rounded-lg shadow-md p-6">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">Transcript</h3>
             <div className="bg-gray-50 rounded-lg p-4">
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">
                 {transcription.transcript || 'No transcript available'}
               </p>
             </div>
@@ -426,7 +466,7 @@ const startRecording = useCallback(async () => {
               </div>
               <div className="bg-gray-50 rounded-lg p-4">
                 <h5 className="font-medium text-gray-900 mb-2">Detailed Notes</h5>
-                <p className="text-gray-700">{transcription.mom.summary.detailed}</p>
+                <p className="text-gray-700 whitespace-pre-wrap">{transcription.mom.summary.detailed}</p>
               </div>
             </div>
 

@@ -6,7 +6,7 @@ export default function LiveSpeechToTextPage() {
       <main className="max-w-6xl mx-auto px-6 py-8">
         <div className="bg-white rounded-2xl border border-slate-200 shadow-lg p-8">
           <h1 className="text-2xl font-bold text-slate-800 mb-6">
-            🎙️ Live Speech-to-Text
+            🎙️ Live Speech-to-Text Agent
           </h1>
           <LiveSpeechToText />
         </div>

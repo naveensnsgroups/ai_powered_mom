@@ -186,3 +186,68 @@
 2025-09-11 10:34:36,302 - main - INFO - Testing API connections...
 2025-09-11 10:34:37,065 - main - INFO - Gemini API connection successful
 2025-09-11 10:34:37,065 - main - INFO - Application startup complete
+2025-09-11 10:34:43,159 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 10:34:43,159 - main - INFO - Testing API connections...
+2025-09-11 10:34:45,343 - main - INFO - Gemini API connection successful
+2025-09-11 10:34:45,343 - main - INFO - Application startup complete
+2025-09-11 10:42:56,551 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 10:42:56,554 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks
+2025-09-11 10:42:56,572 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted raw PCM to WAV: C:\Users\HP\AppData\Local\Temp\tmpu_aanzcw.wav
+2025-09-11 10:42:56,705 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.15s
+2025-09-11 10:42:56,706 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 10:42:56,706 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 10:42:56,706 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 10:42:57,246 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 10:42:57,248 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 0/1 chunks
+2025-09-11 10:42:57,248 - agents.live_speech_to_txt_agent.core.agent - WARNING - No successful transcriptions
+2025-09-11 10:42:57,250 - agents.live_speech_to_txt_agent.agent_main - INFO - Live transcription completed in 0.54s
+2025-09-11 10:42:57,250 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.70s
+2025-09-11 10:42:57,251 - main - INFO - Response: 200 in 0.701s
+2025-09-11 10:46:36,961 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 10:46:36,964 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks
+2025-09-11 10:46:37,031 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpilo6bdd0.wav
+2025-09-11 10:46:37,135 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.17s
+2025-09-11 10:46:37,135 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 10:46:37,135 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 10:46:37,135 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 10:46:37,724 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 10:46:37,731 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning everyone. Welcome to our weekly team meeting. Today is January 15th and we have three main agenda items to discuss. First we need to review the progress on the website redesign project.' (duration: 15.60s, max_amp: 0.8062)
+2025-09-11 10:46:37,732 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 10:46:38,659 - agents.live_speech_to_txt_agent.core.agent - WARNING - MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "summary"\'}.  Expected: [\'\\n  "summary"\', \'transcript\'] Received: [\'transcript\']\nNote: if you intended {\n  "summary"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "summary"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 10:46:38,660 - agents.live_speech_to_txt_agent.core.agent - WARNING - MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "summary"\'}.  Expected: [\'\\n  "summary"\', \'transcript\'] Received: [\'transcript\']\nNote: if you intended {\n  "summary"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "summary"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 10:46:38,660 - agents.live_speech_to_txt_agent.core.agent - WARNING - All MoM generation attempts failed, using fallback
+2025-09-11 10:46:38,660 - agents.live_speech_to_txt_agent.agent_main - INFO - Live transcription completed in 1.53s
+2025-09-11 10:46:38,660 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 1.70s
+2025-09-11 10:46:38,661 - main - INFO - Response: 200 in 1.701s
+2025-09-11 10:49:44,090 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 10:49:44,094 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks
+2025-09-11 10:49:44,171 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp4ka5b_8o.wav
+2025-09-11 10:49:44,333 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.24s
+2025-09-11 10:49:44,333 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 10:49:44,333 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 10:49:44,334 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 10:49:45,010 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 10:49:45,012 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'The weekly project review meeting was held on 11th September 2025 from 10am to 11.30am in conference room A with both in-person and online participation. The meeting was attended by Mr. Rajesh Kumar. Thank you.' (duration: 17.40s, max_amp: 0.8683)
+2025-09-11 10:49:45,014 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 10:49:46,136 - agents.live_speech_to_txt_agent.core.agent - WARNING - MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "summary"\'}.  Expected: [\'\\n  "summary"\', \'transcript\'] Received: [\'transcript\']\nNote: if you intended {\n  "summary"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "summary"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 10:49:46,137 - agents.live_speech_to_txt_agent.core.agent - WARNING - MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "summary"\'}.  Expected: [\'\\n  "summary"\', \'transcript\'] Received: [\'transcript\']\nNote: if you intended {\n  "summary"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "summary"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 10:49:46,138 - agents.live_speech_to_txt_agent.core.agent - WARNING - All MoM generation attempts failed, using fallback
+2025-09-11 10:49:46,139 - agents.live_speech_to_txt_agent.agent_main - INFO - Live transcription completed in 1.81s
+2025-09-11 10:49:46,139 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 2.05s
+2025-09-11 10:49:46,141 - main - INFO - Response: 200 in 2.051s
+2025-09-11 11:06:30,621 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 11:06:30,624 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks
+2025-09-11 11:06:30,722 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp_ifr_umw.wav
+2025-09-11 11:06:30,926 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.30s
+2025-09-11 11:06:30,926 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 11:06:30,927 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 11:06:30,928 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 11:06:31,591 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 11:06:31,593 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'The meeting began with Naveen addressing the open support tickets and highlighting priority cases requiring immediate attention. Aravind reported on system performance issues raised by clients and proposed adding monitoring alerts to prevent escalation.' (duration: 21.54s, max_amp: 0.7479)
+2025-09-11 11:06:31,596 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 11:06:33,765 - agents.live_speech_to_txt_agent.core.agent - WARNING - MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "summary"\'}.  Expected: [\'\\n  "summary"\', \'transcript\'] Received: [\'transcript\']\nNote: if you intended {\n  "summary"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "summary"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 11:06:33,767 - agents.live_speech_to_txt_agent.core.agent - WARNING - MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "summary"\'}.  Expected: [\'\\n  "summary"\', \'transcript\'] Received: [\'transcript\']\nNote: if you intended {\n  "summary"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "summary"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 11:06:33,769 - agents.live_speech_to_txt_agent.core.agent - WARNING - All MoM generation attempts failed, using fallback
+2025-09-11 11:06:33,770 - agents.live_speech_to_txt_agent.agent_main - INFO - Live transcription completed in 2.84s
+2025-09-11 11:06:33,770 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 3.15s
+2025-09-11 11:06:33,772 - main - INFO - Response: 200 in 3.151s
