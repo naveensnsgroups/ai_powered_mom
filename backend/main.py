@@ -41,12 +41,10 @@ app.include_router(
 )
 
 app.include_router(
-    live_speech_router,
+    live_speech_router,  # Make sure prefix in agent_main.py is removed
     prefix="/live-speech-to-text",
     tags=["Live Speech-to-Text Agent"]
 )
-
-
 # ---------------- Health Check ---------------- #
 @app.get("/health")
 async def health_check():

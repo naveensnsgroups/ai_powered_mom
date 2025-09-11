@@ -1,46 +1,45 @@
+
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 export default function LiveSpeechToText() {
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState("");
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const audioChunksRef = useRef<Blob[]>([]);
 
-  // Start recording
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-      const mediaRecorder = new MediaRecorder(stream, {
-        mimeType: "audio/webm;codecs=opus",
-      });
+      const mimeType =
+        MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
+          ? "audio/webm;codecs=opus"
+          : "audio/webm";
+
+      const mediaRecorder = new MediaRecorder(stream, { mimeType });
 
       mediaRecorder.ondataavailable = async (event) => {
         if (event.data.size > 0) {
-          audioChunksRef.current.push(event.data);
-
-          // send chunk to backend
-          const audioBlob = new Blob([event.data], { type: "audio/webm" });
           const formData = new FormData();
-          formData.append("file", audioBlob, "chunk.webm");
+          formData.append("files", event.data, "chunk.webm");
 
           try {
             const response = await fetch(
-              "http://localhost:8000/live-speech-to-text/live-chunks",
-              {
-                method: "POST",
-                body: formData,
-              }
+              "http://localhost:8000/live-speech-to-text/live-chunks", // ✅ aligned with backend
+              { method: "POST", body: formData }
             );
 
-            const data = await response.json();
-            if (data.text) {
-              setTranscript((prev) => prev + " " + data.text);
+            if (response.ok) {
+              const data = await response.json();
+              if (data.transcript) {
+                setTranscript((prev) => prev + " " + data.transcript);
+              }
+            } else {
+              console.error("Server error:", await response.text());
             }
           } catch (err) {
-            console.error("Error sending audio chunk:", err);
+            console.error("Error sending chunk:", err);
           }
         }
       };
@@ -49,12 +48,11 @@ export default function LiveSpeechToText() {
       mediaRecorderRef.current = mediaRecorder;
       setIsRecording(true);
     } catch (err) {
-      console.error("Mic access error:", err);
-      alert("Could not access microphone");
+      console.error("Mic error:", err);
+      alert("Could not access microphone.");
     }
   };
 
-  // Stop recording
   const stopRecording = () => {
     mediaRecorderRef.current?.stop();
     setIsRecording(false);
@@ -62,9 +60,7 @@ export default function LiveSpeechToText() {
 
   return (
     <div className="flex flex-col items-center p-6 min-h-screen bg-gray-50">
-      <h1 className="text-2xl font-bold mb-4">
-        🎙️ Live Speech-to-Text Transcription
-      </h1>
+      <h1 className="text-2xl font-bold mb-4">🎙️ Live Speech-to-Text</h1>
 
       <div className="flex space-x-4 mb-6">
         {!isRecording ? (
@@ -85,7 +81,7 @@ export default function LiveSpeechToText() {
       </div>
 
       <div className="w-full max-w-2xl bg-white rounded-lg shadow-md p-4 overflow-y-auto h-64 border border-gray-200">
-        <h2 className="text-lg font-semibold mb-2">Live Transcript:</h2>
+        <h2 className="text-lg font-semibold mb-2">Transcript:</h2>
         <p className="whitespace-pre-wrap text-gray-700">{transcript}</p>
       </div>
     </div>

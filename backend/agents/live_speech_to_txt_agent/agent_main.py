@@ -1,59 +1,58 @@
+
+
 from fastapi import APIRouter, UploadFile, File, HTTPException
-from agents.live_speech_to_txt_agent.core.agent import run_agent
-from agents.live_speech_to_txt_agent.core.tools import (
-    save_temp_file, validate_audio, live_mom_tool
-)
-import os
-import logging
+from agents.live_speech_to_txt_agent.core.agent import run_live_agent
+from agents.live_speech_to_txt_agent.core.tools import save_temp_file, validate_audio
+import os, logging, tempfile
 import numpy as np
 import soundfile as sf
+from pydub import AudioSegment
 
-router = APIRouter()
+router = APIRouter()  # ✅ no prefix here
 logger = logging.getLogger(__name__)
-
 
 @router.post("/live-chunks")
 async def live_transcribe_api(files: list[UploadFile] = File(...)):
-    """
-    Accept multiple audio chunks (WAV/MP3) and generate final transcript + MoM.
-    """
     temp_paths = []
-
     try:
-        audio_chunks = []
+        if not files:
+            raise HTTPException(status_code=400, detail="No audio chunks provided.")
+
+        audio_chunks, sr = [], 16000
 
         for file in files:
             file_bytes = await file.read()
-
             if not validate_audio(file_bytes):
-                raise HTTPException(status_code=400, detail="One of the chunks is too short.")
+                raise HTTPException(status_code=400, detail=f"File {file.filename} invalid or too short.")
 
-            temp_path = save_temp_file(file_bytes, suffix=".wav")
-            temp_paths.append(temp_path)
+            # Save original
+            temp_path_original = save_temp_file(file_bytes, suffix=os.path.splitext(file.filename)[1] or ".webm")
+            temp_paths.append(temp_path_original)
 
-            data, sr = sf.read(temp_path, dtype="float32")
+            # Convert to wav
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_wav:
+                audio = AudioSegment.from_file(temp_path_original)
+                audio = audio.set_channels(1).set_frame_rate(16000)
+                audio.export(tmp_wav.name, format="wav")
+                temp_path_wav = tmp_wav.name
+                temp_paths.append(temp_path_wav)
+
+            # Read wav into numpy
+            data, sr = sf.read(temp_path_wav, dtype="float32")
             audio_chunks.append(np.array(data, dtype=np.float32))
 
-        # Run pipeline
-        result = live_mom_tool(audio_chunks, sample_rate=sr or 16000)
-
+        result = run_live_agent(audio_chunks, sample_rate=sr or 16000)
         return {
             "transcript": result.get("transcript", ""),
             "mom": result.get("mom", {"summary": {}, "action_items": [], "decisions": []})
         }
 
-    except HTTPException as http_exc:
-        raise http_exc
-
     except Exception as e:
-        logger.exception("Error processing live chunks")
-        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
-
+        logger.exception("Error in /live-chunks")
+        raise HTTPException(status_code=500, detail=f"Internal error: {e}")
     finally:
-        # Cleanup temp files
         for path in temp_paths:
             if path and os.path.exists(path):
-                try:
-                    os.remove(path)
-                except Exception as cleanup_error:
-                    logger.warning(f"Failed to delete temp file {path}: {cleanup_error}")
+                try: os.remove(path)
+                except Exception: pass
+
