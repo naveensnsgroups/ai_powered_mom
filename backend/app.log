@@ -434,3 +434,271 @@
 2025-09-11 12:55:47,237 - main - INFO - Gemini API connection successful
 2025-09-11 12:55:47,237 - main - INFO - Application startup complete
 2025-09-11 12:55:49,151 - main - INFO - Shutting down application...
+2025-09-11 12:55:55,338 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 12:55:55,338 - main - INFO - Testing API connections...
+2025-09-11 12:55:56,347 - main - INFO - Gemini API connection successful
+2025-09-11 12:55:56,347 - main - INFO - Application startup complete
+2025-09-11 12:59:20,618 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 12:59:20,622 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 12:59:20,715 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpr52plqqv.wav
+2025-09-11 12:59:20,864 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.24s
+2025-09-11 12:59:20,864 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 12:59:20,865 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 12:59:20,865 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 12:59:21,512 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 12:59:21,514 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Hi all, this is Felcia, Associate Project Manager working in iHub. So my team strength is 20 persons. They are working on the development of agent and they are doing it.' (duration: 14.52s, max_amp: 0.7588)
+2025-09-11 12:59:21,516 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 12:59:22,297 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:59:22,298 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:59:22,300 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 3 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 12:59:22,301 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using fallback
+2025-09-11 12:59:22,302 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 1.44s
+2025-09-11 12:59:22,303 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 1.68s
+2025-09-11 12:59:22,304 - main - INFO - Response: 200 in 1.686s
+2025-09-11 13:08:07,672 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 13:08:07,677 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 13:08:07,779 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmphdp_k881.wav
+2025-09-11 13:08:07,994 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.32s
+2025-09-11 13:08:07,995 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 13:08:07,995 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-11 13:08:07,995 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 13:08:09,117 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 13:08:09,119 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning team, today we discuss about IT project in SAS. Team attendance, Navin, Jayasumma, Rahul, Aravindh, and Rohith. Decision taken, Rohith testing, Navin frontend, Aravindh backend, Rahul, Jinnahei. Action item, Ari Shankar immediately to join the UI team.' (duration: 24.24s, max_amp: 0.8155)
+2025-09-11 13:08:09,120 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 13:08:11,480 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 13:08:11,482 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 13:08:11,483 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 3 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-11 13:08:11,485 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using fallback
+2025-09-11 13:08:11,486 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 3.49s
+2025-09-11 13:08:11,487 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 3.81s
+2025-09-11 13:08:11,490 - main - INFO - Response: 200 in 3.818s
+2025-09-11 13:13:11,684 - main - INFO - Shutting down application...
+2025-09-11 13:13:18,205 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 13:13:18,205 - main - INFO - Testing API connections...
+2025-09-11 13:13:20,085 - main - INFO - Gemini API connection successful
+2025-09-11 13:13:20,085 - main - INFO - Application startup complete
+2025-09-11 13:13:26,546 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 13:13:26,547 - main - INFO - Testing API connections...
+2025-09-11 13:13:28,763 - main - INFO - Gemini API connection successful
+2025-09-11 13:13:28,763 - main - INFO - Application startup complete
+2025-09-11 13:15:57,460 - main - INFO - Shutting down application...
+2025-09-11 13:16:03,822 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 13:16:03,822 - main - INFO - Testing API connections...
+2025-09-11 13:16:06,357 - main - INFO - Gemini API connection successful
+2025-09-11 13:16:06,357 - main - INFO - Application startup complete
+2025-09-11 13:16:12,847 - main - INFO - Starting AI Powered MoM application...
+2025-09-11 13:16:12,847 - main - INFO - Testing API connections...
+2025-09-11 13:16:13,590 - main - INFO - Gemini API connection successful
+2025-09-11 13:16:13,590 - main - INFO - Application startup complete
+2025-09-11 13:24:34,931 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 13:24:34,936 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 13:24:35,223 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted raw PCM to enhanced WAV: C:\Users\HP\AppData\Local\Temp\tmpa5wi32z1.wav
+2025-09-11 13:24:35,610 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.67s
+2025-09-11 13:24:35,611 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 13:24:35,611 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-09-11 13:24:35,612 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 13:24:36,297 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 13:24:36,299 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 0/1 chunks
+2025-09-11 13:24:36,299 - agents.live_speech_to_txt_agent.core.agent - WARNING - No successful transcriptions
+2025-09-11 13:24:36,301 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.69s
+2025-09-11 13:24:36,301 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 1.37s
+2025-09-11 13:24:36,304 - main - INFO - Response: 200 in 1.373s
+2025-09-11 13:24:51,778 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 13:24:51,782 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 13:24:51,969 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted raw PCM to enhanced WAV: C:\Users\HP\AppData\Local\Temp\tmpqxhxupqe.wav
+2025-09-11 13:24:52,368 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.59s
+2025-09-11 13:24:52,369 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 13:24:52,369 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-09-11 13:24:52,371 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 13:24:52,991 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 13:24:52,993 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 0/1 chunks
+2025-09-11 13:24:52,994 - agents.live_speech_to_txt_agent.core.agent - WARNING - No successful transcriptions
+2025-09-11 13:24:52,995 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.63s
+2025-09-11 13:24:52,996 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 1.21s
+2025-09-11 13:24:52,999 - main - INFO - Response: 200 in 1.221s
+2025-09-11 13:27:49,054 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 13:27:49,063 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 13:27:49,322 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub with speech optimization: C:\Users\HP\AppData\Local\Temp\tmpliiwxjyl.wav
+2025-09-11 13:27:50,663 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.60s
+2025-09-11 13:27:50,663 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 13:27:50,664 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-09-11 13:27:50,665 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 13:27:52,456 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 13:27:52,457 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning team, today 11th September 2025, time 10am and 11.45am. Attendees, Naveen, Aravind, Jaisuma, Priya, Rahul, Ajanta. Review pending high priority tickets, discuss system performance issues, update escalation process, assign tasks and deadlines. Navin, good morning team. We will still have four high-priority tickets pending from last week. I will resign that today. Arvind, can you update and assign the monitoring alerts? Morning, Navin. Yes, I am starting and setting the monitoring alerts. I expect to finish by Wednesday, 15th September. Jaisama, I noticed escalation look longer last week. I will finalize and update escalation metrics and share with the team five days. The monitoring alerts will be implemented to catch performance issues. Escalation process will be improved using new metrics, action items, task owner deadline status, resign track, pending tickets, implement monitoring alerts, finalize escalation metrics, review performance reports.' (duration: 72.12s)
+2025-09-11 13:27:52,461 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 13:27:55,839 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 1: Identifying speakers and structuring transcript...
+2025-09-11 13:28:02,489 - agents.live_speech_to_txt_agent.core.agent - WARNING - AI speaker identification failed, using fallback pattern matching
+2025-09-11 13:28:02,496 - agents.live_speech_to_txt_agent.core.agent - INFO - Identified 1 participants: ['Speaker 1']
+2025-09-11 13:28:02,498 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 2: Generating comprehensive MoM...
+2025-09-11 13:28:23,798 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using structured fallback
+2025-09-11 13:28:23,798 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 33.14s
+2025-09-11 13:28:23,798 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 34.73s
+2025-09-11 13:28:23,798 - main - INFO - Response: 200 in 34.744s
+2025-09-11 13:32:15,315 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 13:32:15,322 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 13:32:15,612 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub with speech optimization: C:\Users\HP\AppData\Local\Temp\tmp0bqfq8j8.wav
+2025-09-11 13:32:17,500 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 2.18s
+2025-09-11 13:32:17,500 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 13:32:17,500 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-09-11 13:32:17,502 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 13:32:19,729 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 13:32:19,730 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'On 11th September 2025, from 10am to 10.45am, the support team meeting was attended by Naveen, Araveen, Jayashima, Priya, and Rahul. The agenda included reviewing pending high-priority tickets, discussing system performance issues, updating the escalation process, and assigning tasks. Navin highlighted four pending tickets and asked Aravin to update on monitoring alerts, which he committed to completing by 5th September. Jayasimha agreed to finalize the escalation matrix by 17th September, Priya to follow up with clients by 16th September, and Rahul to review performance reports by 16th September. Key discussion included implementing monitoring alerts, improving the escalation process, and ensuring all pending tickets are resolved before the customer review on 20th September. Action items or task assignments. Navin, reassign and track pending tickets. Deadline 20th September in progress. Aravind, implement monitoring alerts. Deadline 15th September pending. Thank you for watching.' (duration: 89.52s)
+2025-09-11 13:32:19,732 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 13:32:21,717 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 1: Identifying speakers and structuring transcript...
+2025-09-11 13:32:29,914 - agents.live_speech_to_txt_agent.core.agent - WARNING - AI speaker identification failed, using fallback pattern matching
+2025-09-11 13:32:29,927 - agents.live_speech_to_txt_agent.core.agent - INFO - Identified 1 participants: ['Speaker 1']
+2025-09-11 13:32:29,927 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 2: Generating comprehensive MoM...
+2025-09-11 13:32:49,567 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using structured fallback
+2025-09-11 13:32:49,568 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 32.07s
+2025-09-11 13:32:49,568 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 34.25s
+2025-09-11 13:32:49,573 - main - INFO - Response: 200 in 34.258s
+2025-09-11 13:41:36,706 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 13:41:36,716 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 13:41:37,434 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted raw PCM to enhanced WAV: C:\Users\HP\AppData\Local\Temp\tmp6nqrcilt.wav
+2025-09-11 13:41:38,702 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.99s
+2025-09-11 13:41:38,703 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 13:41:38,704 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-09-11 13:41:38,705 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 13:41:39,934 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 13:41:39,937 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 0/1 chunks
+2025-09-11 13:41:39,938 - agents.live_speech_to_txt_agent.core.agent - WARNING - No successful transcriptions
+2025-09-11 13:41:39,939 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 1.24s
+2025-09-11 13:41:39,939 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 3.22s
+2025-09-11 13:41:39,944 - main - INFO - Response: 200 in 3.238s
+2025-09-11 13:42:46,943 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 13:42:46,948 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 13:42:47,118 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub with speech optimization: C:\Users\HP\AppData\Local\Temp\tmpqaz8j21v.wav
+2025-09-11 13:42:48,462 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.51s
+2025-09-11 13:42:48,462 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 13:42:48,463 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-09-11 13:42:48,464 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 13:42:49,842 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 13:42:49,843 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning everyone, I am Naveen. Good morning everyone, I am Hari Sankar. Today we discuss about minutes of meeting, date 11th September 2025, time 10am to 10.45am. Attendees Naveen, Arvind, Jayasima, Priya, Rahul, Ajanta, review pending high priority tickets, discuss system elements issues, update escalation process, assign tasks and deadlines. Good morning team, we will still have four high priority tickets pending from last week. I will design them today. Arvind can you update us on monitoring alerts?' (duration: 39.18s)
+2025-09-11 13:42:49,845 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 13:42:52,702 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 1: Identifying speakers and structuring transcript...
+2025-09-11 13:42:58,367 - agents.live_speech_to_txt_agent.core.agent - WARNING - AI speaker identification failed, using fallback pattern matching
+2025-09-11 13:42:58,367 - agents.live_speech_to_txt_agent.core.agent - INFO - Identified 1 participants: ['Arvind']
+2025-09-11 13:42:58,367 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 2: Generating comprehensive MoM...
+2025-09-11 13:43:12,256 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using structured fallback
+2025-09-11 13:43:12,257 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 23.80s
+2025-09-11 13:43:12,257 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 25.31s
+2025-09-11 13:43:12,261 - main - INFO - Response: 200 in 25.317s
+2025-09-11 14:34:54,667 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-11 14:34:54,676 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-11 14:34:54,930 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub with speech optimization: C:\Users\HP\AppData\Local\Temp\tmpjramyu76.wav
+2025-09-11 14:34:56,357 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.68s
+2025-09-11 14:34:56,358 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-11 14:34:56,358 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-09-11 14:34:56,360 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-11 14:34:58,151 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-11 14:34:58,153 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Hello everyone, I am Naveen Kumar. Today we discussed about IT project in Industrial Orient SAS. Good morning team. We will still have four high priority tickets pending from last week. I will design them today. Arishankar, can you update us on the monitoring alerts? Thank you for your time, Ari Sankar. I have started setting up the monitoring alerts. I expect to finish by Wednesday, 15th September. I noticed escalation took longer last week. I finalize and update escalation matrix and share it with the team by Friday, 17th September. Okay, thank you so much, Jaisuma. Monitoring alerts will be implemented to catch performance issues yearly. Decision taken, escalation process will be improved using next matrix. All pending tickets must be addressed before the customer review.' (duration: 74.04s)
+2025-09-11 14:34:58,157 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-11 14:35:00,909 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 1: Identifying speakers and structuring transcript...
+2025-09-11 14:35:05,938 - agents.live_speech_to_txt_agent.core.agent - WARNING - AI speaker identification failed, using fallback pattern matching
+2025-09-11 14:35:05,939 - agents.live_speech_to_txt_agent.core.agent - INFO - Identified 1 participants: ['Arishankar']
+2025-09-11 14:35:05,939 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 2: Generating comprehensive MoM...
+2025-09-11 14:35:24,515 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using structured fallback
+2025-09-11 14:35:24,516 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 28.16s
+2025-09-11 14:35:24,516 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 29.84s
+2025-09-11 14:35:24,520 - main - INFO - Response: 200 in 29.853s
+2025-09-12 08:30:07,885 - main - INFO - Starting AI Powered MoM application...
+2025-09-12 08:30:07,885 - main - INFO - Testing API connections...
+2025-09-12 08:30:09,806 - main - INFO - Gemini API connection successful
+2025-09-12 08:30:09,806 - main - INFO - Application startup complete
+2025-09-12 08:42:24,770 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-12 08:42:24,771 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-12 08:42:25,487 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted raw PCM to enhanced WAV: C:\Users\HP\AppData\Local\Temp\tmpy4ap0_rn.wav
+2025-09-12 08:42:26,705 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.93s
+2025-09-12 08:42:26,705 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-12 08:42:26,705 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-09-12 08:42:26,705 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-12 08:42:28,056 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-12 08:42:28,059 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 0/1 chunks
+2025-09-12 08:42:28,059 - agents.live_speech_to_txt_agent.core.agent - WARNING - No successful transcriptions
+2025-09-12 08:42:28,060 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 1.35s
+2025-09-12 08:42:28,061 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 3.29s
+2025-09-12 08:42:28,066 - main - INFO - Response: 200 in 3.296s
+2025-09-12 08:43:09,784 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-12 08:43:09,788 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-12 08:43:11,133 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub with speech optimization: C:\Users\HP\AppData\Local\Temp\tmp0qesrtgx.wav
+2025-09-12 08:43:11,722 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.93s
+2025-09-12 08:43:11,722 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-12 08:43:11,722 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-09-12 08:43:11,722 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-12 08:43:12,720 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-12 08:43:12,727 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Hello everyone, very good afternoon all. Hi, I am John of the marketing research team. Can you please give me a sales team? Yes sir, I am here, I am Sara. I am speaking to sales between the realistic one of the most compatible and texting invoice. Okay, Jayasuma, you know deployment? Yes sir, I am Jayasuma, I know deployment.' (duration: 29.88s)
+2025-09-12 08:43:12,727 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-12 08:43:14,862 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 1: Identifying speakers and structuring transcript...
+2025-09-12 08:43:18,321 - agents.live_speech_to_txt_agent.core.agent - WARNING - AI speaker identification failed, using fallback pattern matching
+2025-09-12 08:43:18,330 - agents.live_speech_to_txt_agent.core.agent - INFO - Identified 2 participants: ['Speaker 1', 'Speaker 2']
+2025-09-12 08:43:18,330 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 2: Generating comprehensive MoM...
+2025-09-12 08:43:25,872 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using structured fallback
+2025-09-12 08:43:25,872 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 14.15s
+2025-09-12 08:43:25,872 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 16.08s
+2025-09-12 08:43:25,880 - main - INFO - Response: 200 in 16.096s
+2025-09-12 08:44:40,188 - main - INFO - Request: POST /speech-to-text/transcribe
+2025-09-12 08:44:40,188 - agents.speech_to_txt_agent.agent_main - INFO - Saved temporary audio file: C:\Users\HP\AppData\Local\Temp\tmpu02n5nw_.mp3
+2025-09-12 08:44:40,289 - agents.speech_to_txt_agent.agent_main - INFO - Converted to WAV: C:\Users\HP\AppData\Local\Temp\tmpq66o5d9h.wav
+2025-09-12 08:44:54,556 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpu02n5nw_.mp3
+2025-09-12 08:44:54,556 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpq66o5d9h.wav
+2025-09-12 08:44:54,556 - main - INFO - Response: 200 in 14.368s
+2025-09-12 08:45:44,521 - main - INFO - Shutting down application...
+2025-09-12 08:45:51,138 - main - INFO - Starting AI Powered MoM application...
+2025-09-12 08:45:51,138 - main - INFO - Testing API connections...
+2025-09-12 08:45:53,004 - main - INFO - Gemini API connection successful
+2025-09-12 08:45:53,004 - main - INFO - Application startup complete
+2025-09-12 08:45:59,654 - main - INFO - Shutting down application...
+2025-09-12 08:46:13,270 - main - INFO - Starting AI Powered MoM application...
+2025-09-12 08:46:13,270 - main - INFO - Testing API connections...
+2025-09-12 08:46:15,091 - main - INFO - Gemini API connection successful
+2025-09-12 08:46:15,091 - main - INFO - Application startup complete
+2025-09-12 08:46:21,219 - main - INFO - Shutting down application...
+2025-09-12 08:46:38,357 - main - INFO - Starting AI Powered MoM application...
+2025-09-12 08:46:38,357 - main - INFO - Testing API connections...
+2025-09-12 08:46:40,238 - main - INFO - Gemini API connection successful
+2025-09-12 08:46:40,238 - main - INFO - Application startup complete
+2025-09-12 08:48:47,322 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-12 08:48:47,338 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-12 08:48:47,510 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpowshl8rv.wav
+2025-09-12 08:48:48,160 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.82s
+2025-09-12 08:48:48,160 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-12 08:48:48,160 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-09-12 08:48:48,160 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-12 08:48:49,930 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-12 08:48:49,939 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes, sir, Naveen. I've already started setting up the monitoring alerts, and I should be able to complete them by Wednesday, 15 September. All right, that's good, Arvind. Last week we had some delays with escalations. Jaisima, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday, 17 September. Excellent, Jaisima. What's the update on client communication, Priya? Yes, sir. I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday, 16 September. Perfect. Priya, can you update us on the performance of the meeting?' (duration: 69.84s, max_amp: 0.9420)
+2025-09-12 08:48:49,940 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-12 08:48:51,648 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-12 08:48:51,648 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-12 08:48:51,648 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 3 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-09-12 08:48:51,648 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using fallback
+2025-09-12 08:48:51,654 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 3.49s
+2025-09-12 08:48:51,654 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 4.32s
+2025-09-12 08:48:51,658 - main - INFO - Response: 200 in 4.336s
+2025-09-12 08:50:18,151 - main - INFO - Shutting down application...
+2025-09-12 08:51:01,988 - main - INFO - Starting AI Powered MoM application...
+2025-09-12 08:51:01,988 - main - INFO - Testing API connections...
+2025-09-12 08:51:03,951 - main - INFO - Gemini API connection successful
+2025-09-12 08:51:03,951 - main - INFO - Application startup complete
+2025-09-12 08:51:14,473 - main - INFO - Shutting down application...
+2025-09-12 08:51:28,927 - main - INFO - Starting AI Powered MoM application...
+2025-09-12 08:51:28,927 - main - INFO - Testing API connections...
+2025-09-12 08:51:30,764 - main - INFO - Gemini API connection successful
+2025-09-12 08:51:30,764 - main - INFO - Application startup complete
+2025-09-12 08:51:54,742 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-09-12 08:51:54,742 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-09-12 08:51:54,857 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub with speech optimization: C:\Users\HP\AppData\Local\Temp\tmp9to4_zzm.wav
+2025-09-12 08:51:55,210 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.47s
+2025-09-12 08:51:55,210 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-09-12 08:51:55,210 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-09-12 08:51:55,210 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-09-12 08:51:55,905 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-09-12 08:51:55,905 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Hello, my texting 123123. I am Arisangar speaking. I am Navin Kumar. Hi, I am Aravind. Hi, I am Jaisuma. Hi, I am Rahul. Today we have discussed about MOM in IT project.' (duration: 18.24s)
+2025-09-12 08:51:55,905 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-09-12 08:51:56,871 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 1: Identifying speakers and structuring transcript...
+2025-09-12 08:52:00,921 - agents.live_speech_to_txt_agent.core.agent - WARNING - AI speaker identification failed, using fallback pattern matching
+2025-09-12 08:52:00,937 - agents.live_speech_to_txt_agent.core.agent - INFO - Identified 1 participants: ['Speaker 1']
+2025-09-12 08:52:00,937 - agents.live_speech_to_txt_agent.core.agent - INFO - Step 2: Generating comprehensive MoM...
+2025-09-12 08:52:10,204 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using structured fallback
+2025-09-12 08:52:10,204 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 14.99s
+2025-09-12 08:52:10,204 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 15.46s
+2025-09-12 08:52:10,204 - main - INFO - Response: 200 in 15.462s
