@@ -1,23 +1,31 @@
+
 "use client";
 
 import { useState, FormEvent } from "react";
 import { toast } from "react-toastify";
 
 // Define types to match backend response
+interface ActionItem {
+  task: string;
+  assigned_to: string;
+  deadline: string;
+}
+
+interface Decision {
+  decision: string;
+  participant: string;
+}
+
 interface MoMType {
-  summary: {
-    overview: string;
-    detailed: string;
-  };
-  action_items: Array<{
-    task: string;
-    assigned_to: string;
-    deadline: string;
-  }>;
-  decisions: Array<{
-    decision: string;
-    participant: string;
-  }>;
+  title: string;
+  summary: { overview: string; detailed: string } | string;
+  overview: string;
+  attendees: string[];
+  tasks: ActionItem[];
+  action_items: string[];
+  decisions: Decision[];
+  risks: string[];
+  data_points: string[];
 }
 
 interface ApiResponse {
@@ -136,27 +144,51 @@ export default function SpeechToTxtAgent() {
       }
 
       const response: ApiResponse = await res.json();
+      console.log("API Response:", JSON.stringify(response, null, 2)); // Detailed debug log
+
       setTranscript(response.transcript || "⚠️ No transcript received.");
       setEditedTranscript(response.transcript || "");
-      setMom(
-        response.mom || {
-          summary: { overview: "", detailed: "" },
-          action_items: [],
-          decisions: [],
-        }
-      );
-      setEditedMom(
-        response.mom
-          ? { ...response.mom }
-          : { summary: { overview: "", detailed: "" }, action_items: [], decisions: [] }
-      );
+
+      // Normalize MoM data
+      const normalizedMom: MoMType = {
+        title: response.mom?.title || "No title provided",
+        summary: typeof response.mom?.summary === "string"
+          ? { overview: response.mom.summary, detailed: "" }
+          : response.mom?.summary || { overview: "No overview provided", detailed: "No detailed summary provided" },
+        overview: response.mom?.overview || "No overview provided",
+        attendees: Array.isArray(response.mom?.attendees) ? response.mom.attendees : [],
+        tasks: Array.isArray(response.mom?.tasks) ? response.mom.tasks : [],
+        action_items: Array.isArray(response.mom?.action_items) ? response.mom.action_items : [],
+        decisions: Array.isArray(response.mom?.decisions) ? response.mom.decisions : [],
+        risks: Array.isArray(response.mom?.risks) ? response.mom.risks : [],
+        data_points: Array.isArray(response.mom?.data_points) ? response.mom.data_points : [],
+      };
+
+      // Check if MoM is mostly empty (indicating backend issue)
+      const isMomEmpty = !response.mom?.title && 
+        (typeof response.mom?.summary === "string" ? !response.mom.summary : !response.mom?.summary?.overview) &&
+        !response.mom?.overview &&
+        response.mom?.attendees?.length === 0 &&
+        response.mom?.tasks?.length === 0 &&
+        response.mom?.action_items?.length === 0 &&
+        response.mom?.decisions?.length === 0 &&
+        response.mom?.risks?.length === 0 &&
+        response.mom?.data_points?.length === 0;
+
+      if (isMomEmpty) {
+        toast.warn("Received empty or default MoM data from backend. Please check the server logs.");
+      }
+
+      console.log("Normalized MoM:", JSON.stringify(normalizedMom, null, 2)); // Debug normalized data
+      setMom(normalizedMom);
+      setEditedMom({ ...normalizedMom });
       setExportFilePath(response.export_file);
       toast.success("Transcription and MoM generated successfully!");
     } catch (err: any) {
       const errorMsg = err.message || "Error processing audio. Please try again.";
       setError(errorMsg);
       toast.error(errorMsg);
-      console.error(err);
+      console.error("Upload error:", err);
     } finally {
       setLoading(false);
     }
@@ -210,7 +242,7 @@ export default function SpeechToTxtAgent() {
           console.warn(`Cleanup failed: ${cleanupError.detail}`);
           toast.warn("File downloaded, but cleanup failed.");
         } else {
-          if (!isEdited) setExportFilePath(null); // Clear only for original export
+          if (!isEdited) setExportFilePath(null);
           toast.success("Downloaded file cleaned up successfully.");
         }
       } catch (cleanupErr) {
@@ -221,7 +253,7 @@ export default function SpeechToTxtAgent() {
       const errorMsg = err.message || "Error downloading file. Please try again.";
       setError(errorMsg);
       toast.error(errorMsg);
-      console.error(err);
+      console.error("Download error:", err);
     } finally {
       setDownloadLoading(false);
     }
@@ -275,7 +307,7 @@ export default function SpeechToTxtAgent() {
       const errorMsg = err.message || "Error exporting edited MoM. Please try again.";
       setError(errorMsg);
       toast.error(errorMsg);
-      console.error(err);
+      console.error("Export error:", err);
     } finally {
       setDownloadLoading(false);
     }
@@ -319,10 +351,9 @@ export default function SpeechToTxtAgent() {
           </div>
 
           <div
-            className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-200 ${dragActive
-              ? "border-blue-400 bg-blue-50"
-              : "border-slate-300 hover:border-slate-400 bg-slate-50/50"
-              }`}
+            className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-200 ${
+              dragActive ? "border-blue-400 bg-blue-50" : "border-slate-300 hover:border-slate-400 bg-slate-50/50"
+            }`}
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
             onDragOver={handleDrag}
@@ -500,286 +531,266 @@ export default function SpeechToTxtAgent() {
         {/* MoM Section */}
         {mom && (
           <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 px-6 py-3 border-b border-green-200 flex items-center justify-between">
+            <div className="bg-green-50 px-6 py-3 border-b border-green-200 flex items-center justify-between">
               <h3 className="font-semibold text-green-800">Minutes of Meeting (MoM)</h3>
               <div className="flex space-x-2">
                 <button
                   onClick={handleEditToggle}
-                  className="py-1 px-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed"
-                  disabled={loading || downloadLoading}
-                  aria-label={isEditing ? "Cancel Editing" : "Edit MoM"}
+                  className="py-1 px-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700"
                 >
                   {isEditing ? "Cancel" : "Edit"}
                 </button>
                 {isEditing && (
                   <button
                     onClick={handleSave}
-                    className="py-1 px-3 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 disabled:bg-green-400 disabled:cursor-not-allowed"
-                    disabled={loading || downloadLoading}
-                    aria-label="Save MoM Changes"
+                    className="py-1 px-3 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700"
                   >
                     Save
                   </button>
                 )}
-                {exportFilePath && exportFormat !== "none" && !isEditing && (
+                {exportFilePath && (
                   <button
                     onClick={() => handleDownload(exportFilePath, exportFormat)}
+                    className="py-1 px-3 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700"
                     disabled={downloadLoading}
-                    className="py-1 px-3 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 disabled:bg-green-400 disabled:cursor-not-allowed transition-all flex items-center space-x-2"
-                    aria-label={`Download MoM as ${exportFormat.toUpperCase()}`}
                   >
-                    {downloadLoading ? (
-                      <>
-                        <svg
-                          className="animate-spin w-4 h-4"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                          />
-                        </svg>
-                        <span>Downloading...</span>
-                      </>
-                    ) : (
-                      <>
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                          />
-                        </svg>
-                        <span>Export MoM as {exportFormat.toUpperCase()}</span>
-                      </>
-                    )}
-                  </button>
-                )}
-                {!isEditing && mom && exportFormat !== "none" && (
-                  <button
-                    onClick={handleReExport}
-                    className="py-1 px-3 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 disabled:bg-purple-400 disabled:cursor-not-allowed transition-all flex items-center space-x-2"
-                    disabled={loading || downloadLoading}
-                    aria-label={`Re-export Edited MoM as ${exportFormat.toUpperCase()}`}
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                      />
-                    </svg>
-                    <span>Re-export Edited MoM</span>
+                    Download {exportFormat.toUpperCase()}
                   </button>
                 )}
               </div>
             </div>
             <div className="p-6 space-y-6">
-              {mom.summary?.overview && (
-                <div>
-                  <h4 className="font-semibold text-slate-800">Summary</h4>
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-2">
-                    <p className="text-slate-700 font-medium">Overview:</p>
-                    {isEditing ? (
-                      <textarea
-                        value={editedMom?.summary.overview || ""}
-                        onChange={(e) =>
-                          setEditedMom({
-                            ...editedMom!,
-                            summary: { ...editedMom!.summary, overview: e.target.value },
-                          })
-                        }
-                        className="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                        rows={4}
-                        aria-label="Edit summary overview"
-                      />
-                    ) : (
-                      <p className="text-slate-700 whitespace-pre-wrap">{mom.summary.overview}</p>
-                    )}
-                    {mom.summary.detailed && (
-                      <>
-                        <p className="text-slate-700 font-medium mt-2">Detailed:</p>
-                        {isEditing ? (
-                          <textarea
-                            value={editedMom?.summary.detailed || ""}
-                            onChange={(e) =>
-                              setEditedMom({
-                                ...editedMom!,
-                                summary: { ...editedMom!.summary, detailed: e.target.value },
-                              })
-                            }
-                            className="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            rows={6}
-                            aria-label="Edit summary detailed"
-                          />
-                        ) : (
-                          <p className="text-slate-700 whitespace-pre-wrap">{mom.summary.detailed}</p>
-                        )}
-                      </>
-                    )}
+              {/* Title */}
+              <div>
+                <h4 className="font-semibold text-slate-800">Title</h4>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={editedMom?.title || ""}
+                    onChange={(e) =>
+                      setEditedMom({ ...editedMom!, title: e.target.value })
+                    }
+                    className="w-full p-2 border border-slate-300 rounded-lg"
+                  />
+                ) : (
+                  <p className="text-slate-700">{mom.title}</p>
+                )}
+              </div>
+
+              {/* Summary */}
+              <div>
+                <h4 className="font-semibold text-slate-800">Summary</h4>
+                {isEditing ? (
+                  <>
+                    <label className="block font-medium text-slate-700">Overview</label>
+                    <textarea
+                      value={typeof editedMom?.summary === "string" ? editedMom.summary : editedMom?.summary?.overview || ""}
+                      onChange={(e) =>
+                        setEditedMom({
+                          ...editedMom!,
+                          summary: typeof editedMom?.summary === "string"
+                            ? e.target.value
+                            : { ...editedMom!.summary, overview: e.target.value },
+                        })
+                      }
+                      rows={3}
+                      className="w-full p-2 border border-slate-300 rounded-lg"
+                    />
+                    <label className="block font-medium text-slate-700 mt-2">Detailed</label>
+                    <textarea
+                      value={typeof editedMom?.summary === "string" ? "" : editedMom?.summary?.detailed || ""}
+                      onChange={(e) =>
+                        setEditedMom({
+                          ...editedMom!,
+                          summary: typeof editedMom?.summary === "string"
+                            ? { overview: editedMom.summary, detailed: e.target.value }
+                            : { ...editedMom!.summary, detailed: e.target.value },
+                        })
+                      }
+                      rows={3}
+                      className="w-full p-2 border border-slate-300 rounded-lg"
+                    />
+                  </>
+                ) : (
+                  <div className="text-slate-700 whitespace-pre-wrap">
+                    <p><strong>Overview:</strong> {typeof mom.summary === "string" ? mom.summary : mom.summary?.overview || "No overview provided"}</p>
+                    <p><strong>Detailed:</strong> {typeof mom.summary === "string" ? "No detailed summary provided" : mom.summary?.detailed || "No detailed summary provided"}</p>
                   </div>
-                </div>
-              )}
-              {mom.action_items?.length > 0 && (
-                <div>
-                  <h4 className="font-semibold text-slate-800">Action Items</h4>
-                  <ul className="bg-orange-50 border border-orange-200 rounded-lg p-4 space-y-4">
-                    {mom.action_items.map((item, idx) => (
-                      <li key={idx} className="flex items-start space-x-3">
-                        <span className="flex-shrink-0 w-6 h-6 bg-orange-500 text-white text-xs font-bold rounded-full flex items-center justify-center mt-0.5">
-                          {idx + 1}
-                        </span>
-                        <div className="text-slate-700 flex-1">
-                          {isEditing ? (
-                            <>
-                              <p>
-                                <span className="font-medium">Task:</span>
-                                <input
-                                  type="text"
-                                  value={editedMom?.action_items[idx]?.task || ""}
-                                  onChange={(e) => {
-                                    const newActionItems = [...(editedMom?.action_items || [])];
-                                    newActionItems[idx] = { ...newActionItems[idx], task: e.target.value };
-                                    setEditedMom({ ...editedMom!, action_items: newActionItems });
-                                  }}
-                                  className="w-full p-1 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                  aria-label={`Edit action item ${idx + 1} task`}
-                                />
-                              </p>
-                              <p>
-                                <span className="font-medium">Assigned to:</span>
-                                <input
-                                  type="text"
-                                  value={editedMom?.action_items[idx]?.assigned_to || ""}
-                                  onChange={(e) => {
-                                    const newActionItems = [...(editedMom?.action_items || [])];
-                                    newActionItems[idx] = { ...newActionItems[idx], assigned_to: e.target.value };
-                                    setEditedMom({ ...editedMom!, action_items: newActionItems });
-                                  }}
-                                  className="w-full p-1 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                  aria-label={`Edit action item ${idx + 1} assigned to`}
-                                />
-                              </p>
-                              <p>
-                                <span className="font-medium">Deadline:</span>
-                                <input
-                                  type="text"
-                                  value={editedMom?.action_items[idx]?.deadline || ""}
-                                  onChange={(e) => {
-                                    const newActionItems = [...(editedMom?.action_items || [])];
-                                    newActionItems[idx] = { ...newActionItems[idx], deadline: e.target.value };
-                                    setEditedMom({ ...editedMom!, action_items: newActionItems });
-                                  }}
-                                  className="w-full p-1 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                  aria-label={`Edit action item ${idx + 1} deadline`}
-                                />
-                              </p>
-                            </>
-                          ) : (
-                            <>
-                              <p>
-                                <span className="font-medium">Task:</span> {item.task}
-                              </p>
-                              <p>
-                                <span className="font-medium">Assigned to:</span> {item.assigned_to}
-                              </p>
-                              <p>
-                                <span className="font-medium">Deadline:</span> {item.deadline}
-                              </p>
-                            </>
-                          )}
-                        </div>
-                      </li>
-                    ))}
+                )}
+              </div>
+
+              {/* Overview */}
+              <div>
+                <h4 className="font-semibold text-slate-800">Overview</h4>
+                {isEditing ? (
+                  <textarea
+                    value={editedMom?.overview || ""}
+                    onChange={(e) =>
+                      setEditedMom({ ...editedMom!, overview: e.target.value })
+                    }
+                    rows={4}
+                    className="w-full p-2 border border-slate-300 rounded-lg"
+                  />
+                ) : (
+                  <p className="text-slate-700 whitespace-pre-wrap">{mom.overview || "No overview provided"}</p>
+                )}
+              </div>
+
+              {/* Attendees */}
+              <div>
+                <h4 className="font-semibold text-slate-800">Attendees</h4>
+                {isEditing ? (
+                  <textarea
+                    value={editedMom?.attendees.join("\n") || ""}
+                    onChange={(e) =>
+                      setEditedMom({
+                        ...editedMom!,
+                        attendees: e.target.value.split("\n").filter(Boolean),
+                      })
+                    }
+                    rows={Math.max(editedMom?.attendees.length || 3, 3)}
+                    className="w-full p-2 border border-slate-300 rounded-lg"
+                  />
+                ) : (
+                  <ul className="list-disc pl-5 text-slate-700">
+                    {mom.attendees.length > 0 ? (
+                      mom.attendees.map((att, idx) => (
+                        <li key={idx}>{att}</li>
+                      ))
+                    ) : (
+                      <li>No attendees listed</li>
+                    )}
                   </ul>
-                </div>
-              )}
-              {mom.decisions?.length > 0 && (
-                <div>
-                  <h4 className="font-semibold text-slate-800">Decisions</h4>
-                  <ul className="bg-purple-50 border border-purple-200 rounded-lg p-4 space-y-4">
-                    {mom.decisions.map((item, idx) => (
-                      <li key={idx} className="flex items-start space-x-3">
-                        <svg
-                          className="flex-shrink-0 w-5 h-5 text-purple-600 mt-0.5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                        <div className="text-slate-700 flex-1">
-                          {isEditing ? (
-                            <>
-                              <p>
-                                <span className="font-medium">Decision:</span>
-                                <input
-                                  type="text"
-                                  value={editedMom?.decisions[idx]?.decision || ""}
-                                  onChange={(e) => {
-                                    const newDecisions = [...(editedMom?.decisions || [])];
-                                    newDecisions[idx] = { ...newDecisions[idx], decision: e.target.value };
-                                    setEditedMom({ ...editedMom!, decisions: newDecisions });
-                                  }}
-                                  className="w-full p-1 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                  aria-label={`Edit decision ${idx + 1} decision`}
-                                />
-                              </p>
-                              <p>
-                                <span className="font-medium">Participant:</span>
-                                <input
-                                  type="text"
-                                  value={editedMom?.decisions[idx]?.participant || ""}
-                                  onChange={(e) => {
-                                    const newDecisions = [...(editedMom?.decisions || [])];
-                                    newDecisions[idx] = { ...newDecisions[idx], participant: e.target.value };
-                                    setEditedMom({ ...editedMom!, decisions: newDecisions });
-                                  }}
-                                  className="w-full p-1 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                  aria-label={`Edit decision ${idx + 1} participant`}
-                                />
-                              </p>
-                            </>
-                          ) : (
-                            <>
-                              <p>
-                                <span className="font-medium">Decision:</span> {item.decision}
-                              </p>
-                              <p>
-                                <span className="font-medium">Participant:</span> {item.participant}
-                              </p>
-                            </>
-                          )}
-                        </div>
+                )}
+              </div>
+
+              {/* Tasks */}
+              <div>
+                <h4 className="font-semibold text-slate-800">Tasks</h4>
+                <ul className="list-decimal pl-5 space-y-2 text-slate-700">
+                  {mom.tasks.length > 0 ? (
+                    mom.tasks.map((task, idx) => (
+                      <li key={idx}>
+                        {isEditing ? (
+                          <div className="space-y-1">
+                            <input
+                              type="text"
+                              value={editedMom?.tasks[idx]?.task || ""}
+                              onChange={(e) => {
+                                const newTasks = [...(editedMom?.tasks || [])];
+                                newTasks[idx] = { ...newTasks[idx], task: e.target.value };
+                                setEditedMom({ ...editedMom!, tasks: newTasks });
+                              }}
+                              className="w-full p-1 border border-slate-300 rounded-lg"
+                              placeholder="Task"
+                            />
+                            <input
+                              type="text"
+                              value={editedMom?.tasks[idx]?.assigned_to || ""}
+                              onChange={(e) => {
+                                const newTasks = [...(editedMom?.tasks || [])];
+                                newTasks[idx] = { ...newTasks[idx], assigned_to: e.target.value };
+                                setEditedMom({ ...editedMom!, tasks: newTasks });
+                              }}
+                              className="w-full p-1 border border-slate-300 rounded-lg"
+                              placeholder="Assigned to"
+                            />
+                            <input
+                              type="text"
+                              value={editedMom?.tasks[idx]?.deadline || ""}
+                              onChange={(e) => {
+                                const newTasks = [...(editedMom?.tasks || [])];
+                                newTasks[idx] = { ...newTasks[idx], deadline: e.target.value };
+                                setEditedMom({ ...editedMom!, tasks: newTasks });
+                              }}
+                              className="w-full p-1 border border-slate-300 rounded-lg"
+                              placeholder="Deadline"
+                            />
+                          </div>
+                        ) : (
+                          <p>
+                            <strong>{task.task}</strong> - {task.assigned_to} (Deadline: {task.deadline})
+                          </p>
+                        )}
                       </li>
-                    ))}
+                    ))
+                  ) : (
+                    <li>No tasks assigned</li>
+                  )}
+                </ul>
+              </div>
+
+              {/* Action Items */}
+              <div>
+                <h4 className="font-semibold text-slate-800">Action Items</h4>
+                {isEditing ? (
+                  <textarea
+                    value={editedMom?.action_items.join("\n") || ""}
+                    onChange={(e) =>
+                      setEditedMom({
+                        ...editedMom!,
+                        action_items: e.target.value.split("\n").filter(Boolean),
+                      })
+                    }
+                    rows={Math.max(editedMom?.action_items.length || 3, 3)}
+                    className="w-full p-2 border border-slate-300 rounded-lg"
+                  />
+                ) : (
+                  <ul className="list-disc pl-5 text-slate-700">
+                    {mom.action_items.length > 0 ? (
+                      mom.action_items.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))
+                    ) : (
+                      <li>No action items listed</li>
+                    )}
                   </ul>
-                </div>
-              )}
+                )}
+              </div>
+
+              {/* Decisions */}
+              <div>
+                <h4 className="font-semibold text-slate-800">Decisions</h4>
+                <ul className="list-disc pl-5 text-slate-700">
+                  {mom.decisions.length > 0 ? (
+                    mom.decisions.map((decision, idx) => (
+                      <li key={idx}>
+                        {decision.decision} - {decision.participant}
+                      </li>
+                    ))
+                  ) : (
+                    <li>No decisions recorded</li>
+                  )}
+                </ul>
+              </div>
+
+              {/* Risks */}
+              <div>
+                <h4 className="font-semibold text-slate-800">Risks</h4>
+                <ul className="list-disc pl-5 text-red-700">
+                  {mom.risks.length > 0 ? (
+                    mom.risks.map((risk, idx) => (
+                      <li key={idx}>{risk}</li>
+                    ))
+                  ) : (
+                    <li>No risks identified</li>
+                  )}
+                </ul>
+              </div>
+
+              {/* Data Points */}
+              <div>
+                <h4 className="font-semibold text-slate-800">Data Points</h4>
+                <ul className="list-disc pl-5 text-slate-700">
+                  {mom.data_points.length > 0 ? (
+                    mom.data_points.map((dp, idx) => (
+                      <li key={idx}>{dp}</li>
+                    ))
+                  ) : (
+                    <li>No data points provided</li>
+                  )}
+                </ul>
+              </div>
             </div>
           </div>
         )}

@@ -1,18 +1,38 @@
 
 
+
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from agents.speech_to_txt_agent.core.agent import run_agent
-from agents.speech_to_txt_agent.core.tools import save_temp_file, validate_audio, convert_to_wav, export_mom_pdf, export_mom_docx
+from agents.speech_to_txt_agent.core.tools import (
+    save_temp_file,
+    validate_audio,
+    convert_to_wav,
+    export_mom_pdf,
+    export_mom_docx
+)
 import os
 import logging
 import tempfile
-from typing import List
+from typing import List, Dict, Any
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
-# Track exported files for cleanup (in-memory list for simplicity)
+# Track exported files for cleanup
 EXPORTED_FILES: List[str] = []
+
+# Default MoM structure to ensure all fields exist
+DEFAULT_MOM: Dict[str, Any] = {
+    "title": "Meeting Minutes",
+    "summary": {"overview": "", "detailed": ""},
+    "overview": "",
+    "attendees": [],
+    "tasks": [],
+    "action_items": [],
+    "decisions": [],
+    "risks": [],
+    "data_points": []
+}
 
 @router.post("/transcribe")
 async def transcribe_audio_api(file: UploadFile = File(...), export_format: str = "none"):
@@ -43,17 +63,29 @@ async def transcribe_audio_api(file: UploadFile = File(...), export_format: str 
         # Run agent pipeline
         result = run_agent(wav_path)
         transcript = result.get("transcript", "")
-        mom = result.get("mom", {"summary": {"overview": "", "detailed": ""}, "action_items": [], "decisions": []})
+        raw_mom = result.get("mom", {})
+        logger.info(f"Raw MoM from run_agent: {raw_mom}")  # Debug log
+
+        # Use raw_mom if valid, otherwise fall back to DEFAULT_MOM
+        mom = raw_mom if raw_mom and isinstance(raw_mom, dict) and len(raw_mom) > 0 else DEFAULT_MOM.copy()
+        
+        # Ensure all fields exist, filling missing ones with defaults
+        for key in DEFAULT_MOM:
+            if key not in mom or mom[key] is None:
+                logger.warning(f"Missing or null MoM field '{key}', using default value.")
+                mom[key] = DEFAULT_MOM[key]
 
         # Handle export if requested
-        if export_format.lower() == "pdf":
+        export_format = export_format.lower().strip()
+        if export_format == "pdf":
             temp_pdf = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
             output_file_path = export_mom_pdf(mom, output_path=temp_pdf.name)
             if not os.path.exists(output_file_path):
                 raise HTTPException(status_code=500, detail="Failed to create PDF file")
             EXPORTED_FILES.append(output_file_path)
             logger.info(f"Exported PDF: {output_file_path}")
-        elif export_format.lower() == "docx":
+
+        elif export_format == "docx":
             temp_docx = tempfile.NamedTemporaryFile(delete=False, suffix=".docx")
             output_file_path = export_mom_docx(mom, output_path=temp_docx.name)
             if not os.path.exists(output_file_path):
@@ -66,7 +98,7 @@ async def transcribe_audio_api(file: UploadFile = File(...), export_format: str 
             "mom": mom,
             "export_file": output_file_path if output_file_path else None
         }
-
+        logger.info(f"Response sent to frontend: {response}")  # Debug log
         return response
 
     except HTTPException as http_exc:
@@ -77,7 +109,7 @@ async def transcribe_audio_api(file: UploadFile = File(...), export_format: str 
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
     finally:
-        # Cleanup only audio files
+        # Cleanup audio files
         for path in [temp_path, wav_path]:
             if path and os.path.exists(path):
                 try:
