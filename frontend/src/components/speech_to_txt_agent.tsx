@@ -165,7 +165,7 @@ export default function SpeechToTxtAgent() {
       };
 
       // Check if MoM is mostly empty (indicating backend issue)
-      const isMomEmpty = !response.mom?.title && 
+      const isMomEmpty = !response.mom?.title ||
         (typeof response.mom?.summary === "string" ? !response.mom.summary : !response.mom?.summary?.overview) &&
         !response.mom?.overview &&
         response.mom?.attendees?.length === 0 &&
@@ -277,22 +277,50 @@ export default function SpeechToTxtAgent() {
     toast.success("Changes saved successfully!");
   };
 
+  // Handle adding a new task
+  const handleAddTask = () => {
+    if (!editedMom) return;
+    const newTask: ActionItem = { task: "", assigned_to: "", deadline: "" };
+    setEditedMom({ ...editedMom, tasks: [...editedMom.tasks, newTask] });
+  };
+
+  // Handle removing a task
+  const handleRemoveTask = (index: number) => {
+    if (!editedMom) return;
+    const newTasks = editedMom.tasks.filter((_, i) => i !== index);
+    setEditedMom({ ...editedMom, tasks: newTasks });
+  };
+
+  // Handle adding a new decision
+  const handleAddDecision = () => {
+    if (!editedMom) return;
+    const newDecision: Decision = { decision: "", participant: "" };
+    setEditedMom({ ...editedMom, decisions: [...editedMom.decisions, newDecision] });
+  };
+
+  // Handle removing a decision
+  const handleRemoveDecision = (index: number) => {
+    if (!editedMom) return;
+    const newDecisions = editedMom.decisions.filter((_, i) => i !== index);
+    setEditedMom({ ...editedMom, decisions: newDecisions });
+  };
+
   // Handle re-export of edited MoM
-  const handleReExport = async () => {
-    if (!editedMom || !exportFormat || exportFormat === "none") {
-      toast.error("No MoM or valid export format selected for re-export.");
+  const handleReExport = async (format: "pdf" | "docx") => {
+    if (!editedMom) {
+      toast.error("No MoM data available for export.");
       return;
     }
 
     setDownloadLoading(true);
     setError(null);
-    toast.info(`Exporting edited MoM as ${exportFormat.toUpperCase()}...`);
+    toast.info(`Exporting edited MoM as ${format.toUpperCase()}...`);
 
     try {
       const response = await fetch("http://localhost:8000/speech-to-text/export-edited", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mom: editedMom, export_format: exportFormat }),
+        body: JSON.stringify({ mom: editedMom, export_format: format }),
       });
 
       if (!response.ok) {
@@ -302,7 +330,7 @@ export default function SpeechToTxtAgent() {
       }
 
       const { export_file } = await response.json();
-      await handleDownload(export_file, exportFormat, true);
+      await handleDownload(export_file, format, true);
     } catch (err: any) {
       const errorMsg = err.message || "Error exporting edited MoM. Please try again.";
       setError(errorMsg);
@@ -536,26 +564,46 @@ export default function SpeechToTxtAgent() {
               <div className="flex space-x-2">
                 <button
                   onClick={handleEditToggle}
-                  className="py-1 px-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700"
+                  className="py-1 px-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed"
+                  disabled={downloadLoading}
                 >
                   {isEditing ? "Cancel" : "Edit"}
                 </button>
                 {isEditing && (
                   <button
                     onClick={handleSave}
-                    className="py-1 px-3 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700"
+                    className="py-1 px-3 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700 disabled:bg-green-400 disabled:cursor-not-allowed"
+                    disabled={downloadLoading}
                   >
                     Save
                   </button>
                 )}
-                {exportFilePath && (
+                {exportFilePath && !isEditing && (
                   <button
                     onClick={() => handleDownload(exportFilePath, exportFormat)}
-                    className="py-1 px-3 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700"
+                    className="py-1 px-3 bg-purple-600 text-white text-sm font-medium rounded-lg hover:bg-purple-700 disabled:bg-purple-400 disabled:cursor-not-allowed"
                     disabled={downloadLoading}
                   >
                     Download {exportFormat.toUpperCase()}
                   </button>
+                )}
+                {isEditing && (
+                  <>
+                    <button
+                      onClick={() => handleReExport("pdf")}
+                      className="py-1 px-3 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed"
+                      disabled={downloadLoading}
+                    >
+                      Export as PDF
+                    </button>
+                    <button
+                      onClick={() => handleReExport("docx")}
+                      className="py-1 px-3 bg-indigo-600 text-white text-sm font-medium rounded-lg hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed"
+                      disabled={downloadLoading}
+                    >
+                      Export as DOCX
+                    </button>
+                  </>
                 )}
               </div>
             </div>
@@ -570,7 +618,7 @@ export default function SpeechToTxtAgent() {
                     onChange={(e) =>
                       setEditedMom({ ...editedMom!, title: e.target.value })
                     }
-                    className="w-full p-2 border border-slate-300 rounded-lg"
+                    className="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 ) : (
                   <p className="text-slate-700">{mom.title}</p>
@@ -594,7 +642,7 @@ export default function SpeechToTxtAgent() {
                         })
                       }
                       rows={3}
-                      className="w-full p-2 border border-slate-300 rounded-lg"
+                      className="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                     <label className="block font-medium text-slate-700 mt-2">Detailed</label>
                     <textarea
@@ -608,7 +656,7 @@ export default function SpeechToTxtAgent() {
                         })
                       }
                       rows={3}
-                      className="w-full p-2 border border-slate-300 rounded-lg"
+                      className="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </>
                 ) : (
@@ -629,7 +677,7 @@ export default function SpeechToTxtAgent() {
                       setEditedMom({ ...editedMom!, overview: e.target.value })
                     }
                     rows={4}
-                    className="w-full p-2 border border-slate-300 rounded-lg"
+                    className="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 ) : (
                   <p className="text-slate-700 whitespace-pre-wrap">{mom.overview || "No overview provided"}</p>
@@ -649,7 +697,7 @@ export default function SpeechToTxtAgent() {
                       })
                     }
                     rows={Math.max(editedMom?.attendees.length || 3, 3)}
-                    className="w-full p-2 border border-slate-300 rounded-lg"
+                    className="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 ) : (
                   <ul className="list-disc pl-5 text-slate-700">
@@ -667,6 +715,14 @@ export default function SpeechToTxtAgent() {
               {/* Tasks */}
               <div>
                 <h4 className="font-semibold text-slate-800">Tasks</h4>
+                {isEditing && (
+                  <button
+                    onClick={handleAddTask}
+                    className="mb-2 py-1 px-3 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700"
+                  >
+                    Add Task
+                  </button>
+                )}
                 <ul className="list-decimal pl-5 space-y-2 text-slate-700">
                   {mom.tasks.length > 0 ? (
                     mom.tasks.map((task, idx) => (
@@ -681,7 +737,7 @@ export default function SpeechToTxtAgent() {
                                 newTasks[idx] = { ...newTasks[idx], task: e.target.value };
                                 setEditedMom({ ...editedMom!, tasks: newTasks });
                               }}
-                              className="w-full p-1 border border-slate-300 rounded-lg"
+                              className="w-full p-1 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                               placeholder="Task"
                             />
                             <input
@@ -692,7 +748,7 @@ export default function SpeechToTxtAgent() {
                                 newTasks[idx] = { ...newTasks[idx], assigned_to: e.target.value };
                                 setEditedMom({ ...editedMom!, tasks: newTasks });
                               }}
-                              className="w-full p-1 border border-slate-300 rounded-lg"
+                              className="w-full p-1 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                               placeholder="Assigned to"
                             />
                             <input
@@ -703,9 +759,15 @@ export default function SpeechToTxtAgent() {
                                 newTasks[idx] = { ...newTasks[idx], deadline: e.target.value };
                                 setEditedMom({ ...editedMom!, tasks: newTasks });
                               }}
-                              className="w-full p-1 border border-slate-300 rounded-lg"
-                              placeholder="Deadline"
+                              className="w-full p-1 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              placeholder="Deadline (YYYY-MM-DD)"
                             />
+                            <button
+                              onClick={() => handleRemoveTask(idx)}
+                              className="py-1 px-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700"
+                            >
+                              Remove
+                            </button>
                           </div>
                         ) : (
                           <p>
@@ -733,7 +795,7 @@ export default function SpeechToTxtAgent() {
                       })
                     }
                     rows={Math.max(editedMom?.action_items.length || 3, 3)}
-                    className="w-full p-2 border border-slate-300 rounded-lg"
+                    className="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                 ) : (
                   <ul className="list-disc pl-5 text-slate-700">
@@ -751,11 +813,54 @@ export default function SpeechToTxtAgent() {
               {/* Decisions */}
               <div>
                 <h4 className="font-semibold text-slate-800">Decisions</h4>
+                {isEditing && (
+                  <button
+                    onClick={handleAddDecision}
+                    className="mb-2 py-1 px-3 bg-green-600 text-white text-sm font-medium rounded-lg hover:bg-green-700"
+                  >
+                    Add Decision
+                  </button>
+                )}
                 <ul className="list-disc pl-5 text-slate-700">
                   {mom.decisions.length > 0 ? (
                     mom.decisions.map((decision, idx) => (
                       <li key={idx}>
-                        {decision.decision} - {decision.participant}
+                        {isEditing ? (
+                          <div className="space-y-1">
+                            <input
+                              type="text"
+                              value={editedMom?.decisions[idx]?.decision || ""}
+                              onChange={(e) => {
+                                const newDecisions = [...(editedMom?.decisions || [])];
+                                newDecisions[idx] = { ...newDecisions[idx], decision: e.target.value };
+                                setEditedMom({ ...editedMom!, decisions: newDecisions });
+                              }}
+                              className="w-full p-1 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              placeholder="Decision"
+                            />
+                            <input
+                              type="text"
+                              value={editedMom?.decisions[idx]?.participant || ""}
+                              onChange={(e) => {
+                                const newDecisions = [...(editedMom?.decisions || [])];
+                                newDecisions[idx] = { ...newDecisions[idx], participant: e.target.value };
+                                setEditedMom({ ...editedMom!, decisions: newDecisions });
+                              }}
+                              className="w-full p-1 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              placeholder="Participant"
+                            />
+                            <button
+                              onClick={() => handleRemoveDecision(idx)}
+                              className="py-1 px-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ) : (
+                          <p>
+                            {decision.decision} - {decision.participant}
+                          </p>
+                        )}
                       </li>
                     ))
                   ) : (
@@ -767,29 +872,57 @@ export default function SpeechToTxtAgent() {
               {/* Risks */}
               <div>
                 <h4 className="font-semibold text-slate-800">Risks</h4>
-                <ul className="list-disc pl-5 text-red-700">
-                  {mom.risks.length > 0 ? (
-                    mom.risks.map((risk, idx) => (
-                      <li key={idx}>{risk}</li>
-                    ))
-                  ) : (
-                    <li>No risks identified</li>
-                  )}
-                </ul>
+                {isEditing ? (
+                  <textarea
+                    value={editedMom?.risks.join("\n") || ""}
+                    onChange={(e) =>
+                      setEditedMom({
+                        ...editedMom!,
+                        risks: e.target.value.split("\n").filter(Boolean),
+                      })
+                    }
+                    rows={Math.max(editedMom?.risks.length || 3, 3)}
+                    className="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                ) : (
+                  <ul className="list-disc pl-5 text-red-700">
+                    {mom.risks.length > 0 ? (
+                      mom.risks.map((risk, idx) => (
+                        <li key={idx}>{risk}</li>
+                      ))
+                    ) : (
+                      <li>No risks identified</li>
+                    )}
+                  </ul>
+                )}
               </div>
 
               {/* Data Points */}
               <div>
                 <h4 className="font-semibold text-slate-800">Data Points</h4>
-                <ul className="list-disc pl-5 text-slate-700">
-                  {mom.data_points.length > 0 ? (
-                    mom.data_points.map((dp, idx) => (
-                      <li key={idx}>{dp}</li>
-                    ))
-                  ) : (
-                    <li>No data points provided</li>
-                  )}
-                </ul>
+                {isEditing ? (
+                  <textarea
+                    value={editedMom?.data_points.join("\n") || ""}
+                    onChange={(e) =>
+                      setEditedMom({
+                        ...editedMom!,
+                        data_points: e.target.value.split("\n").filter(Boolean),
+                      })
+                    }
+                    rows={Math.max(editedMom?.data_points.length || 3, 3)}
+                    className="w-full p-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                ) : (
+                  <ul className="list-disc pl-5 text-slate-700">
+                    {mom.data_points.length > 0 ? (
+                      mom.data_points.map((dp, idx) => (
+                        <li key={idx}>{dp}</li>
+                      ))
+                    ) : (
+                      <li>No data points provided</li>
+                    )}
+                  </ul>
+                )}
               </div>
             </div>
           </div>

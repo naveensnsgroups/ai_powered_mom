@@ -1,7 +1,6 @@
 
-
-
 from fastapi import APIRouter, UploadFile, File, HTTPException
+from fastapi.responses import JSONResponse
 from agents.speech_to_txt_agent.core.agent import run_agent
 from agents.speech_to_txt_agent.core.tools import (
     save_temp_file,
@@ -14,6 +13,7 @@ import os
 import logging
 import tempfile
 from typing import List, Dict, Any
+from pydantic import BaseModel
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -33,6 +33,11 @@ DEFAULT_MOM: Dict[str, Any] = {
     "risks": [],
     "data_points": []
 }
+
+# Pydantic model for edited MoM request
+class ExportEditedRequest(BaseModel):
+    mom: Dict[str, Any]
+    export_format: str
 
 @router.post("/transcribe")
 async def transcribe_audio_api(file: UploadFile = File(...), export_format: str = "none"):
@@ -67,8 +72,8 @@ async def transcribe_audio_api(file: UploadFile = File(...), export_format: str 
         logger.info(f"Raw MoM from run_agent: {raw_mom}")  # Debug log
 
         # Use raw_mom if valid, otherwise fall back to DEFAULT_MOM
-        mom = raw_mom if raw_mom and isinstance(raw_mom, dict) and len(raw_mom) > 0 else DEFAULT_MOM.copy()
-        
+        mom = raw_mom if raw_mom and isinstance(raw_mom, dict) and "error" not in raw_mom else DEFAULT_MOM.copy()
+
         # Ensure all fields exist, filling missing ones with defaults
         for key in DEFAULT_MOM:
             if key not in mom or mom[key] is None:
@@ -117,6 +122,52 @@ async def transcribe_audio_api(file: UploadFile = File(...), export_format: str 
                     logger.info(f"Deleted temporary file: {path}")
                 except Exception as cleanup_error:
                     logger.warning(f"Failed to delete temp file {path}: {cleanup_error}")
+
+@router.post("/export-edited")
+async def export_edited_mom(request: ExportEditedRequest):
+    """
+    Export edited Minutes of Meeting (MoM) in the specified format.
+    """
+    mom = request.mom
+    export_format = request.export_format.lower().strip()
+    output_file_path = None
+
+    try:
+        # Validate export format
+        if export_format not in ["pdf", "docx"]:
+            raise HTTPException(status_code=400, detail="Invalid export format. Use 'pdf' or 'docx'.")
+
+        # Ensure all MoM fields exist, filling missing ones with defaults
+        for key in DEFAULT_MOM:
+            if key not in mom or mom[key] is None:
+                logger.warning(f"Missing or null MoM field '{key}' in edited MoM, using default value.")
+                mom[key] = DEFAULT_MOM[key]
+
+        # Export to the requested format
+        if export_format == "pdf":
+            temp_pdf = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+            output_file_path = export_mom_pdf(mom, output_path=temp_pdf.name)
+            if not os.path.exists(output_file_path):
+                raise HTTPException(status_code=500, detail="Failed to create PDF file")
+            EXPORTED_FILES.append(output_file_path)
+            logger.info(f"Exported edited PDF: {output_file_path}")
+
+        elif export_format == "docx":
+            temp_docx = tempfile.NamedTemporaryFile(delete=False, suffix=".docx")
+            output_file_path = export_mom_docx(mom, output_path=temp_docx.name)
+            if not os.path.exists(output_file_path):
+                raise HTTPException(status_code=500, detail="Failed to create DOCX file")
+            EXPORTED_FILES.append(output_file_path)
+            logger.info(f"Exported edited DOCX: {output_file_path}")
+
+        return JSONResponse(content={"export_file": output_file_path})
+
+    except HTTPException as http_exc:
+        raise http_exc
+
+    except Exception as e:
+        logger.exception("Error exporting edited MoM")
+        raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
 @router.post("/cleanup")
 async def cleanup_exported_file(file_path: str):
