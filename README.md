@@ -393,6 +393,348 @@ Solution:
 - Verify file path in API response
 - Check browser download permissions
 ```
+# Enhanced Meeting Live Transcription & Minutes Generator
+
+An AI-powered meeting transcription system with automatic speaker detection, action item tracking, and comprehensive meeting analysis. This application records live audio, processes it through a backend API, and generates structured meeting minutes with insights.
+
+## Features
+
+### Core Capabilities
+- **Live Audio Recording** - High-quality audio capture with configurable sample rates
+- **Automatic Speaker Detection** - AI-powered identification of meeting participants
+- **Real-time Transcription** - Convert speech to text with noise reduction
+- **Meeting Minutes Generation** - Automatic creation of structured MoM documents
+- **Action Item Tracking** - Identification and categorization of tasks with priorities
+- **Decision Documentation** - Capture decisions with rationale and impact analysis
+- **Risk & Blocker Identification** - Automatic detection of issues and obstacles
+- **Export Functionality** - Generate PDF or DOCX reports
+
+### Enhanced Features
+- Multi-tab interface for organized information display
+- Audio quality analysis and testing
+- Real-time recording duration tracking
+- Processing time metrics and statistics
+- Noise reduction and audio enhancement
+- Participant attendance tracking with roles
+- Follow-up planning with next meeting scheduling
+- Required approvals tracking
+
+## Tech Stack
+
+- **Frontend**: React 18+ with TypeScript
+- **UI Framework**: Next.js (Client Components)
+- **Icons**: Lucide React
+- **Audio Processing**: MediaRecorder API
+- **Backend Communication**: Fetch API
+- **State Management**: React Hooks (useState, useRef, useCallback)
+
+## Prerequisites
+
+- Node.js 16+ and npm/yarn
+- Modern browser with MediaRecorder API support
+- Microphone access permissions
+- Backend API server running (see Backend Setup section)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd enhanced-meeting-transcription
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Configure environment variables:
+```bash
+# Create .env.local file
+NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+```
+
+4. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## Backend Setup
+
+This frontend requires a compatible backend API. The backend should provide these endpoints:
+
+### Required API Endpoints
+
+**1. Live Chunks Processing**
+```
+POST /live-speech-to-text/live-chunks
+Content-Type: multipart/form-data
+
+Body: { files: [audio files] }
+
+Response: EnhancedTranscriptionResult (see interfaces below)
+```
+
+**2. Single Chunk Testing**
+```
+POST /live-speech-to-text/live-single
+Content-Type: multipart/form-data
+
+Body: { file: audio file }
+
+Response: SingleTranscriptionResult
+```
+
+**3. Export MoM**
+```
+POST /live-speech-to-text/export-enhanced
+Content-Type: application/json
+
+Body: { mom: MoMObject, format: "pdf" | "docx" }
+
+Response: { export_file: string, enhanced_features: string[] }
+```
+
+**4. File Download**
+```
+GET /download?file_path=<path>
+
+Response: File blob
+```
+
+## Usage Guide
+
+### Recording a Meeting
+
+1. **Test Microphone**
+   - Click "Test Microphone" to verify audio access
+   - Grant browser permissions when prompted
+
+2. **Start Recording**
+   - Click "Start Recording" to begin capturing audio
+   - Speak clearly and mention participant names
+   - Recording duration displays in real-time
+
+3. **Stop Recording**
+   - Click "Stop Recording" when the meeting ends
+   - Audio is automatically prepared for processing
+
+4. **Generate Minutes**
+   - Click "Generate Meeting Minutes" to process the recording
+   - AI analyzes audio for speakers, actions, decisions, and risks
+   - Processing typically takes 10-30 seconds
+
+5. **Review & Export**
+   - Navigate through tabs to review different sections
+   - Select export format (PDF or DOCX)
+   - Click "Export" to download the document
+
+### Best Practices for Optimal Results
+
+**For Speaker Detection:**
+- Begin meetings with introductions ("Hi, I'm John from Marketing")
+- Use names in conversation ("Sarah, what do you think?")
+- Mention roles and responsibilities
+- Record for at least 15-30 seconds
+- Minimize background noise
+
+**For Action Items:**
+- Be explicit: "John will handle the client presentation"
+- State deadlines clearly: "by Friday" or "end of month"
+- Use action verbs: "I'll do", "We need to", "Please complete"
+- Assign clear ownership of tasks
+
+**For Decisions:**
+- Use decision language: "We decided...", "It was agreed..."
+- Explain reasoning behind decisions
+- Mention implementation owners
+- Include timelines for execution
+
+## Component Structure
+
+### Main Component: `EnhancedLiveTranscription`
+
+**State Management:**
+- `isRecording` - Recording status
+- `isProcessing` - Processing status
+- `transcription` - Complete transcription result with MoM
+- `audioChunks` - Recorded audio data
+- `activeTab` - Current view tab
+- `recordingDuration` - Timer in seconds
+- `exportFormat` - Selected export format (pdf/docx)
+
+**Key Functions:**
+- `initializeRecorder()` - Sets up MediaRecorder with optimal settings
+- `startRecording()` - Begins audio capture
+- `stopRecording()` - Ends recording session
+- `processAudioChunks()` - Sends audio to backend for analysis
+- `exportMoM()` - Generates and downloads meeting minutes
+- `testMicrophone()` - Verifies audio permissions
+
+## Data Interfaces
+
+### EnhancedTranscriptionResult
+```typescript
+interface EnhancedTranscriptionResult {
+  transcript: string;
+  mom: {
+    meeting_info: {
+      date: string;
+      time: string;
+      meeting_type: string;
+    };
+    attendance: {
+      participants: Participant[];
+      total_participants: number;
+    };
+    summary: {
+      overview: string;
+      detailed: string;
+      key_topics: string[];
+    };
+    action_items: ActionItem[];
+    decisions: Decision[];
+    follow_up: {
+      next_meeting: string;
+      pending_items: string[];
+      required_approvals: string[];
+    };
+    risks_and_blockers: RiskBlocker[];
+  };
+  processing_info?: {
+    total_files: number;
+    successful_files: number;
+    processing_time: number;
+    transcription_time: number;
+    enhanced_features: string[];
+  };
+}
+```
+
+## UI Sections
+
+### 1. Meeting Overview
+- Meeting metadata (date, time, type)
+- Participant count and outcomes summary
+- Executive overview and key topics
+
+### 2. Attendance
+- Grid view of all participants
+- Roles and attendance status
+- Auto-detection indicators
+
+### 3. Transcript
+- Full meeting transcript
+- Word count and quality metrics
+- Monospace formatting for clarity
+
+### 4. Action Items
+- Priority-based color coding (High/Medium/Low)
+- Assigned owners and deadlines
+- Category classification
+- Task status tracking
+
+### 5. Decisions
+- Decision statements with rationale
+- Impact analysis
+- Implementation owners
+- Execution timelines
+
+### 6. Follow-up Planning
+- Next meeting scheduling
+- Pending items tracking
+- Required approvals list
+
+### 7. Risks & Blockers
+- Severity-based classification
+- Issue descriptions
+- Resolution owners
+
+## Audio Configuration
+
+The application uses optimized audio settings:
+
+```javascript
+{
+  channelCount: 1,           // Mono audio
+  sampleRate: 44100,         // CD quality
+  sampleSize: 16,            // 16-bit depth
+  echoCancellation: true,    // Remove echo
+  noiseSuppression: false,   // Backend handles this
+  autoGainControl: true,     // Normalize volume
+  volume: 1.0               // Full volume
+}
+```
+
+Supported MIME types (in order of preference):
+1. `audio/wav`
+2. `audio/webm;codecs=opus`
+3. `audio/webm`
+4. `audio/ogg;codecs=opus`
+
+## Troubleshooting
+
+### No Audio Recorded
+- Check microphone permissions in browser
+- Verify microphone is not used by another application
+- Test with "Test Microphone" button
+- Ensure audio input device is selected in system settings
+
+### Empty Transcript
+- Record for at least 15 seconds with clear speech
+- Speak louder or closer to microphone
+- Reduce background noise
+- Check audio chunk size (should be > 2KB)
+
+### No Participants Detected
+- Use names explicitly in conversation
+- Include introductions at meeting start
+- Mention roles and titles
+- Ensure multiple speakers are present
+
+### Processing Fails
+- Check backend API is running and accessible
+- Verify NEXT_PUBLIC_BACKEND_URL is correct
+- Check network connectivity
+- Review browser console for error details
+
+### Export Issues
+- Ensure backend has write permissions for exports
+- Check disk space on backend server
+- Verify export endpoints are accessible
+
+## Browser Compatibility
+
+- Chrome 60+ 
+- Firefox 55+ 
+- Safari 14+ 
+- Edge 79+ 
+
+**Note**: MediaRecorder API support required. Some mobile browsers may have limitations.
+
+## Security Considerations
+
+- Audio data is transmitted to backend for processing
+- No client-side storage of audio recordings
+- Ensure backend API uses HTTPS in production
+- Implement authentication/authorization as needed
+- Consider data retention policies for recordings
+
+## Performance Optimization
+
+- Audio recorded in 1-second chunks
+- Lazy loading of UI components
+- Efficient state management with useCallback
+- Minimal re-renders with proper dependencies
+- Audio cleanup on component unmount
+
+
 
 
 
