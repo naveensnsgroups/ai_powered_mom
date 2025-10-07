@@ -1434,3 +1434,91 @@ ValueError: Missing some input keys: {'\n  "mom_title"'}
 2025-09-12 17:04:15,204 - main - INFO - Request: POST /speech-to-text/cleanup
 2025-09-12 17:04:15,204 - main - INFO - Response: 422 in 0.001s
 2025-09-12 17:05:08,724 - main - INFO - Shutting down application...
+2025-10-07 11:52:29,022 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 11:52:29,022 - main - INFO - Testing API connections...
+2025-10-07 11:52:29,728 - main - INFO - Gemini API connection successful
+2025-10-07 11:52:29,728 - main - INFO - Application startup complete
+2025-10-07 11:54:18,800 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 11:54:18,800 - main - INFO - Testing API connections...
+2025-10-07 11:54:20,317 - main - INFO - Gemini API connection successful
+2025-10-07 11:54:20,317 - main - INFO - Application startup complete
+2025-10-07 11:54:23,929 - main - INFO - Request: POST /speech-to-text/transcribe
+2025-10-07 11:54:23,929 - agents.speech_to_txt_agent.agent_main - INFO - Saved temporary audio file: C:\Users\HP\AppData\Local\Temp\tmpgyevhr0p.mp3
+2025-10-07 11:54:23,996 - agents.speech_to_txt_agent.agent_main - INFO - Converted to WAV: C:\Users\HP\AppData\Local\Temp\tmp98vg1u25.wav
+2025-10-07 11:54:30,238 - agents.speech_to_txt_agent.agent_main - INFO - Raw MoM from run_agent: {'title': 'Discussion on Historic Things and Heritage', 'summary': 'The discussion defines historic things as tangible relics and intangible heritage, emphasizing their importance in understanding societal development, learning from the past, and forming a connection to national identity.', 'overview': 'The meeting focused on defining and explaining the significance of historic things, both tangible and intangible, in relation to understanding the past and shaping national identity.', 'attendees': ['AI Assistant (Analysis)'], 'tasks': [], 'action_items': [], 'decisions': [], 'risks': [], 'data_points': []}
+2025-10-07 11:54:30,238 - agents.speech_to_txt_agent.agent_main - INFO - Response sent to frontend: {'transcript': " Historic things are tangible relics like monuments or ancient sites and intangible heritage such as stories, traditions and skills that represent past human activities and cultural values. These items offer insights into our ancestors lives, helping us understand society's development, learn from the past, and form a connection to national identity and heritage.", 'mom': {'title': 'Discussion on Historic Things and Heritage', 'summary': 'The discussion defines historic things as tangible relics and intangible heritage, emphasizing their importance in understanding societal development, learning from the past, and forming a connection to national identity.', 'overview': 'The meeting focused on defining and explaining the significance of historic things, both tangible and intangible, in relation to understanding the past and shaping national identity.', 'attendees': ['AI Assistant (Analysis)'], 'tasks': [], 'action_items': [], 'decisions': [], 'risks': [], 'data_points': []}, 'export_file': None}
+2025-10-07 11:54:30,238 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpgyevhr0p.mp3
+2025-10-07 11:54:30,238 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmp98vg1u25.wav
+2025-10-07 11:54:30,238 - main - INFO - Response: 200 in 6.310s
+2025-10-07 11:55:04,281 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 11:55:04,283 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 11:55:04,388 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub with speech optimization: C:\Users\HP\AppData\Local\Temp\tmpbwihhb0d.wav
+2025-10-07 11:55:04,617 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.33s
+2025-10-07 11:55:04,617 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 11:55:04,617 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks for enhanced MoM with speaker detection
+2025-10-07 11:55:04,617 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 11:55:05,106 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 11:55:05,108 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 0/1 chunks
+2025-10-07 11:55:05,109 - agents.live_speech_to_txt_agent.core.agent - WARNING - No successful transcriptions
+2025-10-07 11:55:05,110 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.49s
+2025-10-07 11:55:05,110 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.83s
+2025-10-07 11:55:05,111 - main - INFO - Response: 200 in 0.830s
+2025-10-07 11:55:29,607 - main - INFO - Shutting down application...
+2025-10-07 11:55:29,607 - main - INFO - Shutting down application...
+2025-10-07 11:55:41,401 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 11:55:41,401 - main - INFO - Testing API connections...
+2025-10-07 11:55:42,849 - main - INFO - Gemini API connection successful
+2025-10-07 11:55:42,850 - main - INFO - Application startup complete
+2025-10-07 11:55:47,214 - main - INFO - Shutting down application...
+2025-10-07 11:55:53,742 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 11:55:53,742 - main - INFO - Testing API connections...
+2025-10-07 11:55:54,933 - main - INFO - Gemini API connection successful
+2025-10-07 11:55:54,933 - main - INFO - Application startup complete
+2025-10-07 11:56:01,136 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 11:56:01,136 - main - INFO - Testing API connections...
+2025-10-07 11:56:02,256 - main - INFO - Gemini API connection successful
+2025-10-07 11:56:02,270 - main - INFO - Application startup complete
+2025-10-07 11:56:58,594 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 11:56:58,595 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 11:56:58,655 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpr3c7i66a.wav
+2025-10-07 11:56:58,855 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.26s
+2025-10-07 11:56:58,855 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 11:56:58,855 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 11:56:58,855 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 11:56:58,855 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 11:56:58,855 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.26s
+2025-10-07 11:56:58,855 - main - INFO - Response: 200 in 0.261s
+2025-10-07 11:57:04,670 - main - INFO - Shutting down application...
+2025-10-07 11:58:54,672 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 11:58:54,672 - main - INFO - Testing API connections...
+2025-10-07 11:58:56,617 - main - INFO - Gemini API connection successful
+2025-10-07 11:58:56,617 - main - INFO - Application startup complete
+2025-10-07 12:00:19,846 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 12:00:19,846 - main - INFO - Testing API connections...
+2025-10-07 12:00:21,179 - main - INFO - Gemini API connection successful
+2025-10-07 12:00:21,179 - main - INFO - Application startup complete
+2025-10-07 12:00:45,925 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 12:00:45,933 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 12:00:46,025 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpylmf7d8y.wav
+2025-10-07 12:00:46,238 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.31s
+2025-10-07 12:00:46,254 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 12:00:46,254 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 12:00:46,255 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 12:00:46,971 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 12:00:46,979 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Live speech to text agent. Encance live meeting transcription. Recording controls. Recording in progress. Speak clearly into your microphone. Encance the features. How to use test microphone access. Start recording your meeting. Speak clearly. Mention names and roles. Stop recording when finished. Generate comprehensive meeting minutes.' (duration: 20.10s, max_amp: 0.8285)
+2025-10-07 12:00:46,979 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 12:00:48,029 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 1 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-10-07 12:00:48,029 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 2 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-10-07 12:00:48,029 - agents.live_speech_to_txt_agent.core.agent - WARNING - Enhanced MoM generation attempt 3 failed: 'Input to PromptTemplate is missing variables {\'\\n  "meeting_info"\'}.  Expected: [\'\\n  "meeting_info"\', \'current_date\', \'transcript\'] Received: [\'transcript\', \'current_date\']\nNote: if you intended {\n  "meeting_info"} to be part of the string and not a variable, please escape it with double curly braces like: \'{{\n  "meeting_info"}}\'.\nFor troubleshooting, visit: https://python.langchain.com/docs/troubleshooting/errors/INVALID_PROMPT_INPUT '
+2025-10-07 12:00:48,029 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using fallback
+2025-10-07 12:00:48,029 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 1.78s
+2025-10-07 12:00:48,029 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 2.10s
+2025-10-07 12:00:48,040 - main - INFO - Response: 200 in 2.115s
+2025-10-07 12:05:21,156 - main - INFO - Request: POST /speech-to-text/transcribe
+2025-10-07 12:05:21,172 - agents.speech_to_txt_agent.agent_main - INFO - Saved temporary audio file: C:\Users\HP\AppData\Local\Temp\tmp1bx0iayi.mp3
+2025-10-07 12:05:21,256 - agents.speech_to_txt_agent.agent_main - INFO - Converted to WAV: C:\Users\HP\AppData\Local\Temp\tmp2238tne0.wav
+2025-10-07 12:05:40,308 - agents.speech_to_txt_agent.agent_main - INFO - Raw MoM from run_agent: {'title': 'Team Task Review', 'summary': 'Review of pending tasks and action items from the previous week, with updates on monitoring alerts, escalation matrix, client communication, and performance reports. Focus on completing all tasks before the customer review on Monday, September 20th.', 'overview': 'The meeting focused on reviewing the status of high-priority tickets and action items from the previous week. The agenda included updates on monitoring alerts, escalation matrix, client communication, and performance reports. The goal was to ensure all tasks are completed before the upcoming customer review.', 'attendees': ['Naveen (presumably leading the meeting)', 'Arvind', 'Jai Seema', 'Priya', 'Rahul'], 'tasks': [{'task': 'Set up monitoring alerts', 'assigned_to': 'Arvind', 'deadline': '2024-09-15'}, {'task': 'Finalize and share updated escalation matrix', 'assigned_to': 'Jai Seema', 'deadline': '2024-09-17'}, {'task': 'Follow up with clients on pending tickets and ensure responses are sent', 'assigned_to': 'Priya', 'deadline': '2024-09-16'}, {'task': "Review last week's performance reports and highlight any bottlenecks", 'assigned_to': 'Rahul', 'deadline': '2024-09-16'}], 'action_items': ['Naveen to reassign four high priority tickets.', 'Arvind to complete monitoring alerts by Wednesday, September 15th.', 'Jai Seema to finalize and share updated escalation matrix by Friday, September 17th.', 'Priya to follow up with clients on pending tickets and ensure responses are sent by Thursday, September 16th.', "Rahul to review last week's performance reports and highlight any bottlenecks by Thursday, September 16th."], 'decisions': [], 'risks': ['Delays in completing tasks may impact the customer review on Monday, September 20th.', 'Pending high priority tickets from last week.'], 'data_points': ['Four high priority tickets pending from last week.', 'Customer review scheduled for Monday, September 20th.']}
+2025-10-07 12:05:40,309 - agents.speech_to_txt_agent.agent_main - INFO - Response sent to frontend: {'transcript': " Good morning everyone. We still have four high priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes sir, Naveen. I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday 15 September. All right, that's good. Arvind. Last week we had some delays with escalations. Jai Seema, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday 17 September. Excellent, Jai Seema. What's the update on client communication, Priya? Yes sir, I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday 16 September. Perfect, Priya. Can you update us on the performance reports, Rahul? Yes sir, Naveen. I'll review last week's performance reports and highlight any bottlenecks by Thursday 16 September. Great, Rahul. So all the action items are clear. Let's make sure everything is wrapped up before the customer review on Monday, 20 September.", 'mom': {'title': 'Team Task Review', 'summary': 'Review of pending tasks and action items from the previous week, with updates on monitoring alerts, escalation matrix, client communication, and performance reports. Focus on completing all tasks before the customer review on Monday, September 20th.', 'overview': 'The meeting focused on reviewing the status of high-priority tickets and action items from the previous week. The agenda included updates on monitoring alerts, escalation matrix, client communication, and performance reports. The goal was to ensure all tasks are completed before the upcoming customer review.', 'attendees': ['Naveen (presumably leading the meeting)', 'Arvind', 'Jai Seema', 'Priya', 'Rahul'], 'tasks': [{'task': 'Set up monitoring alerts', 'assigned_to': 'Arvind', 'deadline': '2024-09-15'}, {'task': 'Finalize and share updated escalation matrix', 'assigned_to': 'Jai Seema', 'deadline': '2024-09-17'}, {'task': 'Follow up with clients on pending tickets and ensure responses are sent', 'assigned_to': 'Priya', 'deadline': '2024-09-16'}, {'task': "Review last week's performance reports and highlight any bottlenecks", 'assigned_to': 'Rahul', 'deadline': '2024-09-16'}], 'action_items': ['Naveen to reassign four high priority tickets.', 'Arvind to complete monitoring alerts by Wednesday, September 15th.', 'Jai Seema to finalize and share updated escalation matrix by Friday, September 17th.', 'Priya to follow up with clients on pending tickets and ensure responses are sent by Thursday, September 16th.', "Rahul to review last week's performance reports and highlight any bottlenecks by Thursday, September 16th."], 'decisions': [], 'risks': ['Delays in completing tasks may impact the customer review on Monday, September 20th.', 'Pending high priority tickets from last week.'], 'data_points': ['Four high priority tickets pending from last week.', 'Customer review scheduled for Monday, September 20th.']}, 'export_file': None}
+2025-10-07 12:05:40,311 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmp1bx0iayi.mp3
+2025-10-07 12:05:40,312 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmp2238tne0.wav
+2025-10-07 12:05:40,313 - main - INFO - Response: 200 in 19.157s
