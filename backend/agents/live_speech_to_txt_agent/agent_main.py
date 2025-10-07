@@ -1,6 +1,5 @@
 
-
-# agent_main.py - Enhanced version with updated API endpoints
+# agent_main.py - Enhanced version with fixed MoM response format
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from typing import List
 from agents.live_speech_to_txt_agent.core.agent import run_live_agent, transcribe_chunk
@@ -194,6 +193,10 @@ async def enhanced_live_transcribe_api(files: List[UploadFile] = File(...)):
             )
             
             transcription_time = time.time() - transcription_start
+            
+            logger.info(f"Result from run_live_agent: {result.keys()}")
+            logger.info(f"Transcript length: {len(result.get('transcript', ''))}")
+            logger.info(f"MoM keys: {result.get('mom', {}).keys()}")
             
             # Enhance result with processing information
             result["processing_info"] = {
