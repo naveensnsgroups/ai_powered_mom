@@ -2389,6 +2389,7 @@
 //     </div>
 //   );
 // }
+
 'use client';
 
 import React, { useState, useRef, useCallback, useEffect } from 'react';
@@ -2476,7 +2477,6 @@ interface SingleTranscriptionResult {
   };
 }
 
-// Declare SpeechRecognition types
 declare global {
   interface Window {
     SpeechRecognition: any;
@@ -2494,11 +2494,12 @@ export default function EnhancedLiveTranscription() {
   const [recordingTime, setRecordingTime] = useState(0);
   const [audioLevel, setAudioLevel] = useState(0);
   
-  // Real-time transcription states
   const [liveTranscript, setLiveTranscript] = useState<string>('');
   const [interimTranscript, setInterimTranscript] = useState<string>('');
   const [isListening, setIsListening] = useState(false);
   const [speechSupported, setSpeechSupported] = useState(true);
+  const [recognitionAttempts, setRecognitionAttempts] = useState(0);
+  const [lastTranscriptUpdate, setLastTranscriptUpdate] = useState<number>(Date.now());
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -2508,10 +2509,12 @@ export default function EnhancedLiveTranscription() {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const recognitionRef = useRef<any>(null);
+  const restartTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const keepAliveIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isRestartingRef = useRef<boolean>(false);
 
   const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
 
-  // Check for Speech Recognition support
   useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
@@ -2589,27 +2592,22 @@ export default function EnhancedLiveTranscription() {
     setAudioLevel(0);
   }, []);
 
-  // Initialize Speech Recognition with enhanced continuous listening
   const initSpeechRecognition = useCallback(() => {
     if (!speechSupported) return;
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
 
-    // Enhanced settings for longer continuous listening
     recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = 'en-US';
     recognition.maxAlternatives = 1;
 
-    let restartTimeout: NodeJS.Timeout;
-    let silenceTimeout: NodeJS.Timeout;
-    let lastSpeechTime = Date.now();
-
     recognition.onstart = () => {
-      console.log('✅ Speech recognition started');
+      console.log('✅ Speech recognition started - Attempt #' + recognitionAttempts);
       setIsListening(true);
-      lastSpeechTime = Date.now();
+      isRestartingRef.current = false;
+      setRecognitionAttempts(prev => prev + 1);
     };
 
     recognition.onspeechstart = () => {
@@ -2642,9 +2640,6 @@ export default function EnhancedLiveTranscription() {
       let interim = '';
       let final = '';
 
-      // Update last speech time when we get results
-      lastSpeechTime = Date.now();
-
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const transcript = event.results[i][0].transcript;
         const confidence = event.results[i][0].confidence;
@@ -2664,7 +2659,8 @@ export default function EnhancedLiveTranscription() {
         console.log('✅ Adding final text to transcript');
         setLiveTranscript(prev => {
           const newTranscript = prev + final;
-          console.log('Updated transcript length:', newTranscript.length);
+          console.log('Updated transcript length:', newTranscript.length, 'chars');
+          setLastTranscriptUpdate(Date.now());
           return newTranscript;
         });
         setInterimTranscript('');
@@ -2673,99 +2669,114 @@ export default function EnhancedLiveTranscription() {
       if (interim) {
         console.log('⏳ Showing interim text');
         setInterimTranscript(interim);
+        setLastTranscriptUpdate(Date.now());
       }
-
-      // Clear and reset silence timeout
-      clearTimeout(silenceTimeout);
     };
 
     recognition.onerror = (event: any) => {
       console.error('❌ Speech recognition error:', event.error, event);
       
-      // Handle different error types
       if (event.error === 'no-speech') {
         console.log('⚠️ No speech detected, will auto-restart');
       } else if (event.error === 'audio-capture') {
         setError('Microphone error. Please check your microphone.');
+        setIsListening(false);
         console.error('Audio capture failed');
       } else if (event.error === 'not-allowed') {
         setError('Microphone permission denied.');
+        setIsListening(false);
         console.error('Microphone permission denied');
       } else if (event.error === 'network') {
         console.log('⚠️ Network error, will auto-restart');
       } else if (event.error === 'aborted') {
         console.log('⚠️ Recognition aborted, will auto-restart');
       } else {
-        console.log(`⚠️ Speech recognition error: ${event.error}`);
+        console.log(`⚠️ Speech recognition error: ${event.error}, will auto-restart`);
       }
     };
 
     recognition.onend = () => {
-      console.log('🔴 Speech recognition ended');
+      const timeSinceRecording = Date.now();
+      console.log('🔴 Speech recognition ended at', new Date(timeSinceRecording).toLocaleTimeString());
+      
       setIsListening(false);
       
-      // Auto-restart if still recording
-      if (isRecording && recognitionRef.current) {
-        console.log('🔄 Auto-restarting speech recognition...');
+      if (isRecording && !isRestartingRef.current) {
+        isRestartingRef.current = true;
+        console.log('🔄 Preparing to auto-restart speech recognition...');
         
-        // Clear any existing restart timeout
-        clearTimeout(restartTimeout);
+        if (restartTimeoutRef.current) {
+          clearTimeout(restartTimeoutRef.current);
+        }
         
-        // Restart after a short delay to prevent rapid restart loops
-        restartTimeout = setTimeout(() => {
-          try {
-            if (isRecording && recognitionRef.current) {
+        restartTimeoutRef.current = setTimeout(() => {
+          if (isRecording && recognitionRef.current) {
+            try {
+              console.log('🚀 Restarting recognition NOW...');
               recognitionRef.current.start();
               console.log('✅ Speech recognition restarted successfully');
-            }
-          } catch (e: any) {
-            console.log('⚠️ Recognition restart failed:', e.message);
-            // If restart fails, try again after a longer delay
-            setTimeout(() => {
-              try {
+            } catch (e: any) {
+              console.warn('⚠️ Restart attempt failed:', e.message);
+              isRestartingRef.current = false;
+              
+              restartTimeoutRef.current = setTimeout(() => {
                 if (isRecording && recognitionRef.current) {
-                  recognitionRef.current.start();
-                  console.log('✅ Speech recognition restarted on second attempt');
+                  try {
+                    recognitionRef.current.start();
+                    console.log('✅ Speech recognition restarted on retry');
+                  } catch (err) {
+                    console.error('❌ Failed to restart recognition:', err);
+                    isRestartingRef.current = false;
+                  }
                 }
-              } catch (err) {
-                console.error('❌ Failed to restart recognition on second attempt:', err);
-              }
-            }, 1000);
+              }, 500);
+            }
+          } else {
+            console.log('ℹ️ Not restarting - recording stopped or no recognitionRef');
+            isRestartingRef.current = false;
           }
-        }, 300); // Short delay to prevent immediate restart
+        }, 100);
       } else {
-        console.log('ℹ️ Not restarting - recording stopped');
+        console.log('ℹ️ Not restarting - recording stopped or already restarting');
       }
     };
 
     recognitionRef.current = recognition;
-
-    // Cleanup function for timeouts
-    return () => {
-      clearTimeout(restartTimeout);
-      clearTimeout(silenceTimeout);
-    };
   }, [speechSupported, isRecording]);
 
-  // Start speech recognition
   const startSpeechRecognition = useCallback(() => {
     if (!speechSupported || !recognitionRef.current) return;
 
     try {
       setLiveTranscript('');
       setInterimTranscript('');
+      setError(null);
       recognitionRef.current.start();
-    } catch (error) {
+      console.log('Speech recognition started successfully');
+    } catch (error: any) {
       console.error('Failed to start speech recognition:', error);
+      
+      if (error.message && error.message.includes('already started')) {
+        try {
+          recognitionRef.current.stop();
+          setTimeout(() => {
+            if (recognitionRef.current) {
+              recognitionRef.current.start();
+            }
+          }, 300);
+        } catch (e) {
+          console.error('Failed to restart recognition:', e);
+        }
+      }
     }
   }, [speechSupported]);
 
-  // Stop speech recognition
   const stopSpeechRecognition = useCallback(() => {
     if (recognitionRef.current) {
       try {
-        recognitionRef.current.stop();
         setIsListening(false);
+        recognitionRef.current.stop();
+        console.log('Speech recognition stopped successfully');
       } catch (error) {
         console.error('Failed to stop speech recognition:', error);
       }
@@ -2884,15 +2895,43 @@ export default function EnhancedLiveTranscription() {
 
     try {
       mediaRecorderRef.current?.start(1000);
+      
+      if (keepAliveIntervalRef.current) {
+        clearInterval(keepAliveIntervalRef.current);
+      }
+      
+      keepAliveIntervalRef.current = setInterval(() => {
+        if (isRecording && !isListening && !isRestartingRef.current && recognitionRef.current) {
+          console.log('⚠️ Keep-alive: Recognition not listening, attempting restart...');
+          try {
+            recognitionRef.current.start();
+          } catch (e) {
+            console.log('Keep-alive restart skipped (already running or error)');
+          }
+        }
+      }, 3000);
+      
     } catch (error) {
       console.error('Failed to start recording:', error);
       setError('Failed to start recording');
     }
-  }, [initializeRecorder]);
+  }, [initializeRecorder, isRecording, isListening]);
 
   const stopRecording = useCallback(() => {
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
+      
+      if (keepAliveIntervalRef.current) {
+        clearInterval(keepAliveIntervalRef.current);
+        keepAliveIntervalRef.current = null;
+      }
+      
+      if (restartTimeoutRef.current) {
+        clearTimeout(restartTimeoutRef.current);
+        restartTimeoutRef.current = null;
+      }
+      
+      isRestartingRef.current = false;
     }
   }, [isRecording]);
 
@@ -2939,7 +2978,6 @@ export default function EnhancedLiveTranscription() {
       } else {
         setTranscription(result);
         setActiveTab('transcript');
-        // Clear live transcript after backend processing
         setLiveTranscript('');
         setInterimTranscript('');
       }
@@ -2988,6 +3026,16 @@ export default function EnhancedLiveTranscription() {
       mediaRecorderRef.current = null;
     }
     stopSpeechRecognition();
+    
+    if (keepAliveIntervalRef.current) {
+      clearInterval(keepAliveIntervalRef.current);
+      keepAliveIntervalRef.current = null;
+    }
+    if (restartTimeoutRef.current) {
+      clearTimeout(restartTimeoutRef.current);
+      restartTimeoutRef.current = null;
+    }
+    
     recordedChunksRef.current = [];
     setIsRecording(false);
     setAudioChunks([]);
@@ -2999,6 +3047,8 @@ export default function EnhancedLiveTranscription() {
     setRecordingTime(0);
     setLiveTranscript('');
     setInterimTranscript('');
+    setRecognitionAttempts(0);
+    isRestartingRef.current = false;
   }, [stopTimer, stopAudioLevelMonitoring, stopSpeechRecognition]);
 
   const testMicrophone = useCallback(async () => {
@@ -3048,7 +3098,6 @@ export default function EnhancedLiveTranscription() {
       { id: 'followup', label: 'Follow-up', icon: Clock },
       { id: 'risks', label: 'Risks & Blockers', icon: AlertTriangle }
     ];
-
     return (
       <div className="border-b mb-6" style={{ borderColor: '#E5E7EB' }}>
         <div className="flex flex-wrap gap-2">
