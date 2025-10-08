@@ -2882,3 +2882,7 @@ ValueError: Missing some input keys: {'\n  "mom_title"'}
 2025-10-08 12:49:46,698 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 4.50s
 2025-10-08 12:49:46,698 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 5.21s
 2025-10-08 12:49:46,703 - main - INFO - Response: 200 in 5.237s
+2025-10-08 12:52:38,582 - main - INFO - Starting AI Powered MoM application...
+2025-10-08 12:52:38,582 - main - INFO - Testing API connections...
+2025-10-08 12:52:39,371 - main - INFO - Gemini API connection successful
+2025-10-08 12:52:39,371 - main - INFO - Application startup complete
