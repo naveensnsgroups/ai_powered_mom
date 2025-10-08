@@ -1733,3 +1733,878 @@ ValueError: Missing some input keys: {'\n  "mom_title"'}
 2025-10-07 12:39:29,676 - main - INFO - Gemini API connection successful
 2025-10-07 12:39:29,677 - main - INFO - Application startup complete
 2025-10-07 12:39:33,375 - main - INFO - Shutting down application...
+2025-10-07 12:39:39,591 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 12:39:39,591 - main - INFO - Testing API connections...
+2025-10-07 12:39:41,225 - main - INFO - Gemini API connection successful
+2025-10-07 12:39:41,225 - main - INFO - Application startup complete
+2025-10-07 12:40:21,275 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 12:40:21,275 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 12:40:21,420 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp3g_txmtm.wav
+2025-10-07 12:40:21,581 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.31s
+2025-10-07 12:40:21,582 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 12:40:21,582 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 12:40:21,583 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 12:40:22,149 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 12:40:22,154 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Hello everyone, I'm Avin Kumar KS. I'm currently working on National Square, Junior A Data Engineer. I have talented multi-role and I have the Young Technical Director, Donald Nesnesar.' (duration: 16.98s, max_amp: 0.9017)
+2025-10-07 12:40:22,157 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 12:40:23,121 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 190 characters
+2025-10-07 12:40:23,122 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Hello everyone, I'm Avin Kumar KS. I'm currently working at National Square as a Junior Data Enginee...
+2025-10-07 12:40:23,123 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 12:40:25,198 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Not specified",
+    "meeting_type": "Introduction"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Avin Kumar
+2025-10-07 12:40:25,198 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Not specified",
+    "meeting_type": "Introduction"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Avin Kumar KS",
+  
+2025-10-07 12:40:25,198 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-07 12:40:25,198 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-07 12:40:25,198 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 12:40:25,198 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 190
+2025-10-07 12:40:25,198 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 12:40:25,198 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 3.62s
+2025-10-07 12:40:25,198 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 3.92s
+2025-10-07 12:40:25,212 - main - INFO - Response: 200 in 3.937s
+2025-10-07 12:53:37,759 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 12:53:37,759 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 12:53:37,842 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpdhtr3g8t.wav
+2025-10-07 12:53:37,979 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.22s
+2025-10-07 12:53:37,979 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 12:53:37,979 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 12:53:37,979 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 12:53:38,541 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 12:53:38,543 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Hello everyone, very good afternoon for all. Can you please give me some text into audio levels in multiple tasks? Where the next visualize?' (duration: 13.98s, max_amp: 0.7974)
+2025-10-07 12:53:38,544 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 12:53:39,558 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 134 characters
+2025-10-07 12:53:39,558 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Hello everyone, good afternoon to all. Can you please give me some text-to-audio levels in multiple ...
+2025-10-07 12:53:39,559 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 12:53:42,873 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Afternoon",
+    "meeting_type": "Standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Participant 1",
+   
+2025-10-07 12:53:42,874 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Afternoon",
+    "meeting_type": "Standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Participant 1",
+        "ro
+2025-10-07 12:53:42,874 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-07 12:53:42,874 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-07 12:53:42,874 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 12:53:42,874 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 134
+2025-10-07 12:53:42,874 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 12:53:42,874 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 4.90s
+2025-10-07 12:53:42,879 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 5.12s
+2025-10-07 12:53:42,880 - main - INFO - Response: 200 in 5.121s
+2025-10-07 12:55:39,743 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 12:55:39,743 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 12:55:39,933 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpke1cpc58.wav
+2025-10-07 12:55:40,560 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.82s
+2025-10-07 12:55:40,560 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 12:55:40,560 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 12:55:40,560 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 12:55:42,228 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 12:55:42,228 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes, sir. Naveen, I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday, 15th September. All right, that's good, Arvind. Last week we had some delays with escalations. Jaisima, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday, 17 September. Excellent, Jaisima. What's the update on client communication, Priya? Yes, sir. I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday, 16 September. Perfect.' (duration: 63.66s, max_amp: 0.9625)
+2025-10-07 12:55:42,229 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 12:55:44,022 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 774 characters
+2025-10-07 12:55:44,023 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassi...
+2025-10-07 12:55:44,023 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 12:55:49,249 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "15 minutes",
+    "meeting_type": "standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "
+2025-10-07 12:55:49,249 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "15 minutes",
+    "meeting_type": "standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "role": "
+2025-10-07 12:55:49,249 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-07 12:55:49,249 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-07 12:55:49,249 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 12:55:49,249 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 774
+2025-10-07 12:55:49,249 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 12:55:49,249 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 8.69s
+2025-10-07 12:55:49,249 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 9.51s
+2025-10-07 12:55:49,249 - main - INFO - Response: 200 in 9.508s
+2025-10-07 14:31:06,852 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 14:31:06,865 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 14:31:07,089 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpvrsn4d4h.wav
+2025-10-07 14:31:08,017 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.15s
+2025-10-07 14:31:08,018 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 14:31:08,018 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 14:31:08,019 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 14:31:10,458 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 14:31:10,463 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes, sir. Naveen, I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday, 15 September. All right, that's good, Arvind. Last week we had some delays with escalations. Jaisima, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday, 17 September. Excellent, Jaisima. What's the update on client communication, Priya? Yes, sir. I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday, 16th September. Perfect, Priya. Can you update us on the performance reports, Rahul? Yes, sir, Naveen. I'll review last week's performance reports and highlight any bottlenecks by Thursday, 16th September. Great, Rahul. So all the action items are clear.' (duration: 87.66s, max_amp: 0.9531)
+2025-10-07 14:31:10,463 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 14:31:12,608 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 1014 characters
+2025-10-07 14:31:12,608 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassi...
+2025-10-07 14:31:12,608 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 14:31:18,541 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "15 minutes",
+    "meeting_type": "standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "
+2025-10-07 14:31:18,542 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "15 minutes",
+    "meeting_type": "standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "role": "
+2025-10-07 14:31:18,543 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-07 14:31:18,543 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-07 14:31:18,543 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 14:31:18,543 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 1014
+2025-10-07 14:31:18,543 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 14:31:18,543 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 10.52s
+2025-10-07 14:31:18,543 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 11.68s
+2025-10-07 14:31:18,547 - main - INFO - Response: 200 in 11.695s
+2025-10-07 14:45:00,719 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 14:45:00,732 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 14:45:00,763 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted raw PCM to WAV: C:\Users\HP\AppData\Local\Temp\tmpe8q_ya73.wav
+2025-10-07 14:45:01,288 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.56s
+2025-10-07 14:45:01,288 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 14:45:01,289 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 14:45:01,289 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 14:45:02,477 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 14:45:02,477 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Include participant names when mentioned. Thank you.' (duration: 46.22s, max_amp: 0.6126)
+2025-10-07 14:45:02,478 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 14:45:04,164 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 329 characters
+2025-10-07 14:45:04,164 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Okay, please provide the transcript you would like me to edit. I will do my best to fix the grammar,...
+2025-10-07 14:45:04,164 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 14:45:05,056 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): Okay, I'm ready. Please provide the transcript. I will then generate the JSON output as requested.
+2025-10-07 14:45:05,056 - agents.live_speech_to_txt_agent.core.agent - WARNING - No JSON found in response (attempt 1)
+2025-10-07 14:45:05,057 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 2/3
+2025-10-07 14:45:05,887 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): Okay, I'm ready. Please provide the transcript. I will then generate the JSON output as requested.
+2025-10-07 14:45:05,887 - agents.live_speech_to_txt_agent.core.agent - WARNING - No JSON found in response (attempt 2)
+2025-10-07 14:45:05,889 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 3/3
+2025-10-07 14:45:06,993 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): Okay, I'm ready. Please provide the transcript you would like me to analyze and convert into JSON format. I will follow all the instructions and constraints outlined in the prompt.
+2025-10-07 14:45:06,993 - agents.live_speech_to_txt_agent.core.agent - WARNING - No JSON found in response (attempt 3)
+2025-10-07 14:45:06,993 - agents.live_speech_to_txt_agent.core.agent - WARNING - All enhanced MoM generation attempts failed, using fallback
+2025-10-07 14:45:06,994 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 14:45:06,994 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 329
+2025-10-07 14:45:06,996 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 14:45:06,997 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 5.71s
+2025-10-07 14:45:06,997 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 6.27s
+2025-10-07 14:45:07,001 - main - INFO - Response: 200 in 6.282s
+2025-10-07 14:45:56,664 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 14:45:56,666 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 14:45:56,825 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpkcryeb_c.wav
+2025-10-07 14:45:57,063 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.40s
+2025-10-07 14:45:57,064 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 14:45:57,064 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 14:45:57,065 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 14:45:58,199 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 14:45:58,201 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes, sir. Naveen, I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday, 15th September. All right, that's good, Arvind. Last week we had some delays with escalations.' (duration: 35.58s, max_amp: 0.9607)
+2025-10-07 14:45:58,203 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 14:45:59,831 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 397 characters
+2025-10-07 14:45:59,832 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassi...
+2025-10-07 14:45:59,832 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 14:46:03,886 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Morning",
+    "meeting_type": "Standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Arvind",
+        "rol
+2025-10-07 14:46:03,886 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Morning",
+    "meeting_type": "Standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Arvind",
+        "role": "Not
+2025-10-07 14:46:03,886 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-07 14:46:03,886 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-07 14:46:03,886 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 14:46:03,886 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 397
+2025-10-07 14:46:03,893 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 14:46:03,893 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 6.82s
+2025-10-07 14:46:03,893 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 7.23s
+2025-10-07 14:46:03,894 - main - INFO - Response: 200 in 7.231s
+2025-10-07 16:49:31,466 - main - INFO - Request: POST /speech-to-text/transcribe
+2025-10-07 16:49:31,475 - agents.speech_to_txt_agent.agent_main - INFO - Saved temporary audio file: C:\Users\HP\AppData\Local\Temp\tmprl2yhg4r.mp3
+2025-10-07 16:49:31,562 - agents.speech_to_txt_agent.agent_main - INFO - Converted to WAV: C:\Users\HP\AppData\Local\Temp\tmp9dmosw87.wav
+2025-10-07 16:49:51,026 - agents.speech_to_txt_agent.agent_main - INFO - Raw MoM from run_agent: {'title': 'Team Task Review', 'summary': 'Review of pending tasks, monitoring alerts, escalation matrix, client communication, and performance reports. Action items assigned with deadlines to ensure completion before the customer review.', 'overview': 'The meeting focused on reviewing the status of high-priority tickets, monitoring alerts, escalation processes, client communication, and performance reports. The goal was to ensure all tasks are completed before the upcoming customer review.', 'attendees': ['Naveen (presumably leading the meeting)', 'Arvind', 'Jai Seema', 'Priya', 'Rahul'], 'tasks': [{'task': 'Set up monitoring alerts', 'assigned_to': 'Arvind', 'deadline': '2024-09-15'}, {'task': 'Finalize and share updated escalation matrix', 'assigned_to': 'Jai Seema', 'deadline': '2024-09-17'}, {'task': 'Follow up with clients on pending tickets and ensure responses are sent', 'assigned_to': 'Priya', 'deadline': '2024-09-16'}, {'task': "Review last week's performance reports and highlight any bottlenecks", 'assigned_to': 'Rahul', 'deadline': '2024-09-16'}], 'action_items': ['Naveen to reassign four high priority tickets.', 'Arvind to complete monitoring alerts by Wednesday, September 15.', 'Jai Seema to finalize and share the updated escalation matrix by Friday, September 17.', 'Priya to follow up with clients on pending tickets and ensure responses are sent by Thursday, September 16.', "Rahul to review last week's performance reports and highlight any bottlenecks by Thursday, September 16."], 'decisions': [], 'risks': ['Delays in completing tasks may impact the customer review on Monday, September 20.'], 'data_points': ['Four high priority tickets are pending from last week.']}
+2025-10-07 16:49:51,028 - agents.speech_to_txt_agent.agent_main - INFO - Response sent to frontend: {'transcript': " Good morning everyone. We still have four high priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes sir, Naveen. I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday 15 September. All right, that's good. Arvind. Last week we had some delays with escalations. Jai Seema, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday 17 September. Excellent, Jai Seema. What's the update on client communication, Priya? Yes sir, I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday 16 September. Perfect, Priya. Can you update us on the performance reports, Rahul? Yes sir, Naveen. I'll review last week's performance reports and highlight any bottlenecks by Thursday 16 September. Great, Rahul. So all the action items are clear. Let's make sure everything is wrapped up before the customer review on Monday, 20 September.", 'mom': {'title': 'Team Task Review', 'summary': 'Review of pending tasks, monitoring alerts, escalation matrix, client communication, and performance reports. Action items assigned with deadlines to ensure completion before the customer review.', 'overview': 'The meeting focused on reviewing the status of high-priority tickets, monitoring alerts, escalation processes, client communication, and performance reports. The goal was to ensure all tasks are completed before the upcoming customer review.', 'attendees': ['Naveen (presumably leading the meeting)', 'Arvind', 'Jai Seema', 'Priya', 'Rahul'], 'tasks': [{'task': 'Set up monitoring alerts', 'assigned_to': 'Arvind', 'deadline': '2024-09-15'}, {'task': 'Finalize and share updated escalation matrix', 'assigned_to': 'Jai Seema', 'deadline': '2024-09-17'}, {'task': 'Follow up with clients on pending tickets and ensure responses are sent', 'assigned_to': 'Priya', 'deadline': '2024-09-16'}, {'task': "Review last week's performance reports and highlight any bottlenecks", 'assigned_to': 'Rahul', 'deadline': '2024-09-16'}], 'action_items': ['Naveen to reassign four high priority tickets.', 'Arvind to complete monitoring alerts by Wednesday, September 15.', 'Jai Seema to finalize and share the updated escalation matrix by Friday, September 17.', 'Priya to follow up with clients on pending tickets and ensure responses are sent by Thursday, September 16.', "Rahul to review last week's performance reports and highlight any bottlenecks by Thursday, September 16."], 'decisions': [], 'risks': ['Delays in completing tasks may impact the customer review on Monday, September 20.'], 'data_points': ['Four high priority tickets are pending from last week.']}, 'export_file': None}
+2025-10-07 16:49:51,029 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmprl2yhg4r.mp3
+2025-10-07 16:49:51,031 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmp9dmosw87.wav
+2025-10-07 16:49:51,032 - main - INFO - Response: 200 in 19.566s
+2025-10-07 16:50:23,229 - main - INFO - Request: OPTIONS /speech-to-text/export-edited
+2025-10-07 16:50:23,230 - main - INFO - Response: 200 in 0.001s
+2025-10-07 16:50:23,233 - main - INFO - Request: POST /speech-to-text/export-edited
+2025-10-07 16:50:23,238 - agents.speech_to_txt_agent.agent_main - INFO - Exported edited PDF: C:\Users\HP\AppData\Local\Temp\tmpfijmdobf.pdf
+2025-10-07 16:50:23,239 - main - INFO - Response: 200 in 0.006s
+2025-10-07 16:50:23,241 - main - INFO - Request: GET /download
+2025-10-07 16:50:23,242 - main - INFO - Serving file: meeting_minutes_1759836023.pdf (application/pdf)
+2025-10-07 16:50:23,243 - main - INFO - Response: 200 in 0.002s
+2025-10-07 16:50:23,264 - main - INFO - Request: OPTIONS /speech-to-text/cleanup
+2025-10-07 16:50:23,265 - main - INFO - Response: 200 in 0.001s
+2025-10-07 16:50:23,266 - main - INFO - Request: POST /speech-to-text/cleanup
+2025-10-07 16:50:23,271 - main - INFO - Response: 422 in 0.005s
+2025-10-07 17:19:28,065 - main - INFO - Request: POST /speech-to-text/transcribe
+2025-10-07 17:19:28,071 - agents.speech_to_txt_agent.agent_main - INFO - Saved temporary audio file: C:\Users\HP\AppData\Local\Temp\tmphpmq3_3j.mp3
+2025-10-07 17:19:28,164 - agents.speech_to_txt_agent.agent_main - INFO - Converted to WAV: C:\Users\HP\AppData\Local\Temp\tmpffc0v1sn.wav
+2025-10-07 17:19:48,207 - agents.speech_to_txt_agent.agent_main - INFO - Raw MoM from run_agent: {'title': 'Team Task Review', 'summary': 'Review of pending high-priority tickets, monitoring alerts, escalation delays, client communication, and performance reports. Action items assigned with deadlines to ensure completion before the customer review.', 'overview': 'The meeting focused on reviewing the status of high-priority tickets and ongoing tasks, addressing delays in escalations, ensuring timely client communication, and analyzing performance reports. The goal is to resolve all issues before the upcoming customer review.', 'attendees': ['Naveen (presumably leading the meeting)', 'Arvind', 'Jai Seema', 'Priya', 'Rahul'], 'tasks': [{'task': 'Set up monitoring alerts', 'assigned_to': 'Arvind', 'deadline': '2024-09-15'}, {'task': 'Finalize and share updated escalation matrix', 'assigned_to': 'Jai Seema', 'deadline': '2024-09-17'}, {'task': 'Follow up with clients on pending tickets and send responses', 'assigned_to': 'Priya', 'deadline': '2024-09-16'}, {'task': "Review last week's performance reports and highlight bottlenecks", 'assigned_to': 'Rahul', 'deadline': '2024-09-16'}], 'action_items': ['Naveen to reassign four high priority tickets.', 'Arvind to complete monitoring alerts by Wednesday, September 15.', 'Jai Seema to finalize and share updated escalation matrix by Friday, September 17.', 'Priya to follow up with clients on pending tickets and send responses by Thursday, September 16.', "Rahul to review last week's performance reports and highlight bottlenecks by Thursday, September 16."], 'decisions': [], 'risks': ['Failure to complete tasks on time may impact the customer review on Monday, September 20.', 'Pending high priority tickets from last week.'], 'data_points': ['Four high priority tickets pending from last week.', 'Customer review scheduled for Monday, September 20.']}
+2025-10-07 17:19:48,209 - agents.speech_to_txt_agent.agent_main - INFO - Response sent to frontend: {'transcript': " Good morning everyone. We still have four high priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes sir, Naveen. I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday 15 September. All right, that's good. Arvind. Last week we had some delays with escalations. Jai Seema, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday 17 September. Excellent, Jai Seema. What's the update on client communication, Priya? Yes sir, I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday 16 September. Perfect, Priya. Can you update us on the performance reports, Rahul? Yes sir, Naveen. I'll review last week's performance reports and highlight any bottlenecks by Thursday 16 September. Great, Rahul. So all the action items are clear. Let's make sure everything is wrapped up before the customer review on Monday, 20 September.", 'mom': {'title': 'Team Task Review', 'summary': 'Review of pending high-priority tickets, monitoring alerts, escalation delays, client communication, and performance reports. Action items assigned with deadlines to ensure completion before the customer review.', 'overview': 'The meeting focused on reviewing the status of high-priority tickets and ongoing tasks, addressing delays in escalations, ensuring timely client communication, and analyzing performance reports. The goal is to resolve all issues before the upcoming customer review.', 'attendees': ['Naveen (presumably leading the meeting)', 'Arvind', 'Jai Seema', 'Priya', 'Rahul'], 'tasks': [{'task': 'Set up monitoring alerts', 'assigned_to': 'Arvind', 'deadline': '2024-09-15'}, {'task': 'Finalize and share updated escalation matrix', 'assigned_to': 'Jai Seema', 'deadline': '2024-09-17'}, {'task': 'Follow up with clients on pending tickets and send responses', 'assigned_to': 'Priya', 'deadline': '2024-09-16'}, {'task': "Review last week's performance reports and highlight bottlenecks", 'assigned_to': 'Rahul', 'deadline': '2024-09-16'}], 'action_items': ['Naveen to reassign four high priority tickets.', 'Arvind to complete monitoring alerts by Wednesday, September 15.', 'Jai Seema to finalize and share updated escalation matrix by Friday, September 17.', 'Priya to follow up with clients on pending tickets and send responses by Thursday, September 16.', "Rahul to review last week's performance reports and highlight bottlenecks by Thursday, September 16."], 'decisions': [], 'risks': ['Failure to complete tasks on time may impact the customer review on Monday, September 20.', 'Pending high priority tickets from last week.'], 'data_points': ['Four high priority tickets pending from last week.', 'Customer review scheduled for Monday, September 20.']}, 'export_file': None}
+2025-10-07 17:19:48,212 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmphpmq3_3j.mp3
+2025-10-07 17:19:48,214 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpffc0v1sn.wav
+2025-10-07 17:19:48,215 - main - INFO - Response: 200 in 20.150s
+2025-10-07 17:36:03,517 - main - INFO - Request: POST /speech-to-text/transcribe
+2025-10-07 17:36:03,522 - agents.speech_to_txt_agent.agent_main - INFO - Saved temporary audio file: C:\Users\HP\AppData\Local\Temp\tmpooejrvlo.mp3
+2025-10-07 17:36:03,595 - agents.speech_to_txt_agent.agent_main - INFO - Converted to WAV: C:\Users\HP\AppData\Local\Temp\tmpp_y1bia7.wav
+2025-10-07 17:36:23,741 - agents.speech_to_txt_agent.agent_main - INFO - Raw MoM from run_agent: {'title': 'Team Task Review', 'summary': 'A review of pending tasks and action items from the previous week, with updates and deadlines assigned for each.', 'overview': 'The meeting focused on reviewing the status of high-priority tickets, monitoring alerts, escalation delays, client communication, and performance reports. The goal was to ensure all tasks are completed before the customer review on Monday, September 20.', 'attendees': ['Naveen (presumably leading the meeting)', 'Arvind', 'Jai Seema', 'Priya', 'Rahul'], 'tasks': [{'task': 'Set up monitoring alerts', 'assigned_to': 'Arvind', 'deadline': '2024-09-15'}, {'task': 'Finalize and share updated escalation matrix', 'assigned_to': 'Jai Seema', 'deadline': '2024-09-17'}, {'task': 'Follow up with clients on pending tickets and send responses', 'assigned_to': 'Priya', 'deadline': '2024-09-16'}, {'task': "Review last week's performance reports and highlight bottlenecks", 'assigned_to': 'Rahul', 'deadline': '2024-09-16'}], 'action_items': ['Naveen to reassign four high priority tickets.', 'Arvind to complete monitoring alerts by Wednesday, September 15.', 'Jai Seema to finalize and share updated escalation matrix by Friday, September 17.', 'Priya to follow up with clients on pending tickets and send responses by Thursday, September 16.', "Rahul to review last week's performance reports and highlight bottlenecks by Thursday, September 16."], 'decisions': [], 'risks': ['Potential delays in completing tasks before the customer review on Monday, September 20.', 'High priority tickets pending from last week.'], 'data_points': ['Four high priority tickets pending from last week.', 'Customer review scheduled for Monday, September 20.']}
+2025-10-07 17:36:23,742 - agents.speech_to_txt_agent.agent_main - INFO - Response sent to frontend: {'transcript': " Good morning everyone. We still have four high priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes sir, Naveen. I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday 15 September. All right, that's good. Arvind. Last week we had some delays with escalations. Jai Seema, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday 17 September. Excellent, Jai Seema. What's the update on client communication, Priya? Yes sir, I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday 16 September. Perfect, Priya. Can you update us on the performance reports, Rahul? Yes sir, Naveen. I'll review last week's performance reports and highlight any bottlenecks by Thursday 16 September. Great, Rahul. So all the action items are clear. Let's make sure everything is wrapped up before the customer review on Monday, 20 September.", 'mom': {'title': 'Team Task Review', 'summary': 'A review of pending tasks and action items from the previous week, with updates and deadlines assigned for each.', 'overview': 'The meeting focused on reviewing the status of high-priority tickets, monitoring alerts, escalation delays, client communication, and performance reports. The goal was to ensure all tasks are completed before the customer review on Monday, September 20.', 'attendees': ['Naveen (presumably leading the meeting)', 'Arvind', 'Jai Seema', 'Priya', 'Rahul'], 'tasks': [{'task': 'Set up monitoring alerts', 'assigned_to': 'Arvind', 'deadline': '2024-09-15'}, {'task': 'Finalize and share updated escalation matrix', 'assigned_to': 'Jai Seema', 'deadline': '2024-09-17'}, {'task': 'Follow up with clients on pending tickets and send responses', 'assigned_to': 'Priya', 'deadline': '2024-09-16'}, {'task': "Review last week's performance reports and highlight bottlenecks", 'assigned_to': 'Rahul', 'deadline': '2024-09-16'}], 'action_items': ['Naveen to reassign four high priority tickets.', 'Arvind to complete monitoring alerts by Wednesday, September 15.', 'Jai Seema to finalize and share updated escalation matrix by Friday, September 17.', 'Priya to follow up with clients on pending tickets and send responses by Thursday, September 16.', "Rahul to review last week's performance reports and highlight bottlenecks by Thursday, September 16."], 'decisions': [], 'risks': ['Potential delays in completing tasks before the customer review on Monday, September 20.', 'High priority tickets pending from last week.'], 'data_points': ['Four high priority tickets pending from last week.', 'Customer review scheduled for Monday, September 20.']}, 'export_file': None}
+2025-10-07 17:36:23,745 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpooejrvlo.mp3
+2025-10-07 17:36:23,746 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpp_y1bia7.wav
+2025-10-07 17:36:23,747 - main - INFO - Response: 200 in 20.231s
+2025-10-07 17:39:43,309 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:39:43,316 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:39:43,344 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted raw PCM to WAV: C:\Users\HP\AppData\Local\Temp\tmpj2gbillv.wav
+2025-10-07 17:39:43,731 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.42s
+2025-10-07 17:39:43,731 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:39:43,731 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:39:43,732 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 17:39:45,011 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 17:39:45,012 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Include participant names when mentioned. Thank you.' (duration: 46.40s, max_amp: 0.6164)
+2025-10-07 17:39:45,014 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 17:39:46,814 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 284 characters
+2025-10-07 17:39:46,814 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Okay, please provide the transcript you would like me to edit. I will do my best to fix the grammar,...
+2025-10-07 17:39:46,814 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 17:39:48,923 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Not specified",
+    "meeting_type": "Not specified"
+  },
+  "attendance": {
+    "participants": [],
+    "total_participants": 0
+  },
+2025-10-07 17:39:48,924 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Not specified",
+    "meeting_type": "Not specified"
+  },
+  "attendance": {
+    "participants": [],
+    "total_participants": 0
+  },
+  "summ
+2025-10-07 17:39:48,924 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-07 17:39:48,924 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-07 17:39:48,925 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:39:48,925 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 284
+2025-10-07 17:39:48,925 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:39:48,925 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 5.19s
+2025-10-07 17:39:48,925 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 5.61s
+2025-10-07 17:39:48,927 - main - INFO - Response: 200 in 5.618s
+2025-10-07 17:41:04,037 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:41:04,042 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:41:04,204 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp91u75hv_.wav
+2025-10-07 17:41:04,838 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.80s
+2025-10-07 17:41:04,838 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:41:04,839 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:41:04,841 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:41:04,841 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:41:04,841 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:41:04,841 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:41:04,842 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:41:04,842 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.80s
+2025-10-07 17:41:04,843 - main - INFO - Response: 200 in 0.807s
+2025-10-07 17:41:10,601 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:41:10,605 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:41:10,763 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmplg2jennz.wav
+2025-10-07 17:41:11,319 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.71s
+2025-10-07 17:41:11,319 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:41:11,319 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:41:11,320 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:41:11,321 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:41:11,321 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:41:11,321 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:41:11,321 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:41:11,321 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.72s
+2025-10-07 17:41:11,322 - main - INFO - Response: 200 in 0.722s
+2025-10-07 17:41:20,873 - main - INFO - Shutting down application...
+2025-10-07 17:42:19,994 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 17:42:19,994 - main - INFO - Testing API connections...
+2025-10-07 17:42:21,206 - main - INFO - Gemini API connection successful
+2025-10-07 17:42:21,206 - main - INFO - Application startup complete
+2025-10-07 17:43:45,787 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:43:45,795 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:43:45,980 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp9_vx42y_.wav
+2025-10-07 17:43:46,614 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.82s
+2025-10-07 17:43:46,614 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:43:46,614 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:43:46,616 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:43:46,616 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:43:46,616 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:43:46,616 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:43:46,617 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:43:46,617 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.82s
+2025-10-07 17:43:46,618 - main - INFO - Response: 200 in 0.831s
+2025-10-07 17:44:30,898 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:44:30,901 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:44:31,032 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpha1u2z0x.wav
+2025-10-07 17:44:31,171 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.27s
+2025-10-07 17:44:31,171 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:44:31,172 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:44:31,172 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:44:31,172 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:44:31,172 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:44:31,172 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:44:31,172 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:44:31,173 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.27s
+2025-10-07 17:44:31,174 - main - INFO - Response: 200 in 0.276s
+2025-10-07 17:44:36,356 - main - INFO - Shutting down application...
+2025-10-07 17:45:16,068 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 17:45:16,068 - main - INFO - Testing API connections...
+2025-10-07 17:45:17,247 - main - INFO - Gemini API connection successful
+2025-10-07 17:45:17,247 - main - INFO - Application startup complete
+2025-10-07 17:45:40,238 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:45:40,241 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:45:40,331 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp8o__zirp.wav
+2025-10-07 17:45:40,485 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.24s
+2025-10-07 17:45:40,486 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:45:40,486 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:45:40,487 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:45:40,487 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:45:40,487 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:45:40,487 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:45:40,488 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:45:40,488 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.25s
+2025-10-07 17:45:40,489 - main - INFO - Response: 200 in 0.251s
+2025-10-07 17:47:02,039 - main - INFO - Request: POST /speech-to-text/transcribe
+2025-10-07 17:47:02,048 - agents.speech_to_txt_agent.agent_main - INFO - Saved temporary audio file: C:\Users\HP\AppData\Local\Temp\tmpdw095s65.mp3
+2025-10-07 17:47:02,126 - agents.speech_to_txt_agent.agent_main - INFO - Converted to WAV: C:\Users\HP\AppData\Local\Temp\tmpillol8fa.wav
+2025-10-07 17:47:10,882 - agents.speech_to_txt_agent.agent_main - INFO - Raw MoM from run_agent: {'title': 'Discussion on Historic Heritage', 'summary': 'The discussion centers around the definition and significance of historic heritage, encompassing both tangible and intangible elements. It highlights the importance of understanding and connecting with the past through these relics and traditions.', 'overview': 'The meeting likely aimed to define and explore the concept of historic heritage, differentiating between tangible and intangible forms. The agenda included discussing the value of heritage in understanding societal development, learning from the past, and fostering a sense of national identity.', 'attendees': ['Unknown (Speaker)'], 'tasks': [], 'action_items': [], 'decisions': [], 'risks': [], 'data_points': []}
+2025-10-07 17:47:10,883 - agents.speech_to_txt_agent.agent_main - INFO - Response sent to frontend: {'transcript': " Historic things are tangible relics like monuments or ancient sites and intangible heritage such as stories, traditions and skills that represent past human activities and cultural values. These items offer insights into our ancestors lives, helping us understand society's development, learn from the past, and form a connection to national identity and heritage.", 'mom': {'title': 'Discussion on Historic Heritage', 'summary': 'The discussion centers around the definition and significance of historic heritage, encompassing both tangible and intangible elements. It highlights the importance of understanding and connecting with the past through these relics and traditions.', 'overview': 'The meeting likely aimed to define and explore the concept of historic heritage, differentiating between tangible and intangible forms. The agenda included discussing the value of heritage in understanding societal development, learning from the past, and fostering a sense of national identity.', 'attendees': ['Unknown (Speaker)'], 'tasks': [], 'action_items': [], 'decisions': [], 'risks': [], 'data_points': []}, 'export_file': None}
+2025-10-07 17:47:10,884 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpdw095s65.mp3
+2025-10-07 17:47:10,884 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpillol8fa.wav
+2025-10-07 17:47:10,886 - main - INFO - Response: 200 in 8.847s
+2025-10-07 17:47:57,770 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:47:57,772 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:47:57,824 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp8msmpmca.wav
+2025-10-07 17:47:57,916 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.14s
+2025-10-07 17:47:57,916 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:47:57,917 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:47:57,917 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:47:57,918 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:47:57,918 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:47:57,918 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:47:57,918 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:47:57,918 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.15s
+2025-10-07 17:47:57,919 - main - INFO - Response: 200 in 0.150s
+2025-10-07 17:48:47,608 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:48:47,612 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:48:47,708 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpjitisjsx.wav
+2025-10-07 17:48:47,903 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.29s
+2025-10-07 17:48:47,904 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:48:47,904 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:48:47,904 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:48:47,905 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:48:47,905 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:48:47,905 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:48:47,905 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:48:47,905 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.29s
+2025-10-07 17:48:47,905 - main - INFO - Response: 200 in 0.297s
+2025-10-07 17:49:35,546 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:49:35,547 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:49:35,622 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpt1ajy_zf.wav
+2025-10-07 17:49:35,721 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.17s
+2025-10-07 17:49:35,721 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:49:35,722 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:49:35,722 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:49:35,722 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:49:35,722 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:49:35,722 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:49:35,723 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:49:35,723 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.18s
+2025-10-07 17:49:35,724 - main - INFO - Response: 200 in 0.179s
+2025-10-07 17:49:40,265 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:49:40,267 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:49:40,338 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpsy71okha.wav
+2025-10-07 17:49:40,438 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.17s
+2025-10-07 17:49:40,439 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:49:40,439 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:49:40,439 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:49:40,439 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:49:40,439 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:49:40,439 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:49:40,439 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:49:40,439 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.17s
+2025-10-07 17:49:40,440 - main - INFO - Response: 200 in 0.176s
+2025-10-07 17:50:32,843 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:50:32,845 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:50:32,927 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmphbrq65s2.wav
+2025-10-07 17:50:33,040 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.20s
+2025-10-07 17:50:33,040 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:50:33,040 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:50:33,040 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:50:33,040 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:50:33,040 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:50:33,042 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:50:33,042 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:50:33,042 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.20s
+2025-10-07 17:50:33,042 - main - INFO - Response: 200 in 0.198s
+2025-10-07 17:51:14,898 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:51:14,901 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:51:14,955 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpouihbqje.wav
+2025-10-07 17:51:15,042 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.14s
+2025-10-07 17:51:15,042 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:51:15,043 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:51:15,043 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:51:15,043 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:51:15,043 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:51:15,043 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:51:15,043 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:51:15,043 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.14s
+2025-10-07 17:51:15,044 - main - INFO - Response: 200 in 0.146s
+2025-10-07 17:52:41,228 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 17:52:41,228 - main - INFO - Testing API connections...
+2025-10-07 17:52:42,672 - main - INFO - Gemini API connection successful
+2025-10-07 17:52:42,672 - main - INFO - Application startup complete
+2025-10-07 17:53:34,685 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:53:34,693 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:53:35,996 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmph9fdnv2v.wav
+2025-10-07 17:53:36,150 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.46s
+2025-10-07 17:53:36,150 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:53:36,150 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:53:36,150 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:53:36,150 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:53:36,150 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:53:36,150 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:53:36,150 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:53:36,150 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 1.46s
+2025-10-07 17:53:36,150 - main - INFO - Response: 200 in 1.465s
+2025-10-07 17:55:14,144 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:55:14,147 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:55:14,232 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpbxiruuns.wav
+2025-10-07 17:55:14,359 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.21s
+2025-10-07 17:55:14,360 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:55:14,360 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:55:14,360 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:55:14,360 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:55:14,360 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:55:14,360 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:55:14,360 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:55:14,360 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.21s
+2025-10-07 17:55:14,360 - main - INFO - Response: 200 in 0.215s
+2025-10-07 17:55:23,761 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 17:55:23,764 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 17:55:23,821 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpxjuoey6_.wav
+2025-10-07 17:55:23,898 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.13s
+2025-10-07 17:55:23,898 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 17:55:23,898 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 17:55:23,898 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 17:55:23,898 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 17:55:23,898 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 17:55:23,898 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 17:55:23,898 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 17:55:23,898 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.13s
+2025-10-07 17:55:23,898 - main - INFO - Response: 200 in 0.137s
+2025-10-07 18:02:39,276 - main - INFO - Shutting down application...
+2025-10-07 18:02:50,359 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:02:50,359 - main - INFO - Testing API connections...
+2025-10-07 18:02:51,827 - main - INFO - Gemini API connection successful
+2025-10-07 18:02:51,827 - main - INFO - Application startup complete
+2025-10-07 18:03:35,540 - main - INFO - Shutting down application...
+2025-10-07 18:03:44,787 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:03:44,787 - main - INFO - Testing API connections...
+2025-10-07 18:03:46,147 - main - INFO - Gemini API connection successful
+2025-10-07 18:03:46,147 - main - INFO - Application startup complete
+2025-10-07 18:03:52,457 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:03:52,458 - main - INFO - Testing API connections...
+2025-10-07 18:03:55,020 - main - INFO - Gemini API connection successful
+2025-10-07 18:03:55,021 - main - INFO - Application startup complete
+2025-10-07 18:04:01,257 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:04:01,257 - main - INFO - Testing API connections...
+2025-10-07 18:04:03,712 - main - INFO - Gemini API connection successful
+2025-10-07 18:04:03,713 - main - INFO - Application startup complete
+2025-10-07 18:04:09,902 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:04:09,903 - main - INFO - Testing API connections...
+2025-10-07 18:04:11,171 - main - INFO - Gemini API connection successful
+2025-10-07 18:04:11,171 - main - INFO - Application startup complete
+2025-10-07 18:04:17,293 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:04:17,293 - main - INFO - Testing API connections...
+2025-10-07 18:04:18,431 - main - INFO - Gemini API connection successful
+2025-10-07 18:04:18,432 - main - INFO - Application startup complete
+2025-10-07 18:04:33,044 - main - INFO - Shutting down application...
+2025-10-07 18:04:46,727 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:04:46,727 - main - INFO - Testing API connections...
+2025-10-07 18:04:47,945 - main - INFO - Gemini API connection successful
+2025-10-07 18:04:47,947 - main - INFO - Application startup complete
+2025-10-07 18:04:54,110 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:04:54,110 - main - INFO - Testing API connections...
+2025-10-07 18:04:55,227 - main - INFO - Gemini API connection successful
+2025-10-07 18:04:55,227 - main - INFO - Application startup complete
+2025-10-07 18:05:08,552 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:05:08,552 - main - INFO - Testing API connections...
+2025-10-07 18:05:10,649 - main - INFO - Gemini API connection successful
+2025-10-07 18:05:10,650 - main - INFO - Application startup complete
+2025-10-07 18:05:16,867 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:05:16,867 - main - INFO - Testing API connections...
+2025-10-07 18:05:18,117 - main - INFO - Gemini API connection successful
+2025-10-07 18:05:18,125 - main - INFO - Application startup complete
+2025-10-07 18:05:24,397 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:05:24,397 - main - INFO - Testing API connections...
+2025-10-07 18:05:26,647 - main - INFO - Gemini API connection successful
+2025-10-07 18:05:26,647 - main - INFO - Application startup complete
+2025-10-07 18:05:32,843 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:05:32,843 - main - INFO - Testing API connections...
+2025-10-07 18:05:34,037 - main - INFO - Gemini API connection successful
+2025-10-07 18:05:34,037 - main - INFO - Application startup complete
+2025-10-07 18:05:43,790 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:05:43,790 - main - INFO - Testing API connections...
+2025-10-07 18:05:44,977 - main - INFO - Gemini API connection successful
+2025-10-07 18:05:44,977 - main - INFO - Application startup complete
+2025-10-07 18:05:51,117 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:05:51,117 - main - INFO - Testing API connections...
+2025-10-07 18:05:54,525 - main - INFO - Gemini API connection successful
+2025-10-07 18:05:54,525 - main - INFO - Application startup complete
+2025-10-07 18:06:18,866 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 18:06:18,866 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 18:06:20,090 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpc3_auh6e.wav
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.38s
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 0/1 chunks
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.core.agent - WARNING - No successful transcriptions
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 18:06:20,243 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 1.38s
+2025-10-07 18:06:20,246 - main - INFO - Response: 200 in 1.380s
+2025-10-07 18:07:38,293 - main - INFO - Shutting down application...
+2025-10-07 18:07:44,500 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:07:44,500 - main - INFO - Testing API connections...
+2025-10-07 18:07:45,535 - main - INFO - Gemini API connection successful
+2025-10-07 18:07:45,536 - main - INFO - Application startup complete
+2025-10-07 18:08:19,262 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 18:08:19,268 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 18:08:19,338 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpdn1dfire.wav
+2025-10-07 18:08:19,451 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.18s
+2025-10-07 18:08:19,452 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 18:08:19,452 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 18:08:19,452 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 18:08:19,452 - agents.live_speech_to_txt_agent.core.agent - INFO - Transcribing chunk: duration=17.94s, samples=287040
+2025-10-07 18:08:19,453 - agents.live_speech_to_txt_agent.core.agent - INFO - Audio stats - Duration: 17.94s, Max: 0.000153, RMS: 0.000040
+2025-10-07 18:08:19,453 - agents.live_speech_to_txt_agent.core.agent - WARNING - Audio chunk appears silent (RMS: 0.000040), skipping transcription
+2025-10-07 18:08:19,453 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 0/1 chunks
+2025-10-07 18:08:19,453 - agents.live_speech_to_txt_agent.core.agent - WARNING - No successful transcriptions
+2025-10-07 18:08:19,453 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 18:08:19,453 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 18:08:19,454 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 18:08:19,454 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 18:08:19,454 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.19s
+2025-10-07 18:08:19,454 - main - INFO - Response: 200 in 0.192s
+2025-10-07 18:08:26,843 - main - INFO - Shutting down application...
+2025-10-07 18:08:33,161 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:08:33,167 - main - INFO - Testing API connections...
+2025-10-07 18:08:34,668 - main - INFO - Gemini API connection successful
+2025-10-07 18:08:34,668 - main - INFO - Application startup complete
+2025-10-07 18:12:05,068 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 18:12:05,068 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 18:12:05,120 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp7yad5nw1.wav
+2025-10-07 18:12:05,204 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.14s
+2025-10-07 18:12:05,204 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 18:12:05,204 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 18:12:05,205 - agents.live_speech_to_txt_agent.core.agent - WARNING - No valid audio chunks found
+2025-10-07 18:12:05,205 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 18:12:05,205 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 0
+2025-10-07 18:12:05,205 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 18:12:05,205 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 0.00s
+2025-10-07 18:12:05,205 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 0.14s
+2025-10-07 18:12:05,206 - main - INFO - Response: 200 in 0.138s
+2025-10-07 18:16:04,647 - main - INFO - Starting AI Powered MoM application...
+2025-10-07 18:16:04,647 - main - INFO - Testing API connections...
+2025-10-07 18:16:06,004 - main - INFO - Gemini API connection successful
+2025-10-07 18:16:06,004 - main - INFO - Application startup complete
+2025-10-07 18:19:55,934 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 18:19:55,943 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 18:19:58,350 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpv8weepzd.wav
+2025-10-07 18:19:58,934 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 2.99s
+2025-10-07 18:19:58,934 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 18:19:58,934 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 18:19:58,934 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 18:20:00,690 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 18:20:00,696 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes, sir. Naveen, I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday, 15 September. All right, that's good, Arvind. Last week we had some delays with escalations. Jaisima, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday, 17th September. Excellent, Jaisima. What's the update on client communication, Priya? Yes, sir. I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday, 16th September. Perfect, Priya. Can you update us on the performance reports, Rahul? Yes, sir, Naveen. I'll review last week's performance reports and highlight any bottlenecks by Thursday, 16th September.' (duration: 78.66s, max_amp: 0.8770)
+2025-10-07 18:20:00,696 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 18:20:04,060 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 964 characters
+2025-10-07 18:20:04,061 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassi...
+2025-10-07 18:20:04,061 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 18:20:10,790 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Morning",
+    "meeting_type": "Standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "rol
+2025-10-07 18:20:10,790 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Morning",
+    "meeting_type": "Standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "role": "Not
+2025-10-07 18:20:10,790 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-07 18:20:10,790 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-07 18:20:10,790 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 18:20:10,790 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 964
+2025-10-07 18:20:10,790 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 18:20:10,790 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 11.86s
+2025-10-07 18:20:10,799 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 14.86s
+2025-10-07 18:20:10,803 - main - INFO - Response: 200 in 14.869s
+2025-10-07 18:26:56,150 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 18:26:56,158 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 18:26:56,353 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpygs4l6yq.wav
+2025-10-07 18:26:57,001 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.84s
+2025-10-07 18:26:57,003 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 18:26:57,003 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 18:26:57,003 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 18:26:58,633 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 18:26:58,638 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes, sir. Naveen, I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday, 15th September. All right, that's good, Arvind. Last week we had some delays with escalations. Jaisima, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday, 17 September. Excellent, Jaisima. What's the update on client communication, Priya? Yes, sir. I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday, 16th September. Perfect. Priya, can you update us on the performance reports? Rahul?' (duration: 69.48s, max_amp: 0.9426)
+2025-10-07 18:26:58,641 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 18:27:01,112 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 842 characters
+2025-10-07 18:27:01,117 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassi...
+2025-10-07 18:27:01,117 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 18:27:08,233 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Morning",
+    "meeting_type": "Standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "rol
+2025-10-07 18:27:08,235 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Morning",
+    "meeting_type": "Standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "role": "Not
+2025-10-07 18:27:08,235 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-07 18:27:08,235 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-07 18:27:08,235 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 18:27:08,235 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 842
+2025-10-07 18:27:08,238 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 18:27:08,238 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 11.23s
+2025-10-07 18:27:08,238 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 12.08s
+2025-10-07 18:27:08,243 - main - INFO - Response: 200 in 12.093s
+2025-10-07 18:30:08,997 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 18:30:09,006 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 18:30:09,056 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted raw PCM to WAV: C:\Users\HP\AppData\Local\Temp\tmpkufmo963.wav
+2025-10-07 18:30:09,718 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.71s
+2025-10-07 18:30:09,718 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 18:30:09,718 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 18:30:09,718 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 18:30:10,926 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 18:30:10,926 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Include participant names when mentioned. Include participant names when mentioned.' (duration: 46.13s, max_amp: 0.6101)
+2025-10-07 18:30:10,926 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 18:30:12,256 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 318 characters
+2025-10-07 18:30:12,256 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Okay, I'm ready. Please provide the transcript you want me to edit. I will do my best to fix the gra...
+2025-10-07 18:30:12,256 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 18:30:15,056 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Not specified",
+    "meeting_type": "Transcription and Analysis"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name
+2025-10-07 18:30:15,056 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "Not specified",
+    "meeting_type": "Transcription and Analysis"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "AI A
+2025-10-07 18:30:15,056 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-07 18:30:15,066 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-07 18:30:15,067 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 18:30:15,067 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 318
+2025-10-07 18:30:15,067 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 18:30:15,067 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 5.35s
+2025-10-07 18:30:15,067 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 6.06s
+2025-10-07 18:30:15,067 - main - INFO - Response: 200 in 6.070s
+2025-10-07 18:33:11,935 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-07 18:33:11,942 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-07 18:33:12,117 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp8a573b68.wav
+2025-10-07 18:33:12,697 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.76s
+2025-10-07 18:33:12,697 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-07 18:33:12,697 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-07 18:33:12,701 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-07 18:33:14,768 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-07 18:33:14,768 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes, sir. Naveen, I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday, 15 September. All right, that's good, Arvind. Last week we had some delays with escalations. Jaisima, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday, 17 September. Excellent, Jaisima. What's the update on client communication, Priya? Yes, sir. I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday, 16th September. Perfect, Priya. Can you update us on the performance reports, Rahul? Yes, sir, Naveen. I'll review last week's performance reports and highlight any bottlenecks by Thursday, 16th September. Great, Rahul. So all the action items are clear.' (duration: 85.38s, max_amp: 0.9900)
+2025-10-07 18:33:14,768 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-07 18:33:16,937 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 1014 characters
+2025-10-07 18:33:16,937 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassi...
+2025-10-07 18:33:16,937 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-07 18:33:24,487 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "15 minutes",
+    "meeting_type": "standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "
+2025-10-07 18:33:24,487 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-07",
+    "time": "15 minutes",
+    "meeting_type": "standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "role": "
+2025-10-07 18:33:24,487 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-07 18:33:24,487 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-07 18:33:24,492 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-07 18:33:24,492 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 1014
+2025-10-07 18:33:24,492 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-07 18:33:24,492 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 11.80s
+2025-10-07 18:33:24,492 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 12.55s
+2025-10-07 18:33:24,492 - main - INFO - Response: 200 in 12.557s
+2025-10-08 09:00:24,076 - main - INFO - Starting AI Powered MoM application...
+2025-10-08 09:00:24,076 - main - INFO - Testing API connections...
+2025-10-08 09:00:25,244 - main - INFO - Gemini API connection successful
+2025-10-08 09:00:25,244 - main - INFO - Application startup complete
+2025-10-08 09:02:10,499 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-08 09:02:10,504 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-08 09:02:11,087 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp1fnq953r.wav
+2025-10-08 09:02:11,224 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.72s
+2025-10-08 09:02:11,229 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-08 09:02:11,229 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-08 09:02:11,229 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-08 09:02:11,848 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-08 09:02:11,856 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Hello everyone, very good morning to all. Live speech to text agent, real-time recognition with instant conversation regarding in-progress audio level, how to use test microphone.' (duration: 13.14s, max_amp: 0.8089)
+2025-10-08 09:02:11,857 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-08 09:02:12,729 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 199 characters
+2025-10-08 09:02:12,729 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Hello everyone, good morning to all. This is a live speech-to-text agent, providing real-time recogn...
+2025-10-08 09:02:12,729 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-08 09:02:15,031 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "Morning",
+    "meeting_type": "Other"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Everyone",
+        "rol
+2025-10-08 09:02:15,032 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "Morning",
+    "meeting_type": "Other"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Everyone",
+        "role": "Not
+2025-10-08 09:02:15,032 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-08 09:02:15,033 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-08 09:02:15,033 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-08 09:02:15,033 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 199
+2025-10-08 09:02:15,033 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-08 09:02:15,034 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 3.80s
+2025-10-08 09:02:15,034 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 4.53s
+2025-10-08 09:02:15,035 - main - INFO - Response: 200 in 4.536s

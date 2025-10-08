@@ -459,7 +459,7 @@ export default function SpeechToTxtAgent() {
         </div>
 
         {/* Export Format Selection */}
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <label htmlFor="exportFormat" className="block text-sm font-medium mb-1" style={{ color: '#374151' }}>
             Export Format
           </label>
@@ -476,7 +476,7 @@ export default function SpeechToTxtAgent() {
             <option value="pdf">PDF</option>
             <option value="docx">DOCX</option>
           </select>
-        </div>
+        </div> */}
 
         {/* Error Message */}
         {error && (
