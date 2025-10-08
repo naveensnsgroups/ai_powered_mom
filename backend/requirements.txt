@@ -1,31 +1,20 @@
 # Core Framework
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-python-multipart==0.0.6
-pydantic==2.5.0
-python-dotenv==1.0.0
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+python-dotenv
 
 # Audio Processing
-soundfile==0.12.1
-noisereduce==3.0.0
-pydub==0.25.1
-numpy==1.24.3
-scipy==1.11.4
+soundfile
+noisereduce
+pydub
+numpy
+scipy
 
 # AI & LLM
-groq==0.4.1
-langchain==0.1.0
-langchain-google-genai==0.0.6
-langchain-core==0.1.10
-google-generativeai==0.3.2
-
-# Document Export
-reportlab==4.0.7
-python-docx==1.1.0
-
-# Server & Middleware
-gunicorn==21.2.0
-aiofiles==23.2.1
-
-# Logging & Monitoring
-logging==0.4.9.6
+groq
+langchain
+langchain-google-genai
+langchain-core
+google-generativeai

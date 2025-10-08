@@ -2608,3 +2608,277 @@ ValueError: Missing some input keys: {'\n  "mom_title"'}
 2025-10-08 09:02:15,034 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 3.80s
 2025-10-08 09:02:15,034 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 4.53s
 2025-10-08 09:02:15,035 - main - INFO - Response: 200 in 4.536s
+2025-10-08 09:14:07,289 - main - INFO - Request: POST /speech-to-text/transcribe
+2025-10-08 09:14:07,291 - agents.speech_to_txt_agent.agent_main - INFO - Saved temporary audio file: C:\Users\HP\AppData\Local\Temp\tmp8c2cfr_w.mp3
+2025-10-08 09:14:07,378 - agents.speech_to_txt_agent.agent_main - INFO - Converted to WAV: C:\Users\HP\AppData\Local\Temp\tmppv41ideu.wav
+2025-10-08 09:14:23,021 - agents.speech_to_txt_agent.agent_main - INFO - Raw MoM from run_agent: {'title': 'Team Task Review', 'summary': 'A review of pending high-priority tickets and updates on monitoring alerts, escalation matrix, client communication, and performance reports. The goal is to resolve all issues before the customer review on Monday, September 20.', 'overview': 'The meeting focused on addressing pending high-priority tickets and reviewing progress on key tasks to ensure readiness for the upcoming customer review. Agenda points included updates on monitoring alerts, escalation matrix, client communication, and performance reports.', 'attendees': ['Naveen (presumably leading the meeting)', 'Arvind', 'Jai Seema', 'Priya', 'Rahul'], 'tasks': [{'task': 'Set up monitoring alerts', 'assigned_to': 'Arvind', 'deadline': '2024-09-15'}, {'task': 'Finalize and share updated escalation matrix', 'assigned_to': 'Jai Seema', 'deadline': '2024-09-17'}, {'task': 'Follow up with clients on pending tickets and send responses', 'assigned_to': 'Priya', 'deadline': '2024-09-16'}, {'task': "Review last week's performance reports and highlight bottlenecks", 'assigned_to': 'Rahul', 'deadline': '2024-09-16'}], 'action_items': ['Naveen to reassign four high priority tickets.', 'Arvind to complete monitoring alerts by Wednesday, September 15.', 'Jai Seema to finalize and share updated escalation matrix by Friday, September 17.', 'Priya to follow up with clients on pending tickets and send responses by Thursday, September 16.', "Rahul to review last week's performance reports and highlight bottlenecks by Thursday, September 16."], 'decisions': [], 'risks': ['Potential delays in completing tasks may impact the customer review on Monday, September 20.', 'Unresolved high-priority tickets could negatively affect customer satisfaction.'], 'data_points': ['Four high priority tickets are pending from last week.', 'Customer review is scheduled for Monday, September 20.']}
+2025-10-08 09:14:23,021 - agents.speech_to_txt_agent.agent_main - INFO - Response sent to frontend: {'transcript': " Good morning everyone. We still have four high priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes sir, Naveen. I've already started setting up the monitoring alerts and I should be able to complete them by Wednesday 15 September. All right, that's good. Arvind. Last week we had some delays with escalations. Jai Seema, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday 17 September. Excellent, Jai Seema. What's the update on client communication, Priya? Yes sir, I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday 16 September. Perfect, Priya. Can you update us on the performance reports, Rahul? Yes sir, Naveen. I'll review last week's performance reports and highlight any bottlenecks by Thursday 16 September. Great, Rahul. So all the action items are clear. Let's make sure everything is wrapped up before the customer review on Monday, 20 September.", 'mom': {'title': 'Team Task Review', 'summary': 'A review of pending high-priority tickets and updates on monitoring alerts, escalation matrix, client communication, and performance reports. The goal is to resolve all issues before the customer review on Monday, September 20.', 'overview': 'The meeting focused on addressing pending high-priority tickets and reviewing progress on key tasks to ensure readiness for the upcoming customer review. Agenda points included updates on monitoring alerts, escalation matrix, client communication, and performance reports.', 'attendees': ['Naveen (presumably leading the meeting)', 'Arvind', 'Jai Seema', 'Priya', 'Rahul'], 'tasks': [{'task': 'Set up monitoring alerts', 'assigned_to': 'Arvind', 'deadline': '2024-09-15'}, {'task': 'Finalize and share updated escalation matrix', 'assigned_to': 'Jai Seema', 'deadline': '2024-09-17'}, {'task': 'Follow up with clients on pending tickets and send responses', 'assigned_to': 'Priya', 'deadline': '2024-09-16'}, {'task': "Review last week's performance reports and highlight bottlenecks", 'assigned_to': 'Rahul', 'deadline': '2024-09-16'}], 'action_items': ['Naveen to reassign four high priority tickets.', 'Arvind to complete monitoring alerts by Wednesday, September 15.', 'Jai Seema to finalize and share updated escalation matrix by Friday, September 17.', 'Priya to follow up with clients on pending tickets and send responses by Thursday, September 16.', "Rahul to review last week's performance reports and highlight bottlenecks by Thursday, September 16."], 'decisions': [], 'risks': ['Potential delays in completing tasks may impact the customer review on Monday, September 20.', 'Unresolved high-priority tickets could negatively affect customer satisfaction.'], 'data_points': ['Four high priority tickets are pending from last week.', 'Customer review is scheduled for Monday, September 20.']}, 'export_file': None}
+2025-10-08 09:14:23,038 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmp8c2cfr_w.mp3
+2025-10-08 09:14:23,040 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmppv41ideu.wav
+2025-10-08 09:14:23,040 - main - INFO - Response: 200 in 15.752s
+2025-10-08 09:50:17,802 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-08 09:50:17,808 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-08 09:50:18,370 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp2uw8fqmg.wav
+2025-10-08 09:50:18,604 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.80s
+2025-10-08 09:50:18,604 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-08 09:50:18,604 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-08 09:50:18,604 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-08 09:50:19,398 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-08 09:50:19,403 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Hello everyone, good morning to all. Test microphone, access, start recording, meeting, watch words appear in real time, monitor audio level and recording time, speak clearly, mention names and roles, stop recording when finished, generate compensation for meeting minutes.' (duration: 25.38s, max_amp: 0.8047)
+2025-10-08 09:50:19,404 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-08 09:50:20,254 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 273 characters
+2025-10-08 09:50:20,254 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Hello everyone, good morning to all. Test microphone. Access. Start recording. Meeting: watch words ...
+2025-10-08 09:50:20,264 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-08 09:50:23,306 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "Morning",
+    "meeting_type": "Meeting Recording Test"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Test m
+2025-10-08 09:50:23,306 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "Morning",
+    "meeting_type": "Meeting Recording Test"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Test microphon
+2025-10-08 09:50:23,306 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-08 09:50:23,306 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-08 09:50:23,306 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-08 09:50:23,306 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 273
+2025-10-08 09:50:23,306 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-08 09:50:23,306 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 4.70s
+2025-10-08 09:50:23,306 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 5.50s
+2025-10-08 09:50:23,316 - main - INFO - Response: 200 in 5.511s
+2025-10-08 10:18:31,002 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-08 10:18:31,020 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-08 10:18:31,073 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted raw PCM to WAV: C:\Users\HP\AppData\Local\Temp\tmpl2lriqxb.wav
+2025-10-08 10:18:31,851 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.83s
+2025-10-08 10:18:31,853 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-08 10:18:31,853 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-08 10:18:31,853 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-08 10:18:33,019 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-08 10:18:33,019 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Include participant names when mentioned. Thank you.' (duration: 47.76s, max_amp: 0.6069)
+2025-10-08 10:18:33,023 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-08 10:18:34,008 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 292 characters
+2025-10-08 10:18:34,008 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Okay, please provide the transcript you would like me to edit. I will do my best to fix the grammar,...
+2025-10-08 10:18:34,008 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-08 10:18:36,508 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "Not specified",
+    "meeting_type": "General meeting"
+  },
+  "attendance": {
+    "participants": [],
+    "total_participants": 0
+  
+2025-10-08 10:18:36,508 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "Not specified",
+    "meeting_type": "General meeting"
+  },
+  "attendance": {
+    "participants": [],
+    "total_participants": 0
+  },
+  "su
+2025-10-08 10:18:36,508 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-08 10:18:36,508 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-08 10:18:36,508 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-08 10:18:36,508 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 292
+2025-10-08 10:18:36,508 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-08 10:18:36,508 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 4.66s
+2025-10-08 10:18:36,508 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 5.49s
+2025-10-08 10:18:36,508 - main - INFO - Response: 200 in 5.505s
+2025-10-08 10:20:33,418 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-08 10:20:33,427 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-08 10:20:33,657 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmp6dlzqs_b.wav
+2025-10-08 10:20:34,558 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.13s
+2025-10-08 10:20:34,558 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-08 10:20:34,558 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-08 10:20:34,567 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-08 10:20:43,777 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-08 10:20:43,787 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassign them today. Arvind, can you give me an update on the monitoring alerts? Yes, sir, Naveen. I've already started setting up the monitoring alerts, and I should be able to complete them by Wednesday, 15 September. All right, that's good, Arvind. Last week we had some delays with escalations. Jaisima, how are we planning to fix that? Yes, Naveen, I noticed that too. I'll finalize an updated escalation matrix and share it with the team by Friday, 17th September. Excellent, Jaisima. What's the update on client communication, Priya? Yes, sir. I'll follow up with all the clients on the pending tickets and make sure responses are sent by Thursday, 16th September. Perfect, Priya. Can you update us on the performance reports, Rahul? Yes, sir, Naveen. I'll review last week's performance reports and highlight any bottlenecks by Thursday, 16th September. Great, Rahul.' (duration: 81.66s, max_amp: 0.8743)
+2025-10-08 10:20:43,789 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-08 10:20:45,501 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 979 characters
+2025-10-08 10:20:45,501 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Good morning, everyone. We still have four high-priority tickets pending from last week. I'll reassi...
+2025-10-08 10:20:45,501 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-08 10:20:50,901 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "Morning",
+    "meeting_type": "Standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "rol
+2025-10-08 10:20:50,903 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "Morning",
+    "meeting_type": "Standup"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Naveen",
+        "role": "Not
+2025-10-08 10:20:50,903 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-08 10:20:50,903 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-08 10:20:50,903 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-08 10:20:50,903 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 979
+2025-10-08 10:20:50,903 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-08 10:20:50,903 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 16.34s
+2025-10-08 10:20:50,903 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 17.48s
+2025-10-08 10:20:50,907 - main - INFO - Response: 200 in 17.489s
+2025-10-08 12:22:28,478 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-08 12:22:28,500 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-08 12:22:29,255 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpw0fh04x5.wav
+2025-10-08 12:22:30,385 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.89s
+2025-10-08 12:22:30,385 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-08 12:22:30,385 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-08 12:22:30,388 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-08 12:22:32,642 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-08 12:22:32,654 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Morning, everyone. This is Emma Carter, project lead, starting our sprint planning meeting for the Horizon project on 8 October 2025 at 9.30am. Today, we are focusing on the apps authentication module, resource planning, and testing timelines. Let's do a quick roll call. I've got Liam Patel, our senior developer, online. We also have Olivia Chain, UA Lead, and Noh Kim from Operations. That's the four of us today. Let's start with the authentication module. Liam, the login flow is complete, right? Sounds good, but we need to finalize the multi-factor authentication setup. Liam, can you take ownership of completing the MFA implementation by next Friday, 17th October? It critical for security so let mark it as high priority Great thanks Liam Next let discuss the API integration Olivia, you suggested switching to a REST-based approach instead of GraphQL for simpler maintenance. I agree that REST aligns better with our systems. No, any concerns from operations? Okay, we are aligned. Let's decide to adopt REST for the API integration, effective immediately, with implementation targeted for Q1 2026. The rationale is easier maintenance and compatibility. Liam, your Dev team will lead this, correct? Thanks for confirming. One issue to address is testing resources. Olivia, you flagged that we are short on QA testers, which could delay our timeline. No, can operations look into onboarding a contract QA tester by 20th October? Let's mark this as a medium severity blocker. Thanks, Noor.' (duration: 128.94s, max_amp: 0.9777)
+2025-10-08 12:22:32,658 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-08 12:22:35,160 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 1521 characters
+2025-10-08 12:22:35,160 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Morning, everyone. This is Emma Carter, project lead, starting our sprint planning meeting for the H...
+2025-10-08 12:22:35,161 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-08 12:22:40,065 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "09:30",
+    "meeting_type": "sprint planning"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Emma Carter",
+ 
+2025-10-08 12:22:40,066 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "09:30",
+    "meeting_type": "sprint planning"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name": "Emma Carter",
+        "
+2025-10-08 12:22:40,066 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-08 12:22:40,066 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-08 12:22:40,067 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-08 12:22:40,067 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 1521
+2025-10-08 12:22:40,067 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-08 12:22:40,067 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 9.68s
+2025-10-08 12:22:40,067 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 11.57s
+2025-10-08 12:22:40,071 - main - INFO - Response: 200 in 11.593s
+2025-10-08 12:37:00,641 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-08 12:37:00,650 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-08 12:37:00,977 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted using pydub: C:\Users\HP\AppData\Local\Temp\tmpz05xx45v.wav
+2025-10-08 12:37:02,379 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 1.73s
+2025-10-08 12:37:02,379 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-08 12:37:02,380 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-08 12:37:02,383 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-08 12:37:05,139 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-08 12:37:05,145 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Good morning everyone. This is Emma Carter, project lead, starting our sprint planning meeting for the Arizon project on October 8, 2025 at 9.30 am. Today, we are focusing on the apps authentication module resource planning and testing timelines. Let's talk quick a roll call. I've got Liam Patel, our senior developer. Online web also have Olivia Shen, QA lead, and Noya Kim for operation. That's the four of us today. Let's start with me. Authentication module. Liam login flow is complete right. Sounds good, but we need to finalize the multi-factor authentication setup. Liam, can you take ownership the completing MFA implementation by next Friday, October 17? The next question is from Liam. It's critical security. So let's mark high priority. Great thanks Liam Next let discuss API integration Olivia you suggest switching to a reset approach instead of graph for for simple concerns operation Okay we are aligned But system NOA any concerns from operation Okay, let's decide the adopt test for AP integration effective immediately with implementation targeted for QA 2026. The relation is easier maintenance and compatibility. Your dev team will lead the correct. Thanks for confirming. On issues to address the testing, recess, Olivia, you flagged to be short on QA tester, which could you delay on timeline. NOAA can operation look into onboarding a contract QA tester. October 20. Let's mark this a medium-sweety blacker. Thanks, NOAA. Before we wrap up, let's schedule the next meeting. How about October 16 at 9.30 a.m.? Sounds good. We also need to finalize the project budget which requires approval from the finance team. Any other open items? Alright, that's it. Meeting wrapped at 10.15 am. Thanks everyone.' (duration: 124.92s, max_amp: 0.9319)
+2025-10-08 12:37:05,149 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-08 12:37:08,324 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 1791 characters
+2025-10-08 12:37:08,324 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Good morning, everyone. This is Emma Carter, project lead, starting our sprint planning meeting for ...
+2025-10-08 12:37:08,325 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-08 12:37:13,740 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "9:30 a.m. - 10:15 a.m.",
+    "meeting_type": "sprint planning meeting"
+  },
+  "attendance": {
+    "participants": [
+      {
+       
+2025-10-08 12:37:13,741 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "9:30 a.m. - 10:15 a.m.",
+    "meeting_type": "sprint planning meeting"
+  },
+  "attendance": {
+    "participants": [
+      {
+        "name":
+2025-10-08 12:37:13,742 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-08 12:37:13,743 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-08 12:37:13,744 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-08 12:37:13,745 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 1791
+2025-10-08 12:37:13,745 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-08 12:37:13,746 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 11.36s
+2025-10-08 12:37:13,746 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 13.10s
+2025-10-08 12:37:13,752 - main - INFO - Response: 200 in 13.111s
+2025-10-08 12:38:38,967 - main - INFO - Request: POST /speech-to-text/transcribe
+2025-10-08 12:38:38,986 - agents.speech_to_txt_agent.agent_main - INFO - Saved temporary audio file: C:\Users\HP\AppData\Local\Temp\tmp49qz2v0t.mp3
+2025-10-08 12:38:39,105 - agents.speech_to_txt_agent.agent_main - INFO - Converted to WAV: C:\Users\HP\AppData\Local\Temp\tmpx5fnzv2u.wav
+2025-10-08 12:39:03,140 - agents.speech_to_txt_agent.agent_main - INFO - Raw MoM from run_agent: {'title': 'Horizon Project Sprint Planning - Authentication Module, Resource Planning, and Testing Timelines', 'summary': 'Sprint planning meeting for the Horizon project focused on the authentication module, API integration approach, resource planning for QA testing, and timeline considerations. Key decisions were made regarding MFA implementation, API integration using REST, and onboarding a contract QA tester.', 'overview': "The meeting was held on October 8, 2025, to discuss the Horizon project's authentication module, resource planning, and testing timelines. Agenda points included finalizing MFA setup, deciding on the API integration approach (REST vs. GraphQL), and addressing QA testing resource shortages. The meeting also touched upon finalizing the project budget and scheduling the next meeting.", 'attendees': ['Emma Carter (Project Lead)', 'Liam Patel (Senior Developer)', 'Olivia Chen (QA Lead)', 'No Kim (Operations)'], 'tasks': [{'task': 'Complete the MFA implementation', 'assigned_to': 'Liam Patel', 'deadline': '2025-10-17'}, {'task': 'Onboard a contract QA tester', 'assigned_to': 'No Kim', 'deadline': '2025-10-20'}], 'action_items': ['Liam to complete MFA implementation by October 17th.', 'No to onboard a contract QA tester by October 20th.', 'Finalize the project budget with finance team approval.', "Liam's dev team to lead the REST API integration implementation."], 'decisions': [{'decision': 'Adopt REST for the API integration instead of GraphQL', 'participant': 'Emma Carter'}], 'risks': ['Shortage of QA testers could delay the project timeline.', 'Project budget requires approval from the finance team.'], 'data_points': ['Meeting start time: 9:30 AM on October 8, 2025', 'Meeting end time: 10:15 AM on October 8, 2025', 'Next meeting scheduled for October 16th at 9:30 AM', 'REST API implementation targeted for Q1-2026']}
+2025-10-08 12:39:03,141 - agents.speech_to_txt_agent.agent_main - INFO - Response sent to frontend: {'transcript': " Good morning everyone. This is Emma Carter, project lead starting our sprint planning meeting for the horizon project on 8 October 2025 at 930 AM. Today we are focusing on the apps authentication module, resource planning and testing timelines. Let's do a quick roll call. I've got Liam Patel, our senior developer online. We also have Olivia Chen, QA lead and no Kim from operations. That's the four of us today. Let's start with the authentication module. Liam, the login flow is complete, right? Sounds good, but we need to finalize the multi factor authentication setup. Liam, can you take ownership of completing the MFA implementation by next Friday, 17th October? It's critical for security, so let's market as high priority. Great, thanks Liam. Next, let's discuss the API integration. Olivia, you suggested switching to a rest-based approach instead of GraphQL for simpler maintenance. I agree that rest aligns better with our systems. No, any concerns from operations? Okay, we are aligned. Let's decide to adopt rest for the API integration effective immediately with implementation targeted for Q1-2026. The rationale is easier maintenance and compatibility. Liam, your Dave team will lead this, correct? Thanks for confirming. One issue to address is testing resources. Olivia, you flagged that we are short on Q8 testers which could delay our timeline. No, can operations look into onboarding a contract Q8 tester by 20th October? Let's mark this as a medium severity blocker. Thanks, no. Before we wrap up, let's schedule the next meeting. How about 16th October at 9.30am? Sounds good. We also need to finalize the project budget which requires approval from the finance team. Any other open items? All right, that's it. Meeting wrapped at 10.15am. Thanks, everyone.", 'mom': {'title': 'Horizon Project Sprint Planning - Authentication Module, Resource Planning, and Testing Timelines', 'summary': 'Sprint planning meeting for the Horizon project focused on the authentication module, API integration approach, resource planning for QA testing, and timeline considerations. Key decisions were made regarding MFA implementation, API integration using REST, and onboarding a contract QA tester.', 'overview': "The meeting was held on October 8, 2025, to discuss the Horizon project's authentication module, resource planning, and testing timelines. Agenda points included finalizing MFA setup, deciding on the API integration approach (REST vs. GraphQL), and addressing QA testing resource shortages. The meeting also touched upon finalizing the project budget and scheduling the next meeting.", 'attendees': ['Emma Carter (Project Lead)', 'Liam Patel (Senior Developer)', 'Olivia Chen (QA Lead)', 'No Kim (Operations)'], 'tasks': [{'task': 'Complete the MFA implementation', 'assigned_to': 'Liam Patel', 'deadline': '2025-10-17'}, {'task': 'Onboard a contract QA tester', 'assigned_to': 'No Kim', 'deadline': '2025-10-20'}], 'action_items': ['Liam to complete MFA implementation by October 17th.', 'No to onboard a contract QA tester by October 20th.', 'Finalize the project budget with finance team approval.', "Liam's dev team to lead the REST API integration implementation."], 'decisions': [{'decision': 'Adopt REST for the API integration instead of GraphQL', 'participant': 'Emma Carter'}], 'risks': ['Shortage of QA testers could delay the project timeline.', 'Project budget requires approval from the finance team.'], 'data_points': ['Meeting start time: 9:30 AM on October 8, 2025', 'Meeting end time: 10:15 AM on October 8, 2025', 'Next meeting scheduled for October 16th at 9:30 AM', 'REST API implementation targeted for Q1-2026']}, 'export_file': None}
+2025-10-08 12:39:03,143 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmp49qz2v0t.mp3
+2025-10-08 12:39:03,144 - agents.speech_to_txt_agent.agent_main - INFO - Deleted temporary file: C:\Users\HP\AppData\Local\Temp\tmpx5fnzv2u.wav
+2025-10-08 12:39:03,145 - main - INFO - Response: 200 in 24.178s
+2025-10-08 12:49:41,466 - main - INFO - Request: POST /live-speech-to-text/live-chunks
+2025-10-08 12:49:41,487 - agents.live_speech_to_txt_agent.agent_main - INFO - Processing 1 audio chunks for enhanced MoM generation
+2025-10-08 12:49:41,522 - agents.live_speech_to_txt_agent.core.tools - INFO - Successfully converted raw PCM to WAV: C:\Users\HP\AppData\Local\Temp\tmp1b3v0dt6.wav
+2025-10-08 12:49:42,197 - agents.live_speech_to_txt_agent.agent_main - INFO - Processed 1/1 files in 0.71s
+2025-10-08 12:49:42,197 - agents.live_speech_to_txt_agent.agent_main - INFO - Successfully converted 1 files to audio chunks
+2025-10-08 12:49:42,197 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 audio chunks
+2025-10-08 12:49:42,198 - agents.live_speech_to_txt_agent.core.agent - INFO - Processing 1 valid chunks
+2025-10-08 12:49:43,751 - httpx - INFO - HTTP Request: POST https://api.groq.com/openai/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-10-08 12:49:43,755 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed: 'Include participant names when mentioned. Include participant names when mentioned.' (duration: 57.42s, max_amp: 0.6152)
+2025-10-08 12:49:43,757 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully transcribed 1/1 chunks
+2025-10-08 12:49:44,649 - agents.live_speech_to_txt_agent.core.agent - INFO - Full transcript length: 231 characters
+2025-10-08 12:49:44,650 - agents.live_speech_to_txt_agent.core.agent - INFO - Generating MoM from transcript: Okay, I'm ready. Please provide the transcript. I will do my best to fix the grammar, punctuation, a...
+2025-10-08 12:49:44,650 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM generation attempt 1/3
+2025-10-08 12:49:46,694 - agents.live_speech_to_txt_agent.core.agent - INFO - LLM Response (first 200 chars): ```json
+{
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "Not specified",
+    "meeting_type": "Not specified"
+  },
+  "attendance": {
+    "participants": [],
+    "total_participants": 0
+  },
+2025-10-08 12:49:46,695 - agents.live_speech_to_txt_agent.core.agent - INFO - Extracted JSON (first 200 chars): {
+  "meeting_info": {
+    "date": "2025-10-08",
+    "time": "Not specified",
+    "meeting_type": "Not specified"
+  },
+  "attendance": {
+    "participants": [],
+    "total_participants": 0
+  },
+  "summ
+2025-10-08 12:49:46,695 - agents.live_speech_to_txt_agent.core.agent - INFO - MoM structure validation passed
+2025-10-08 12:49:46,696 - agents.live_speech_to_txt_agent.core.agent - INFO - Successfully generated and validated MoM
+2025-10-08 12:49:46,697 - agents.live_speech_to_txt_agent.agent_main - INFO - Result from run_live_agent: dict_keys(['transcript', 'mom'])
+2025-10-08 12:49:46,697 - agents.live_speech_to_txt_agent.agent_main - INFO - Transcript length: 231
+2025-10-08 12:49:46,697 - agents.live_speech_to_txt_agent.agent_main - INFO - MoM keys: dict_keys(['meeting_info', 'attendance', 'summary', 'action_items', 'decisions', 'follow_up', 'risks_and_blockers'])
+2025-10-08 12:49:46,698 - agents.live_speech_to_txt_agent.agent_main - INFO - Enhanced live transcription completed in 4.50s
+2025-10-08 12:49:46,698 - agents.live_speech_to_txt_agent.agent_main - INFO - Total processing time: 5.21s
+2025-10-08 12:49:46,703 - main - INFO - Response: 200 in 5.237s
